@@ -1,7 +1,3 @@
-<div class="header index_link">
-  tobstarr.com
-</div>
-<hr />
 <div class="index_links">
   <div class="twitter">
     <a class="index_link" href="https://twitter.com/tobstarr" target="_blank">@tobstarr</a>
