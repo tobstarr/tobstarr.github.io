@@ -6,7 +6,9 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"path/filepath"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/shurcooL/github_flavored_markdown"
@@ -17,15 +19,6 @@ func main() {
 	if err := run(l); err != nil {
 		log.Fatal(err)
 	}
-}
-
-type Job struct {
-	Out     string
-	Sources []Source
-}
-
-func (j *Job) Exec(l Logger) error {
-	return writeFile(l, j.Out, j.Sources...)
 }
 
 func FileSources(paths ...string) (list []Source) {
@@ -41,6 +34,18 @@ var sources = map[string][]Source{
 	"dotfiles/vimrc.conf": FileSources("dotfiles/vimrc"),
 	"index.html":          Layout(FileSource("tpl/index.tpl")),
 	"versions.html":       Layout(MarkdownSource("tpl/versions.md")),
+}
+
+func loadHTMLFiles() (list map[string]struct{}, err error) {
+	list = map[string]struct{}{}
+	return list, filepath.Walk(".", func(p string, info os.FileInfo, err error) error {
+		if info.IsDir() {
+			return nil
+		} else if strings.HasSuffix(p, ".html") {
+			list[p] = struct{}{}
+		}
+		return nil
+	})
 }
 
 func Layout(s Source) []Source {
@@ -60,12 +65,22 @@ func MarkdownSource(path string) Source {
 }
 
 func run(l *log.Logger) error {
-	github_flavored_markdown.Markdown([]byte{})
+	start := time.Now()
+	m, err := loadHTMLFiles()
+	if err != nil {
+		return err
+	}
 	for path, sources := range sources {
 		if err := writeFile(l, path, sources...); err != nil {
 			return err
 		}
+		delete(m, path)
 	}
+	for k := range m {
+		l.Printf("deleting file %s", k)
+		os.RemoveAll(k)
+	}
+	l.Printf("finished in %.06f", time.Since(start).Seconds())
 	return nil
 }
 
