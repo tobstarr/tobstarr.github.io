@@ -1,0 +1,13 @@
+body {
+    padding-top: 10px;
+}
+
+.index_links {
+  text-align: center;
+}
+
+.index_link {
+  color: black;
+  font-size: 40px;
+  font-weight: bold;
+}
