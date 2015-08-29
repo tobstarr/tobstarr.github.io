@@ -16,11 +16,34 @@ func main() {
 	}
 }
 
-func run(l *log.Logger) error {
-	return writeFile("index.html", "tpl/header.tpl", "tpl/index.tpl", "tpl/footer.tpl")
+type Job struct {
+	Out   string
+	Parts []string
 }
 
-func writeFile(out string, files ...string) error {
+func (j *Job) Exec(l Logger) error {
+	return writeFile(l, j.Out, j.Parts...)
+}
+
+func run(l *log.Logger) error {
+	jobs := []*Job{
+		{"index.html", []string{"tpl/header.tpl", "tpl/index.tpl", "tpl/footer.tpl"}},
+		{"dotfiles/index.html", []string{"tpl/header.tpl", "tpl/dotfiles/index.tpl", "tpl/footer.tpl"}},
+	}
+	for _, j := range jobs {
+		if err := j.Exec(l); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+type Logger interface {
+	Printf(string, ...interface{})
+}
+
+func writeFile(l Logger, out string, files ...string) error {
+	start := time.Now()
 	buf := &bytes.Buffer{}
 	for _, name := range files {
 		f, err := os.Open(name)
@@ -43,5 +66,10 @@ func writeFile(out string, files ...string) error {
 	if err != nil {
 		return err
 	}
-	return os.Rename(tmp, out)
+	err = os.Rename(tmp, out)
+	if err != nil {
+		return err
+	}
+	l.Printf("write file %s in %.6f", out, time.Since(start).Seconds())
+	return nil
 }
