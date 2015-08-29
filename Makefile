@@ -1,2 +1,2 @@
 build:
-	go run gen.go
+	@go run gen.go
