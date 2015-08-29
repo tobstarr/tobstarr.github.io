@@ -29,6 +29,7 @@ func run(l *log.Logger) error {
 	jobs := []*Job{
 		{"index.html", []string{"tpl/header.tpl", "tpl/index.tpl", "tpl/footer.tpl"}},
 		{"dotfiles/index.html", []string{"tpl/header.tpl", "tpl/dotfiles/index.tpl", "tpl/footer.tpl"}},
+		{"dotfiles/vimrc.conf", []string{"dotfiles/vimrc"}},
 	}
 	for _, j := range jobs {
 		if err := j.Exec(l); err != nil {
