@@ -30,10 +30,10 @@ func FileSources(paths ...string) (list []Source) {
 }
 
 var sources = map[string][]Source{
-	"dotfiles.html":       Layout(FileSource("tpl/dotfiles/index.tpl")),
+	"dotfiles.html":       Layout(FileSource("src/dotfiles/index.tpl")),
 	"dotfiles/vimrc.conf": FileSources("dotfiles/vimrc"),
-	"index.html":          Layout(FileSource("tpl/index.tpl")),
-	"versions.html":       Layout(MarkdownSource("tpl/versions.md")),
+	"index.html":          Layout(FileSource("src/index.tpl")),
+	"versions.html":       Layout(MarkdownSource("src/versions.md")),
 }
 
 func loadHTMLFiles() (list map[string]struct{}, err error) {
@@ -49,7 +49,7 @@ func loadHTMLFiles() (list map[string]struct{}, err error) {
 }
 
 func Layout(s Source) []Source {
-	return []Source{FileSource("tpl/header.tpl"), s, FileSource("tpl/footer.tpl")}
+	return []Source{FileSource("src/header.tpl"), s, FileSource("src/footer.tpl")}
 }
 
 func MarkdownSource(path string) Source {
