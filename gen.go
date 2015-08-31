@@ -14,6 +14,13 @@ import (
 	"github.com/shurcooL/github_flavored_markdown"
 )
 
+var sources = map[string][]Source{
+	"dotfiles.html":       Layout(FileSource("src/dotfiles/index.tpl")),
+	"dotfiles/vimrc.conf": FileSources("dotfiles/vimrc"),
+	"index.html":          Layout(FileSource("src/index.tpl")),
+	"versions.html":       Layout(MarkdownSource("src/versions.md")),
+}
+
 func main() {
 	l := log.New(os.Stderr, "", 0)
 	if err := run(l); err != nil {
@@ -27,13 +34,6 @@ func FileSources(paths ...string) (list []Source) {
 	}
 	return list
 
-}
-
-var sources = map[string][]Source{
-	"dotfiles.html":       Layout(FileSource("src/dotfiles/index.tpl")),
-	"dotfiles/vimrc.conf": FileSources("dotfiles/vimrc"),
-	"index.html":          Layout(FileSource("src/index.tpl")),
-	"versions.html":       Layout(MarkdownSource("src/versions.md")),
 }
 
 func loadHTMLFiles() (list map[string]struct{}, err error) {
