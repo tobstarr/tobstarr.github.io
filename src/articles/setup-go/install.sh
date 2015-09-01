@@ -1,8 +1,8 @@
 #!/bin/sh
 set -xe
 
-VERSION=1.5
-ARCH="linux-amd64" # use darwin-amd64 for OSX
+VERSION=1.4.2
+ARCH=$(uname | awk '{print tolower($0)}')-amd64
 DST=/usr/local/go${VERSION}
 
 TMP=$(mktemp -d /tmp/goXXXXXX)
