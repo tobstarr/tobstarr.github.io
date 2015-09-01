@@ -14,6 +14,8 @@
 * keychain
 * mysql
 * pv
+* pwgen
+* reattach-to-user-namespace
 * redis
 * the_silver_searcher
 * tmux
