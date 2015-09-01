@@ -1,6 +1,8 @@
 # Setup OSX
 
-## Defaults
+## Homebrew
+
+### defaults
 
 * elasticsearch
 * gnu-sed
@@ -18,8 +20,16 @@
 * vim
 * zsh
 
-## For phrase
+### phrase
 
 * icu4c
 * qt5
 
+
+## Symlinks
+
+	export DOTFILES=$HOME/src/github.com/tobstarr/tobstarr.github.io/dotfiles
+
+	ln -nfs ${DOTFILES}/vimrc ~/.vimrc
+	ln -nfs ${DOTFILES}/tmux.conf ~/.tmux.conf
+	ln -nfs ${DOTFILES}/gitconfig ~/.gitconfig
