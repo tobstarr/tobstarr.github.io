@@ -18,6 +18,7 @@
 
 ### dockerhub
 
+- [Docker Registry](https://hub.docker.com/_/registry/)
 - [ElasticSearch](https://registry.hub.docker.com/_/elasticsearch/)
 - [Java](https://registry.hub.docker.com/_/java/)
 - [Mongo](https://registry.hub.docker.com/_/mongo/)
