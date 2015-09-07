@@ -26,5 +26,7 @@
 
 ## Firefox
 
-*https://addons.mozilla.org/de/firefox/addon/jsonview/
-*https://addons.mozilla.org/de/firefox/addon/markdown-viewer/
+* https://addons.mozilla.org/de/firefox/addon/jsonview/
+* https://addons.mozilla.org/de/firefox/addon/markdown-viewer/
+* https://addons.mozilla.org/de/firefox/addon/vimperator/
+* https://addons.mozilla.org/de/firefox/addon/ghostery/
