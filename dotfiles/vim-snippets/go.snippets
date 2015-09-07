@@ -1,0 +1,470 @@
+snippet logi "Logger interface" b
+type Logger interface {
+	Printf(string, ...interface{})
+}
+${0}
+endsnippet
+
+snippet gzr "Gzip Reader"
+f, err := os.Open(p)
+if err != nil {
+	return err
+}
+defer f.Close()
+gz, err := gzip.NewReader(f)
+if err != nil {
+	return err
+}
+defer gz.Close()
+r := bufio.NewReader(gz)
+for {
+	l, err := r.ReadString('\n')
+	if err != nil {
+		if err == io.EOF {
+			break
+		}
+		return err
+	}
+	${0}
+	_ = l
+}
+return nil
+endsnippet
+
+snippet bm "Description" b
+func benchmark(message string) func() {
+	started := time.Now()
+	l.Printf("started  %s", message)
+	return func() {
+		l.Printf("finished %s in %.06f", message, time.Since(started).Seconds())
+	}
+}
+${0}
+endsnippet
+
+snippet server "Description" b
+port := os.Getenv("PORT")
+if port == "" {
+	port = "${1:3000}"
+}
+if !strings.Contains(port, ":") {
+	port = "127.0.0.1:" + port
+}
+l.Printf("running port %q", port)
+return http.ListenAndServe(port, nil)
+endsnippet
+
+
+snippet rgne "this is rgne" b
+thisisrgne ${1} out it
+endsnippet
+
+snippet ife "if error" b
+if err != nil {
+	${1}
+}
+endsnippet
+
+snippet init "init" b
+func init() {
+	${1}
+}
+endsnippet
+
+snippet log "log" b
+l.Printf("${1}", ${2})
+endsnippet
+
+snippet fum "Member function" b
+func (${1:self}) ${2:Method}(${3}) ${4:error} {
+	${5}
+}
+endsnippet
+
+snippet ref "Return fmt.Errorf" b
+return fmt.Errorf("${1:error}", ${2:args})
+endsnippet
+
+snippet ef "Return errorf"
+fmt.Errorf("${1}"${2})${0}
+endsnippet
+
+snippet test "Test Function" b
+func Test${1}(t *testing.T) {
+	${2}
+}
+endsnippet
+
+snippet tconv "Root convey namespace" b
+Convey("${1}", t, func() {
+	${2}
+})
+endsnippet
+
+snippet conv "Root convey namespace" b
+Convey("${1}", func() {
+	${2}
+})
+endsnippet
+
+snippet fatal "logger.Fatal" b
+l.Fatal("${1:message}", ${2:args})
+endsnippet
+
+snippet ret "return" b
+return ${1}
+endsnippet
+
+snippet ifer "if error" b
+if err != nil {
+	return err
+}
+${0}
+endsnippet
+
+snippet so "Starts a convey so block" b
+So(${1:target}, ${2:matcher})
+endsnippet
+
+snippet sne "Assert Equal" 
+ShouldNotEqual, ${1}
+endsnippet
+
+snippet se "Assert Equal" 
+ShouldEqual, ${1}
+endsnippet
+
+snippet sbn "ShouldBeNil" 
+ShouldBeNil
+endsnippet
+
+snippet snbn "Should not be nil" 
+ShouldNotBeNil
+endsnippet
+
+snippet sc "ShouldContainSubstring" b
+ShouldContainSubstring, ${1}
+endsnippet
+
+snippet tests "Test setup" b
+import . "github.com/smartystreets/goconvey/convey"
+
+func Test${2:Name}(t *testing.T) {
+	${3}
+}
+endsnippet
+
+snippet handler "Description" b
+func ${1}(w http.ResponseWriter, r *http.Request) {
+	${2}
+	return
+}
+endsnippet
+
+snippet logger "Description" b
+l := log.New(os.${1:Stderr}, "${2}", ${3:0})
+endsnippet
+
+snippet ef "errorf" b
+fmt.Errorf("${1:error}")
+endsnippet
+
+snippet runner "Runner base setup" b
+package main
+
+func main() {
+	l := log.New(os.Stderr, "", 0)
+	if err := run(l); err != nil {
+		log.Fatal(err)
+	}
+}
+
+func run(l *log.Logger) error {
+	${1}
+	return nil
+}
+endsnippet
+
+snippet cli "Cli option" 
+\`cli:"${1:option}"\`
+endsnippet
+
+snippet xml "Description"
+\`xml:"${1}"\`
+endsnippet
+
+snippet oe "Description"
+\`json:"${1},omitempty"\`
+endsnippet
+
+snippet pq "Postgres Import"
+_ "github.com/lib/pq"
+endsnippet
+
+snippet mysql "MySQL Import"
+_ "github.com/go-sql-driver/mysql"
+endsnippet
+
+snippet ec2 "EC2"
+import "github.com/aws/aws-sdk-go/service/ec2"
+endsnippet
+
+snippet sort "Description" b
+func (list ${1:Collection}) Len() int {
+	return len(list)
+}
+
+func (list $1) Swap(a, b int) {
+	list[a], list[b] = list[b], list[a]
+}
+
+func (list $1) Less(a, b int) bool {
+	return list[a].${2} < list[b].$2
+}
+${0}
+endsnippet
+
+snippet debugger "Description" b
+func debugStream() io.Writer {
+	if os.Getenv("DEBUG") == "true" {
+		return os.Stderr
+	}
+	return ioutil.Discard
+}
+
+var dbg = log.New(debugStream(), "[DEBUG] ", log.Lshortfile)
+${0}
+endsnippet
+
+snippet dbg "Description" b
+dbg.Printf("${1}")
+endsnippet
+
+snippet cliapp "New CLI App" b
+package main
+
+import (
+	"log"
+	"os"
+
+	"github.com/dynport/dgtk/cli"
+)
+
+func main() {
+	l := log.New(os.Stderr, "", 0)
+	router := cli.NewRouter()
+	router.Register${1}
+	switch err := router.RunWithArgs(); err {
+	case nil, cli.ErrorHelpRequested, cli.ErrorNoRoute:
+		// ignore
+		return
+	default:
+		l.Fatal(err)
+	}
+}
+endsnippet
+
+snippet ca "Description" b
+type ${1:Runner} struct {
+}
+
+func (r *$1) Run() error {
+	${0}
+	return nil
+}
+endsnippet
+
+snippet walk "Description" b
+err := filepath.Walk(${1}, func(p string, info os.FileInfo, err error) error {
+	${2}
+	return nil
+})
+endsnippet
+
+snippet sql "SQL field"
+\`sql:"${1:displayName}"\`
+endsnippet
+
+snippet tpl "Urknall Package Template" b
+type ${1:Template} struct {
+}
+
+func (tpl *$1) Render(p urknall.Package) {
+	${0}
+}
+endsnippet
+
+snippet uk"SQL field"
+\`urknall:"${1:required=true}"\`
+endsnippet
+
+snippet s "Struct" b
+type ${1:Type} struct {
+	${2}
+}
+${0}
+endsnippet
+
+snippet assets "Assets boilerplate" b
+var fs = assets.FileSystem()
+
+func mustReadAsset(name string) string {
+	b, err := readAsset(name)
+	if err != nil {
+		log.Fatalf("error reading asset %s: %s", name, err.Error())
+	}
+	return string(b)
+}
+
+func readAsset(name string) ([]byte, error) {
+	f, err := fs.Open(name)
+	if err != nil {
+		return nil, err
+	}
+	return ioutil.ReadAll(f)
+}
+endsnippet
+
+snippet rspb "Handle http response with reading body" b
+if err != nil {
+	return err
+}
+defer rsp.Body.Close()
+b, err := ioutil.ReadAll(rsp.Body)
+if err != nil {
+	return err
+}
+if rsp.Status[0] != '2' {
+	return fmt.Errorf("expected status 2xx, got %s: %s", rsp.Status, string(b))
+}
+${0}
+endsnippet
+
+snippet rsp "Handle http response" b
+if err != nil {
+	return err
+}
+defer rsp.Body.Close()
+if rsp.Status[0] != '2' {
+	b, _ := ioutil.ReadAll(rsp.Body)
+	return fmt.Errorf("got status %s but expected 2x. body=%s", rsp.Status, string(b))
+}
+${0}
+endsnippet
+
+snippet mustRead "Read files in tests" b
+func mustRead(t *testing.T, name string) []byte {
+	b, err := ioutil.ReadFile("fixtures/" + name)
+	if err != nil {
+		t.Fatal(err)
+	}
+	return b
+}
+${0}
+endsnippet
+
+snippet reg "Register cli action"
+${1}.Register("${2:path}", &${3:action}{}, "${4}")
+endsnippet
+
+snippet scanner "Scanner" b
+scanner := bufio.NewScanner(${1})
+for scanner.Scan() {
+	${2}
+}
+err := scanner.Err()
+${0}
+endsnippet
+
+snippet page "Web Page" b
+type ${1:index} struct {
+	${2}
+}
+
+func (i *$1) Load(r *http.Request) error {
+	${3:return nil}
+}
+
+func (i *$1) Template() ([]byte, error) {
+	return readAsset("${4}")
+}
+${0}
+
+endsnippet
+
+snippet rows "Sql Query" b
+rows, err := con.Query(${1})
+if err != nil {
+	return err
+}
+defer rows.Close()
+for rows.Next() {
+	${2}
+	if err := rows.Scan(${3}); err != nil {
+		return err
+	}
+}
+if err := rows.Err(); err != nil {
+	return err
+}
+endsnippet
+
+snippet render "Render" b
+func mustRender(t string, i interface{}) string {
+	s, err := render(t, i)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return s
+}
+
+func render(t string, i interface{}) (string, error) {
+	tpl, err := template.New(t).Parse(t)
+	if err != nil {
+		return "", err
+	}
+	buf := &bytes.Buffer{}
+	err = tpl.Execute(buf, i)
+	return buf.String(), err
+}
+endsnippet
+
+snippet ex "Description"
+expect(${1}).To
+endsnippet
+
+snippet e "fmt.Errorf"
+errors.New(${1})${0}
+endsnippet
+
+snippet err "Error"
+${1}err := ${2}
+if err != nil {
+	return err
+}
+endsnippet
+
+snippet tf "t.Format"
+t.Fatal(${1})
+endsnippet
+
+snippet te  "t.Errorf"
+t.Error(${1})
+endsnippet
+
+snippet tst "Description" b
+tests := []struct{
+	Name     string
+	Expected interface{}
+	Value    interface{}
+}{
+	{${1}},${2}
+}
+
+for _, tst := range tests {
+	if tst.Expected != tst.Value {
+		t.Errorf("expected %s to be %#v, was %#v", tst.Name, tst.Expected, tst.Value)
+	}
+}
+
+endsnippet

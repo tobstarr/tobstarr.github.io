@@ -1,0 +1,27 @@
+snippet wip "Description" b
+wip:
+	go vet ./...
+	go get ./...
+endsnippet
+
+snippet assets "Description" b
+ASSETS := $(shell find assets -type f | grep -v "^assets/assets.go$$")
+
+assets/assets.go: $(ASSETS)
+	rm -f $@
+	go run ./scripts/goassets.go -file $@ assets
+	cd assets && go get .
+endsnippet
+
+snippet deploy "Description" b
+UTILS_HOST := ${1}
+
+NAME := $(shell basename $$(pwd))
+
+build_linux:
+	GOOS=linux go get ./...
+
+deploy: build_linux
+	echo $(NAME)
+	cat ${GOPATH}/bin/linux_amd64/$(NAME) | gzip | ssh -l ubuntu $(UTILS_HOST) "cat - | gunzip > /tmp/$(NAME) && chmod a+x /tmp/$(NAME) && sudo mv /tmp/$(NAME) /usr/local/bin/$(NAME)"
+endsnippet
