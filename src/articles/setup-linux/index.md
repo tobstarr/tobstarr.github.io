@@ -23,3 +23,8 @@
 * tmux
 * zlib1g-dev
 * zsh
+
+## Firefox
+
+*https://addons.mozilla.org/de/firefox/addon/jsonview/
+*https://addons.mozilla.org/de/firefox/addon/markdown-viewer/
