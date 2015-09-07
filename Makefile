@@ -1,2 +1,5 @@
 build:
-	@go run gen.go
+	@go get -v ./...
+
+run: build
+	@tobstarr.github.io
