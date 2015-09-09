@@ -1,0 +1,8 @@
+Finished in 0.30569 seconds (files took 7.11 seconds to load)
+bundle exec rspec spec/services/search/elastic_search_adapter_spec.rb:102  6.45s user 1.35s system 96% cpu 8.109 total
+Finished in 0.30866 seconds (files took 7.08 seconds to load)
+bundle exec rspec spec/services/search/elastic_search_adapter_spec.rb:102  6.42s user 1.30s system 96% cpu 8.031 total
+Finished in 0.34938 seconds (files took 7.06 seconds to load)
+bundle exec rspec spec/services/search/elastic_search_adapter_spec.rb:102  6.45s user 1.33s system 96% cpu 8.076 total
+Finished in 0.30766 seconds (files took 7.46 seconds to load)
+bundle exec rspec spec/services/search/elastic_search_adapter_spec.rb:102  6.74s user 1.42s system 96% cpu 8.476 total
