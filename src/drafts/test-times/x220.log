@@ -1,0 +1,52 @@
+Run options: include {:focus=>true, :locations=>{"./spec/services/search/elastic_search_adapter_spec.rb"=>[102]}}
+*
+
+Pending: (Failures listed here are expected and do not affect your suite's status)
+
+  1) Search::ElasticSearchAdapter#set_single_read_and_write_index(index_name) sets phrase_test_2 as single read and write index
+     # Temporarily skipped with xit
+     # ./spec/services/search/elastic_search_adapter_spec.rb:102
+
+Finished in 1.44 seconds (files took 17.4 seconds to load)
+1 example, 0 failures, 1 pending
+
+bundle exec rspec spec/services/search/elastic_search_adapter_spec.rb:102  13.42s user 3.26s system 80% cpu 20.768 total
+Run options: include {:focus=>true, :locations=>{"./spec/services/search/elastic_search_adapter_spec.rb"=>[102]}}
+*
+
+Pending: (Failures listed here are expected and do not affect your suite's status)
+
+  1) Search::ElasticSearchAdapter#set_single_read_and_write_index(index_name) sets phrase_test_2 as single read and write index
+     # Temporarily skipped with xit
+     # ./spec/services/search/elastic_search_adapter_spec.rb:102
+
+Finished in 0.43752 seconds (files took 11.2 seconds to load)
+1 example, 0 failures, 1 pending
+
+bundle exec rspec spec/services/search/elastic_search_adapter_spec.rb:102  10.20s user 1.97s system 95% cpu 12.718 total
+Run options: include {:focus=>true, :locations=>{"./spec/services/search/elastic_search_adapter_spec.rb"=>[102]}}
+*
+
+Pending: (Failures listed here are expected and do not affect your suite's status)
+
+  1) Search::ElasticSearchAdapter#set_single_read_and_write_index(index_name) sets phrase_test_2 as single read and write index
+     # Temporarily skipped with xit
+     # ./spec/services/search/elastic_search_adapter_spec.rb:102
+
+Finished in 0.34694 seconds (files took 10.93 seconds to load)
+1 example, 0 failures, 1 pending
+
+bundle exec rspec spec/services/search/elastic_search_adapter_spec.rb:102  10.16s user 1.85s system 96% cpu 12.404 total
+Run options: include {:focus=>true, :locations=>{"./spec/services/search/elastic_search_adapter_spec.rb"=>[102]}}
+*
+
+Pending: (Failures listed here are expected and do not affect your suite's status)
+
+  1) Search::ElasticSearchAdapter#set_single_read_and_write_index(index_name) sets phrase_test_2 as single read and write index
+     # Temporarily skipped with xit
+     # ./spec/services/search/elastic_search_adapter_spec.rb:102
+
+Finished in 0.35597 seconds (files took 11.07 seconds to load)
+1 example, 0 failures, 1 pending
+
+bundle exec rspec spec/services/search/elastic_search_adapter_spec.rb:102  10.28s user 1.85s system 96% cpu 12.548 total
