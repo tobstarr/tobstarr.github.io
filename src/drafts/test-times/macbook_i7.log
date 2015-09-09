@@ -1,0 +1,72 @@
+WARNING: The next major version of capybara-webkit will require at least version 5.0 of Qt. You're using version 4.8.6.
+Run options: include {:focus=>true, :locations=>{"./spec/services/search/elastic_search_adapter_spec.rb"=>[102]}}
+
+Randomized with seed 24068
+*
+
+Pending: (Failures listed here are expected and do not affect your suite's status)
+
+  1) Search::ElasticSearchAdapter#set_single_read_and_write_index(index_name) sets phrase_test_2 as single read and write index
+     # Temporarily skipped with xit
+     # ./spec/services/search/elastic_search_adapter_spec.rb:102
+
+Finished in 0.32427 seconds (files took 18.3 seconds to load)
+1 example, 0 failures, 1 pending
+
+Randomized with seed 24068
+
+bundle exec rspec spec/services/search/elastic_search_adapter_spec.rb:102  10.81s user 5.53s system 79% cpu 20.489 total
+WARNING: The next major version of capybara-webkit will require at least version 5.0 of Qt. You're using version 4.8.6.
+Run options: include {:focus=>true, :locations=>{"./spec/services/search/elastic_search_adapter_spec.rb"=>[102]}}
+
+Randomized with seed 14561
+*
+
+Pending: (Failures listed here are expected and do not affect your suite's status)
+
+  1) Search::ElasticSearchAdapter#set_single_read_and_write_index(index_name) sets phrase_test_2 as single read and write index
+     # Temporarily skipped with xit
+     # ./spec/services/search/elastic_search_adapter_spec.rb:102
+
+Finished in 0.20083 seconds (files took 16.21 seconds to load)
+1 example, 0 failures, 1 pending
+
+Randomized with seed 14561
+
+bundle exec rspec spec/services/search/elastic_search_adapter_spec.rb:102  10.03s user 4.40s system 80% cpu 17.830 total
+WARNING: The next major version of capybara-webkit will require at least version 5.0 of Qt. You're using version 4.8.6.
+Run options: include {:focus=>true, :locations=>{"./spec/services/search/elastic_search_adapter_spec.rb"=>[102]}}
+
+Randomized with seed 8812
+*
+
+Pending: (Failures listed here are expected and do not affect your suite's status)
+
+  1) Search::ElasticSearchAdapter#set_single_read_and_write_index(index_name) sets phrase_test_2 as single read and write index
+     # Temporarily skipped with xit
+     # ./spec/services/search/elastic_search_adapter_spec.rb:102
+
+Finished in 0.22765 seconds (files took 15.01 seconds to load)
+1 example, 0 failures, 1 pending
+
+Randomized with seed 8812
+
+bundle exec rspec spec/services/search/elastic_search_adapter_spec.rb:102  9.75s user 4.22s system 84% cpu 16.633 total
+WARNING: The next major version of capybara-webkit will require at least version 5.0 of Qt. You're using version 4.8.6.
+Run options: include {:focus=>true, :locations=>{"./spec/services/search/elastic_search_adapter_spec.rb"=>[102]}}
+
+Randomized with seed 10444
+*
+
+Pending: (Failures listed here are expected and do not affect your suite's status)
+
+  1) Search::ElasticSearchAdapter#set_single_read_and_write_index(index_name) sets phrase_test_2 as single read and write index
+     # Temporarily skipped with xit
+     # ./spec/services/search/elastic_search_adapter_spec.rb:102
+
+Finished in 0.19673 seconds (files took 14.62 seconds to load)
+1 example, 0 failures, 1 pending
+
+Randomized with seed 10444
+
+bundle exec rspec spec/services/search/elastic_search_adapter_spec.rb:102  9.40s user 4.06s system 83% cpu 16.135 total
