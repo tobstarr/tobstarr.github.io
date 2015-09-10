@@ -8,3 +8,5 @@ keysym a = a A adiaeresis Adiaeresis
 keysym o = o O odiaeresis Odiaeresis
 keysym u = u U udiaeresis Udiaeresis
 keysym s = s S ssharp
+! keycode 64 = Super_L NoSymbol Super_L
+! keycode 133 = Alt_L Meta_L Alt_L Meta_L
