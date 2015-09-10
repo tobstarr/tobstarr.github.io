@@ -1,5 +1,8 @@
 " also run git clone https://github.com/gmarik/Vundle.vim.git ${HOME}/.vim/bundle/Vundle.vim
 " and mkdir -p ${HOME}/.vim.swp
+" mkdir -p $HOME/src/github.com/tobstarr/
+" git clone https://github.com/tobstarr/tobstarr.github.io $HOME/src/github.com/tobstarr/tobstarr.github.io
+" ln -nfs $HOME/src/github.com/tobstarr/tobstarr.github.io/dotfiles/vim-snippets UltiSnips
 filetype plugin off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
