@@ -7,6 +7,6 @@
 
 and then copy bits from Makefile
 
-## in httprouter
+## in github.com/julienschmidt/httprouter
 
 	r.ServeFiles("/assets/*filepath", assets.FileSystem(""))
