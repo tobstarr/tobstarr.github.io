@@ -8,6 +8,7 @@
 - [ElasticSearch](https://www.elastic.co/downloads/elasticsearch)
 - [Geminabox](https://github.com/geminabox/geminabox/releases)
 - [Golang](https://golang.org/dl/)
+- [JQuery](http://jquery.com/)
 - [Jenkins](https://jenkins-ci.org/changelog)
 - [Kibana](https://www.elastic.co/downloads/kibana)
 - [MySQL](http://dev.mysql.com/downloads/mysql/)
