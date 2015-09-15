@@ -19,6 +19,7 @@ var sources = map[string][]Source{
 	"dotfiles/vimrc.conf": FileSources("dotfiles/vimrc"),
 	"index.html":          Layout(FileSource("src/index.tpl")),
 	"versions.html":       Layout(MarkdownSource("src/versions.md")),
+	"id_rsa.pub":          FileSources("src/id_rsa.pub"),
 }
 
 func main() {
