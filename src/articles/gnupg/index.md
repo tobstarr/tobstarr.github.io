@@ -19,3 +19,7 @@
 ## Encrypt a stream without confirmation
 
 	cat some.file | gpg -e -a --trust-model always --recipient tobstarr@gmail.com
+
+## Generate a new key
+
+	gpg --gen-key
