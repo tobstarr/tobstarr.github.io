@@ -21,3 +21,21 @@ flag |explanation
 ## Write to yournal
 
 `systemd-cat -t uptime uptime`
+
+## Parse Journal Timestamp in Go
+
+	func parseTimestamp(in string) (time.Time, error) {
+		// raw is the unix nanon
+		unixNano, err := strconv.ParseInt(in, 10, 64)
+		if err != nil {
+			return time.Time{}, err
+		}
+		return timeFromUnixNano(unixNano), nil
+	}
+
+	func timeFromUnixNano(in int64) time.Time {
+		f := float64(in) / 1000000
+		sec := int64(f)
+		rem := f - float64(sec)
+		return time.Unix(int64(sec), int64(1000000000*rem))
+	}
