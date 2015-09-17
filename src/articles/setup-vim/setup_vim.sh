@@ -40,7 +40,5 @@ if [[ ! -e ${HOME}/.vim/bundle/Vundle.vim ]]; then
 	git clone https://github.com/gmarik/Vundle.vim.git ${HOME}/.vim/bundle/Vundle.vim
 fi
 
-curl -SsfL -o ${HOME}/.vimrc https://raw.githubusercontent.com/tobstarr/tobstarr.com/master/vimrc
-
 # /usr/local/bin/vim +BundleInstall +qall > /dev/null 2>&1
 # /usr/local/bin/vim +GoInstallBinaries +qall 2>&1
