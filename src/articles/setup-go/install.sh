@@ -5,6 +5,10 @@ VERSION=1.4.2
 ARCH=$(uname | awk '{print tolower($0)}')-amd64
 DST=/usr/local/go${VERSION}
 
+if ! which curl; then
+  apt-get install -y curl
+fi
+
 TMP=$(mktemp -d /tmp/goXXXXXX)
 cd ${TMP} && curl -SfL https://storage.googleapis.com/golang/go${VERSION}.${ARCH}.tar.gz | tar xfz - --strip=1
 
