@@ -30,3 +30,6 @@
 * https://addons.mozilla.org/de/firefox/addon/markdown-viewer/
 * https://addons.mozilla.org/de/firefox/addon/vimperator/
 * https://addons.mozilla.org/de/firefox/addon/ghostery/
+* https://addons.mozilla.org/de/firefox/addon/adblock-plus/
+* https://addons.mozilla.org/de/firefox/addon/youtube-high-definition/
+* https://addons.mozilla.org/de/firefox/addon/disable-ctrl-q-shortcut/
