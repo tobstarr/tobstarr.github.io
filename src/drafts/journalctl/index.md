@@ -15,8 +15,22 @@ flag |explanation
 `-e` | jump to the end of the pager
 `-f` | follow journal
 `-c` | start logs from a given cursor position
+`-p` | filter by priority, e.g. -p 1..4
 `--show-cursor` | display cursor at end of the logs
 `--utc` | show timestamps in utc
+
+## Priorities
+
+name | int
+---|---
+emerg | 0
+alert | 1
+crit | 2
+err | 3
+warning | 4
+notice | 5
+info | 6
+debug | 7
 
 ## Write to yournal
 
