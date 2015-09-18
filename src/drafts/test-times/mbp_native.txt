@@ -1,0 +1,8 @@
+Finished in 0.40166 seconds (files took 6.92 seconds to load)
+bundle exec rspec   5.80s user 1.54s system 92% cpu 7.928 total
+Finished in 0.15157 seconds (files took 6.69 seconds to load)
+bundle exec rspec   5.83s user 1.39s system 97% cpu 7.435 total
+Finished in 0.15129 seconds (files took 6.71 seconds to load)
+bundle exec rspec   5.76s user 1.48s system 97% cpu 7.451 total
+Finished in 0.14699 seconds (files took 6.77 seconds to load)
+bundle exec rspec   5.84s user 1.46s system 97% cpu 7.511 total
