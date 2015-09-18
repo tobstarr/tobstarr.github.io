@@ -33,3 +33,12 @@
 * https://addons.mozilla.org/de/firefox/addon/adblock-plus/
 * https://addons.mozilla.org/de/firefox/addon/youtube-high-definition/
 * https://addons.mozilla.org/de/firefox/addon/disable-ctrl-q-shortcut/
+
+## Gnome
+
+remove shortcut super+v for notification list (in system tab)
+
+## Hardware information
+
+	sudo dmidecode
+	sudo lspic
