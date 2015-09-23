@@ -24,6 +24,10 @@
 
 	gpg --gen-key
 
+## List recipients of a encrypted message
+
+	gpg --list-packets < file.gpg
+
 ## From golang
 
 	func secring() (openpgp.EntityList, error) {
