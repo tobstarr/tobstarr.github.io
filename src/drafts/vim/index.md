@@ -2,4 +2,8 @@
 
 ## Reload all buffers from disk
 	
-		:bufdo :e<CR>
+	:bufdo :e<CR>
+
+## Spell suggestions
+
+	z=
