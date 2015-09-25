@@ -16,6 +16,7 @@
 - [PostgreSQL](http://www.postgresql.org/ftp/source/)
 - [Redis](http://redis.io/download)
 - [Ruby](https://www.ruby-lang.org/en/downloads/)
+- [SyslogNG](https://github.com/balabit/syslog-ng/releases)
 
 ### dockerhub
 
