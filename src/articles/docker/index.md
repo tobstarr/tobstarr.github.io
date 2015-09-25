@@ -17,3 +17,15 @@
 	RUN mkdir -p /go && curl -SsfL https://storage.googleapis.com/golang/go1.4.2.linux-amd64.tar.gz | tar xfz - --strip=1
 	ENV GOROOT /go
 	ENV GOPATH /
+
+## Validate Docker Running
+
+	for i in $(seq 1 10); do
+		if docker ps > /dev/null 2>&1; then
+			exit 0
+		else
+			echo "not running => waiting"
+			sleep 1
+		fi
+	done
+	exit 1
