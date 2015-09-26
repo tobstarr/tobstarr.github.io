@@ -18,3 +18,7 @@ canonical owner id: 099720109477
 ## Documentation
 
 	http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_Operations.html
+
+## List Instances
+
+	aws ec2 describe-instances | jq -c -r '.Reservations[] | .Instances[] | { id: .InstanceId, name: .Tags[0].Value, state: .State.Name }'
