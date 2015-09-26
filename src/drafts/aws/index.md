@@ -21,4 +21,4 @@ canonical owner id: 099720109477
 
 ## List Instances
 
-	aws ec2 describe-instances | jq -c -r '.Reservations[] | .Instances[] | { id: .InstanceId, name: .Tags[0].Value, state: .State.Name }'
+	aws ec2 describe-instances | jq -c -r '.Reservations[] | .Instances[] | { id: .InstanceId, name: .Tags[0].Value, state: .State.Name, ip: .PublicIpAddress }'
