@@ -2,6 +2,6 @@
 
 ## Turn of substitution
 
-  a=<<"EOF
+  a=<<"EOF"
   echo $PATH
   EOF
