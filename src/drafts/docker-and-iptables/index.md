@@ -1,5 +1,7 @@
 # Docker and iptables
 
+_TODO_: investigate --iptables=false behavior
+
 Exposing container ports on a host where the firewall is managed with iptables can lead to unwanted issues if you do not plan to expose those ports to the world also.
 
 If the firewall is setup before docker, running a container like this
