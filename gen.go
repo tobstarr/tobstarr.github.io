@@ -20,6 +20,7 @@ var sources = map[string][]Source{
 	"index.html":          Layout(FileSource("src/index.tpl")),
 	"versions.html":       Layout(MarkdownSource("src/versions.md")),
 	"id_rsa.pub":          FileSources("src/id_rsa.pub"),
+	"gnupg.html":          Layout(MarkdownSource("src/articles/gnupg/index.md")),
 }
 
 func main() {

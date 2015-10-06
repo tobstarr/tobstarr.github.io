@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>tobstarr.com</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/css/default.css" type="text/css" media="screen" title="no title" charset="utf-8">
+</head>
+<body>
+  <div class="container">
+    <div class="header index_link">
+      <a href="/index.html">tobstarr.com</a>
+    </div>
+    <div class="header_links">
+      <a href="/dotfiles.html">Dotfiles</a>
+      |
+      <a href="/versions.html">Versions</a>
+    </div>
+    <hr />
+<h1><a name="gnupg" class="anchor" href="#gnupg" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>GnuPG</h1>
+<h2><a name="export-public-key" class="anchor" href="#export-public-key" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+Export Public Key</h2>
+
+<pre><code>gpg --output tobstarr.gpg --armor --export tobstarr@gmail.com
+</code></pre>
+<h2><a name="import-public-key-e-g-from-keybase" class="anchor" href="#import-public-key-e-g-from-keybase" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+Import Public Key (e.g. from keybase)</h2>
+
+<pre><code>echo &#34;some key&#34; | gpg --import // e.g. from keybase
+</code></pre>
+<h2><a name="public-key-from-keybase" class="anchor" href="#public-key-from-keybase" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+Public Key from keybase</h2>
+
+<pre><code>curl -Ls https://keybase.io/tobstarr/key.asc | gpg --import
+</code></pre>
+<h2><a name="list-keys" class="anchor" href="#list-keys" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+List Keys</h2>
+
+<pre><code>gpg -k
+</code></pre>
+<h2><a name="encrypt-a-stream-without-confirmation" class="anchor" href="#encrypt-a-stream-without-confirmation" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+Encrypt a stream without confirmation</h2>
+
+<pre><code>cat some.file | gpg -e -a --trust-model always --recipient tobstarr@gmail.com
+</code></pre>
+<h2><a name="generate-a-new-key" class="anchor" href="#generate-a-new-key" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+Generate a new key</h2>
+
+<pre><code>gpg --gen-key
+</code></pre>
+<h2><a name="list-recipients-of-a-encrypted-message" class="anchor" href="#list-recipients-of-a-encrypted-message" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+List recipients of a encrypted message</h2>
+
+<pre><code>gpg --list-packets &lt; file.gpg
+</code></pre>
+<h2><a name="from-golang" class="anchor" href="#from-golang" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+From golang</h2>
+
+<pre><code>func secring() (openpgp.EntityList, error) {
+    f, err := os.Open(os.ExpandEnv(&#34;$HOME/.gnupg/secring.gpg&#34;))
+    if err != nil {
+        return nil, err
+    }
+    defer f.Close()
+    return openpgp.ReadKeyRing(f)
+}
+
+func encrypt(b []byte, doArmor bool) ([]byte, error) {
+    sr, err := secring()
+    if err != nil {
+        return nil, err
+    }
+    buf := &amp;bytes.Buffer{}
+
+    aw, err := armor.Encode(buf, openpgp.PublicKeyType, nil)
+    if err != nil {
+        return nil, err
+    }
+    w, err := openpgp.Encrypt(aw, sr, nil, nil, nil)
+    if err != nil {
+        return nil, err
+    }
+    if _, err := w.Write(b); err != nil {
+        return nil, err
+    }
+    for _, c := range []io.Closer{w, aw} {
+        if err := c.Close(); err != nil {
+            return nil, err
+        }
+    }
+    return buf.Bytes(), nil
+}
+</code></pre>
+</div>
+</body>
+</html>
