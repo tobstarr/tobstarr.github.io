@@ -27,3 +27,7 @@ canonical owner id: 099720109477
 
 * STANDARD
 * STANDARD_IA
+
+## EC2 Metadata Address
+
+	169.254.169.254
