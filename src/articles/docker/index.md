@@ -29,3 +29,7 @@
 		fi
 	done
 	exit 1
+
+## Touch Gemfile Gemfile.lock
+
+	touch -m -t 200601021504.05 Gemfile Gemfile.lock bundle_config
