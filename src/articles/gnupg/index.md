@@ -28,3 +28,6 @@
 
 	gpg --list-packets < file.gpg
 
+## Display Fingerprint
+
+	gpg --fingerprint <key_name> | grep "Key fingerprint" | tr -s " " | cut -d ' ' -f 5-

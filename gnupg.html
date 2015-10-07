@@ -56,6 +56,11 @@ List recipients of a encrypted message</h2>
 
 <pre><code>gpg --list-packets &lt; file.gpg
 </code></pre>
+<h2><a name="display-fingerprint" class="anchor" href="#display-fingerprint" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+Display Fingerprint</h2>
+
+<pre><code>gpg --fingerprint &lt;key_name&gt; | grep &#34;Key fingerprint&#34; | tr -s &#34; &#34; | cut -d &#39; &#39; -f 5-
+</code></pre>
 </div>
 </body>
 </html>
