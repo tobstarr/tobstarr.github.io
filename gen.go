@@ -17,10 +17,11 @@ import (
 var sources = map[string][]Source{
 	"dotfiles.html":       Layout(FileSource("src/dotfiles/index.tpl")),
 	"dotfiles/vimrc.conf": FileSources("dotfiles/vimrc"),
+	"gnupg.html":          Layout(MarkdownSource("src/articles/gnupg/index.md")),
+	"id_rsa.pub":          FileSources("src/id_rsa.pub"),
 	"index.html":          Layout(FileSource("src/index.tpl")),
 	"versions.html":       Layout(MarkdownSource("src/versions.md")),
-	"id_rsa.pub":          FileSources("src/id_rsa.pub"),
-	"gnupg.html":          Layout(MarkdownSource("src/articles/gnupg/index.md")),
+	"kb.html":             Layout(FileSource("src/kb.tpl")),
 }
 
 func main() {
