@@ -16,5 +16,7 @@
       <a href="/dotfiles.html">Dotfiles</a>
       |
       <a href="/versions.html">Versions</a>
+      |
+      <a href="/kb.html">KB</a>
     </div>
     <hr />
