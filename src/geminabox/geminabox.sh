@@ -1,11 +1,12 @@
 #!/bin/bash
-set -xe
+set -e # abort in error
 
-VERSION=0.12.4
+GEMINABOX_VERSION=0.12.4
 RUBY_VERSION=2.2.3
-TAG=geminabox:${VERSION}
+TAG=geminabox:${GEMINABOX_VERSION}
 NAME=geminabox
 BUILD_DIR=$(mktemp -d /tmp/docker-build-XXXXXX)
+PORT=8888
 cd $BUILD_DIR
 
 # delete build dir when done
@@ -15,7 +16,7 @@ cat > Dockerfile <<EOF
 FROM ruby:${RUBY_VERSION}
 
 RUN gem install puma --no-ri --no-rdoc
-RUN gem install geminabox -v ${VERSION} --no-ri --no-rdoc
+RUN gem install geminabox -v ${GEMINABOX_VERSION} --no-ri --no-rdoc
 
 RUN mkdir -p /app
 
@@ -27,8 +28,6 @@ RUN chmod a+x /app/entrypoint.sh
 WORKDIR /app
 
 ENV RUBYGEMS_PROXY true
-ENV PORT 8888
-EXPOSE 8888
 
 ENTRYPOINT ["/bin/bash", "/app/entrypoint.sh"]
 EOF
@@ -49,9 +48,16 @@ docker build -t ${TAG} .
 
 # delete old geminabox container if exists
 if docker inspect --type container ${NAME} > /dev/null 2>&1; then
-	docker rm -f ${NAME}
+	docker rm -f ${NAME} > /dev/null
 fi
 
 # start new geminabox container
 # store data in mounted host /data/docker/geminabox to "survive" restarts
-docker run -d -v /data/docker/geminabox:/data -e PORT=8888 -p 8888:8888 --name ${NAME} ${TAG}
+container_id=$(docker run -d -v /data/docker/geminabox:/data -e PORT=${PORT} -p ${PORT}:${PORT} --name ${NAME} ${TAG})
+
+cat <<EOF
+Now please add this to your local bundler config at $HOME/.bundle/config:
+---
+BUNDLE_MIRROR__HTTPS://RUBYGEMS__ORG/: http://127.0.0.1:${PORT}
+BUNDLE_MIRROR__HTTP://RUBYGEMS__ORG/: http://127.0.0.1:${PORT}
+EOF
