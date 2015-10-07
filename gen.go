@@ -18,6 +18,7 @@ var sources = map[string][]Source{
 	"dotfiles.html":       Layout(FileSource("src/dotfiles/index.tpl")),
 	"dotfiles/vimrc.conf": FileSources("dotfiles/vimrc"),
 	"gnupg.html":          Layout(MarkdownSource("src/articles/gnupg/index.md")),
+	"docker.html":         Layout(MarkdownSource("src/articles/docker/index.md")),
 	"id_rsa.pub":          FileSources("src/id_rsa.pub"),
 	"index.html":          Layout(FileSource("src/index.tpl")),
 	"versions.html":       Layout(MarkdownSource("src/versions.md")),

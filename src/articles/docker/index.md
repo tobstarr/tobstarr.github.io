@@ -1,9 +1,5 @@
 # Docker
 
-## Start registry
-
-	docker run -p 5000:5000 --rm --name registry -v $HOME/secrets/docker-distribution.yml:/etc/docker/registry/config.yml registry:2.1.1
-
 ## Install debian packages
 
 	RUN apt-get update && apt-get install --no-install-recommends -y curl && rm -rf /var/lib/apt/lists/*
@@ -33,3 +29,28 @@
 ## Touch Gemfile Gemfile.lock
 
 	touch -m -t 200601021504.05 Gemfile Gemfile.lock bundle_config
+
+## Run Registry
+
+	docker run -p 5000:5000 --rm --name registry -v $HOME/docker-distribution.yml:/etc/docker/registry/config.yml registry:2.1.1
+
+with config
+
+	version: 0.1
+	log:
+	  fields:
+		service: registry
+	http:
+	  addr: :5000
+	  headers:
+		X-Content-Type-Options: [nosniff]
+	storage:
+	  cache:
+		blobdescriptor: inmemory
+	  filesystem:
+		rootdirectory: /var/lib/registry
+	health:
+	  storagedriver:
+		enabled: true
+		interval: 10s
+		threshold: 3
