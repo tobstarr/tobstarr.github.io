@@ -15,8 +15,6 @@
     <div class="header_links">
       <a href="/dotfiles.html">Dotfiles</a>
       |
-      <a href="/versions.html">Versions</a>
-      |
       <a href="/cheats.html">Cheats</a>
     </div>
     <hr />
