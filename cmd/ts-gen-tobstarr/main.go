@@ -25,6 +25,7 @@ var sources = map[string][]Source{
 	"tobstarr.gpg":           FileSources("src/tobstarr.gpg"),
 	"versions.html":          Layout(MarkdownSource("src/versions.md")),
 	"python-web-server.html": Layout(MarkdownSource("src/python-web-server/index.md")),
+	"geminabox.sh":           FileSources("src/geminabox/geminabox.sh"),
 }
 
 func main() {
