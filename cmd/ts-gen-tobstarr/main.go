@@ -44,9 +44,15 @@ func FileSources(paths ...string) (list []Source) {
 func loadHTMLFiles() (list map[string]struct{}, err error) {
 	list = map[string]struct{}{}
 	return list, filepath.Walk(".", func(p string, info os.FileInfo, err error) error {
-		if info.IsDir() {
+		switch {
+		case info.IsDir():
+			switch p {
+			case ".git", "cmd":
+				return filepath.SkipDir
+			}
+			log.Printf("checking %s", p)
 			return nil
-		} else if strings.HasSuffix(p, ".html") {
+		case strings.HasSuffix(p, ".html"):
 			list[p] = struct{}{}
 		}
 		return nil
