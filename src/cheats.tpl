@@ -1,3 +1,5 @@
+<h2>Cheats</h2>
+
 <table class="table table-striped">
 	<tr><td><a href="/docker.html">Docker</a><td>Various cheats around docker
 	<tr><td><a href="/gnupg.html">GnuPG</a><td>Various commands around GnuPG

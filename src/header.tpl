@@ -17,6 +17,6 @@
       |
       <a href="/versions.html">Versions</a>
       |
-      <a href="/kb.html">KB</a>
+      <a href="/cheats.html">Cheats</a>
     </div>
     <hr />

@@ -21,7 +21,7 @@ var sources = map[string][]Source{
 	"gnupg.html":             Layout(MarkdownSource("src/articles/gnupg/index.md")),
 	"id_rsa.pub":             FileSources("src/id_rsa.pub"),
 	"index.html":             Layout(FileSource("src/index.tpl")),
-	"kb.html":                Layout(FileSource("src/kb.tpl")),
+	"cheats.html":            Layout(FileSource("src/cheats.tpl")),
 	"tobstarr.gpg":           FileSources("src/tobstarr.gpg"),
 	"versions.html":          Layout(MarkdownSource("src/versions.md")),
 	"python-web-server.html": Layout(MarkdownSource("src/python-web-server/index.md")),
