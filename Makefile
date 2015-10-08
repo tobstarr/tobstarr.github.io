@@ -1,7 +1,13 @@
 default: run
 
-build:
+build: vet test
 	@go get -v ./...
 
+vet:
+	go vet ./...
+
+test:
+	go test ./...
+
 run: build
-	tobstarr.github.io
+	ts-gen-tobstarr
