@@ -11,7 +11,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/shurcooL/github_flavored_markdown"
+	"github.com/tobstarr/tobstarr.github.io/cmd/ts-gen-tobstarr/Godeps/_workspace/src/github.com/shurcooL/github_flavored_markdown"
 )
 
 var sources = map[string][]Source{

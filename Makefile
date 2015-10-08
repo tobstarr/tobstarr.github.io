@@ -11,3 +11,6 @@ test:
 
 run: build
 	ts-gen-tobstarr
+
+godep:
+	cd cmd/ts-gen-tobstarr && godep save -r ./... && godep save -r ./...
