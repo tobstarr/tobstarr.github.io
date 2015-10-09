@@ -1,6 +1,6 @@
 # Speed up bundler with Geminabox
 
-Waiting for `bundle install` can be looooooooong. A lot of time seems to be network latency.
+Waiting for `bundle install` to finish can be pretty annoying, especially if you work on e.g. a large rails project with uses a few gems.
 
 [Geminabox](https://rubygems.org/gems/geminabox) can help you save quite a bit of time with not much setup overhead.
 
