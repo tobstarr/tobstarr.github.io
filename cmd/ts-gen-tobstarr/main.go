@@ -15,18 +15,18 @@ import (
 )
 
 var sources = map[string][]Source{
+	"cheats.html":                          Layout(FileSource("src/cheats.tpl")),
 	"docker.html":                          Layout(MarkdownSource(FileSource("src/articles/docker/index.md"))),
 	"dotfiles.html":                        Layout(FileSource("src/dotfiles/index.tpl")),
 	"dotfiles/vimrc.conf":                  FileSources("dotfiles/vimrc"),
 	"gnupg.html":                           Layout(MarkdownSource(FileSource("src/articles/gnupg/index.md"))),
 	"id_rsa.pub":                           FileSources("src/id_rsa.pub"),
 	"index.html":                           Layout(FileSource("src/index.tpl")),
-	"cheats.html":                          Layout(FileSource("src/cheats.tpl")),
+	"python-web-server.html":               Layout(MarkdownSource(FileSource("src/python-web-server/index.md"))),
+	"setup_geminabox.sh":                   FileSources("src/speed-up-bundler-with-geminabox/geminabox.sh"),
+	"speed-up-bundler-with-geminabox.html": Layout(MarkdownSource(Render(FileSource("src/speed-up-bundler-with-geminabox/index.md")))),
 	"tobstarr.gpg":                         FileSources("src/tobstarr.gpg"),
 	"versions.html":                        Layout(MarkdownSource(FileSource("src/versions.md"))),
-	"python-web-server.html":               Layout(MarkdownSource(FileSource("src/python-web-server/index.md"))),
-	"speed-up-bundler-with-geminabox.html": Layout(MarkdownSource(Render(FileSource("src/speed-up-bundler-with-geminabox/index.md")))),
-	"setup_geminabox.sh":                   FileSources("src/speed-up-bundler-with-geminabox/geminabox.sh"),
 }
 
 func chain(s string, funcs ...func(Source) Source) Source {
