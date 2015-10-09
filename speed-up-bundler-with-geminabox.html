@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>tobstarr.com</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/css/default.css" type="text/css" media="screen" title="no title" charset="utf-8">
+</head>
+<body>
+  <div class="container">
+    <div class="header index_link">
+      <a href="/index.html">tobstarr.com</a>
+    </div>
+    <div class="header_links">
+      <a href="/dotfiles.html">Dotfiles</a>
+      |
+      <a href="/cheats.html">Cheats</a>
+    </div>
+    <hr />
+<h1><a name="speed-up-bundler-with-geminabox" class="anchor" href="#speed-up-bundler-with-geminabox" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>Speed up bundler with Geminabox</h1>
+
+<p>Waiting for <code>bundle install</code> can be looooooooong. A lot of time seems to be network latency.</p>
+
+<p>Geminabox (<strong>TODO: add link</strong>) can help you save quite a bit of time with not much setup overhead.</p>
+<h2><a name="setup" class="anchor" href="#setup" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+Setup</h2>
+
+<p>You could just run geminabox via <code>gem install geminabox</code> but I prefer to run it inside a docker container. This is how:</p>
+
+<p>{{ require &#34;src/geminabox/geminabox.sh&#34; | code}}</p>
+
+<p>This script 1) builds a new docker container, 2) removes all old indexes named <code>geminabox</code> and 3) starts a new geminabox container in the background</p>
+
+<p>See (<strong>TODO: add link</strong>) to find out how you can make docker run on your host.</p>
+<h2><a name="test" class="anchor" href="#test" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+Test</h2>
+
+<p>Geminabox should now be running on port 8888 on your docker host. You can test it by opening <a href="http://DOCKER_HOST_IP:8888" rel="nofollow">http://DOCKER_HOST_IP:8888</a>.</p>
+<h2><a name="bundler-setup" class="anchor" href="#bundler-setup" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+Bundler setup</h2>
+
+<p>The only thing left is to the geminabox mirror to your bundler configuration at <code>$HOME/.bundle/config</code>:</p>
+
+<pre><code>---
+BUNDLE_MIRROR__HTTPS://RUBYGEMS__ORG/: http://DOCKER_HOST_IP:${PORT}
+BUNDLE_MIRROR__HTTP://RUBYGEMS__ORG/: http://DOCKER_HOST_IP:${PORT}
+</code></pre>
+<h2><a name="docker" class="anchor" href="#docker" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+Docker</h2>
+
+<p>Caching gems is especially helpful when building docker images which use bundler.</p>
+
+<p>Here is an example for how you can use geminabox to also proxy bundler when building docker images.</p>
+<h3><a name="dockerfile" class="anchor" href="#dockerfile" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+Dockerfile</h3>
+
+<pre><code>FROM ruby:2.2.3
+RUN mkdir -p /app
+ADD Gemfile.lock /app
+ADD Gemfile /app
+ADD bundle_config /root/.bundle/config
+RUN cd /app &amp;&amp; bundle
+</code></pre>
+<h3><a name="bundle-config" class="anchor" href="#bundle-config" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+bundle_config</h3>
+
+<pre><code>---
+BUNDLE_MIRROR__HTTPS://RUBYGEMS__ORG/: http://172.17.42.1:${PORT}
+BUNDLE_MIRROR__HTTP://RUBYGEMS__ORG/: http://172.17.42.1:${PORT}
+</code></pre>
+
+<p>This relies on docker being bound to the default interface <code>172.17.42.1</code>, adapt if necessary.</p>
+<h3><a name="gemfile" class="anchor" href="#gemfile" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+Gemfile</h3>
+
+<pre><code>source &#34;https://rubygems.org&#34;
+gem &#34;rails&#34;
+</code></pre>
+<h2><a name="debug" class="anchor" href="#debug" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+Debug</h2>
+
+<p>You can always debug what is going on with geminabox by running <code>docker logs -f geminabox</code>.</p>
+</div>
+</body>
+</html>

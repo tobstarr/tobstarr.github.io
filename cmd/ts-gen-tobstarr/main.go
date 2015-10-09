@@ -15,17 +15,18 @@ import (
 )
 
 var sources = map[string][]Source{
-	"docker.html":            Layout(MarkdownSource("src/articles/docker/index.md")),
-	"dotfiles.html":          Layout(FileSource("src/dotfiles/index.tpl")),
-	"dotfiles/vimrc.conf":    FileSources("dotfiles/vimrc"),
-	"gnupg.html":             Layout(MarkdownSource("src/articles/gnupg/index.md")),
-	"id_rsa.pub":             FileSources("src/id_rsa.pub"),
-	"index.html":             Layout(FileSource("src/index.tpl")),
-	"cheats.html":            Layout(FileSource("src/cheats.tpl")),
-	"tobstarr.gpg":           FileSources("src/tobstarr.gpg"),
-	"versions.html":          Layout(MarkdownSource("src/versions.md")),
-	"python-web-server.html": Layout(MarkdownSource("src/python-web-server/index.md")),
-	"geminabox.sh":           FileSources("src/geminabox/geminabox.sh"),
+	"docker.html":                          Layout(MarkdownSource("src/articles/docker/index.md")),
+	"dotfiles.html":                        Layout(FileSource("src/dotfiles/index.tpl")),
+	"dotfiles/vimrc.conf":                  FileSources("dotfiles/vimrc"),
+	"gnupg.html":                           Layout(MarkdownSource("src/articles/gnupg/index.md")),
+	"id_rsa.pub":                           FileSources("src/id_rsa.pub"),
+	"index.html":                           Layout(FileSource("src/index.tpl")),
+	"cheats.html":                          Layout(FileSource("src/cheats.tpl")),
+	"tobstarr.gpg":                         FileSources("src/tobstarr.gpg"),
+	"versions.html":                        Layout(MarkdownSource("src/versions.md")),
+	"python-web-server.html":               Layout(MarkdownSource("src/python-web-server/index.md")),
+	"geminabox.sh":                         FileSources("src/geminabox/geminabox.sh"),
+	"speed-up-bundler-with-geminabox.html": Layout(MarkdownSource("src/speed-up-bundler-with-geminabox/index.md")),
 }
 
 func main() {
