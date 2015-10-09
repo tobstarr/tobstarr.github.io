@@ -23,7 +23,7 @@ var sources = map[string][]Source{
 	"id_rsa.pub":                           FileSources("src/id_rsa.pub"),
 	"index.html":                           Layout(FileSource("src/index.tpl")),
 	"python-web-server.html":               Layout(MarkdownSource(FileSource("src/python-web-server/index.md"))),
-	"setup_geminabox.sh":                   FileSources("src/speed-up-bundler-with-geminabox/geminabox.sh"),
+	"setup_geminabox.sh":                   FileSources("src/speed-up-bundler-with-geminabox/setup_geminabox.sh"),
 	"speed-up-bundler-with-geminabox.html": Layout(MarkdownSource(Render(FileSource("src/speed-up-bundler-with-geminabox/index.md")))),
 	"tobstarr.gpg":                         FileSources("src/tobstarr.gpg"),
 	"versions.html":                        Layout(MarkdownSource(FileSource("src/versions.md"))),

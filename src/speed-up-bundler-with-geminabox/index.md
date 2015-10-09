@@ -10,7 +10,7 @@ You could just install geminabox via `gem install geminabox` but I prefer to run
 
 Download: [setup_geminabox.sh](setup_geminabox.sh)
 
-{{ require "src/speed-up-bundler-with-geminabox/geminabox.sh" | code}}
+{{ require "src/speed-up-bundler-with-geminabox/setup_geminabox.sh" | code}}
 
 This script
 

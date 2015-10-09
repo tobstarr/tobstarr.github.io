@@ -58,7 +58,7 @@ if docker inspect --type container ${NAME} > /dev/null 2>&1; then
 fi
 
 # start new geminabox container
-# store data in mounted host /data/docker/geminabox to "survive" restarts
+# store data in volume /data/docker/geminabox to "survive" restarts
 container_id=$(docker run -d -v /data/docker/geminabox:/data -e PORT=${PORT} -p ${PORT}:${PORT} --name ${NAME} ${TAG})
 
 cat <<EOF
