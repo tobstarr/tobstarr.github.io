@@ -2,8 +2,8 @@ package main
 
 import (
 	"bytes"
+	"fmt"
 	"io"
-	"io/ioutil"
 	"log"
 	"os"
 	"path/filepath"
@@ -15,18 +15,28 @@ import (
 )
 
 var sources = map[string][]Source{
-	"docker.html":                          Layout(MarkdownSource("src/articles/docker/index.md")),
+	"docker.html":                          Layout(MarkdownSource(FileSource("src/articles/docker/index.md"))),
 	"dotfiles.html":                        Layout(FileSource("src/dotfiles/index.tpl")),
 	"dotfiles/vimrc.conf":                  FileSources("dotfiles/vimrc"),
-	"gnupg.html":                           Layout(MarkdownSource("src/articles/gnupg/index.md")),
+	"gnupg.html":                           Layout(MarkdownSource(FileSource("src/articles/gnupg/index.md"))),
 	"id_rsa.pub":                           FileSources("src/id_rsa.pub"),
 	"index.html":                           Layout(FileSource("src/index.tpl")),
 	"cheats.html":                          Layout(FileSource("src/cheats.tpl")),
 	"tobstarr.gpg":                         FileSources("src/tobstarr.gpg"),
-	"versions.html":                        Layout(MarkdownSource("src/versions.md")),
-	"python-web-server.html":               Layout(MarkdownSource("src/python-web-server/index.md")),
-	"geminabox.sh":                         FileSources("src/geminabox/geminabox.sh"),
-	"speed-up-bundler-with-geminabox.html": Layout(MarkdownSource("src/speed-up-bundler-with-geminabox/index.md")),
+	"versions.html":                        Layout(MarkdownSource(FileSource("src/versions.md"))),
+	"python-web-server.html":               Layout(MarkdownSource(FileSource("src/python-web-server/index.md"))),
+	"speed-up-bundler-with-geminabox.html": Layout(MarkdownSource(Render(FileSource("src/speed-up-bundler-with-geminabox/index.md")))),
+	"setup_geminabox.sh":                   FileSources("src/speed-up-bundler-with-geminabox/geminabox.sh"),
+}
+
+func chain(s string, funcs ...func(Source) Source) Source {
+	return func(w io.Writer) error {
+		s := FileSource(s)
+		for _, f := range funcs {
+			s = f(s)
+		}
+		return s(w)
+	}
 }
 
 func main() {
@@ -53,7 +63,6 @@ func loadHTMLFiles() (list map[string]struct{}, err error) {
 			case ".git", "cmd":
 				return filepath.SkipDir
 			}
-			log.Printf("checking %s", p)
 			return nil
 		case strings.HasSuffix(p, ".html"):
 			list[p] = struct{}{}
@@ -66,14 +75,29 @@ func Layout(s Source) []Source {
 	return []Source{FileSource("src/header.tpl"), s, FileSource("src/footer.tpl")}
 }
 
-func MarkdownSource(path string) Source {
+func MarkdownSource(in Source) Source {
 	return func(w io.Writer) error {
-		b, err := ioutil.ReadFile(path)
-		if err != nil {
+		buf := &bytes.Buffer{}
+		if err := in(buf); err != nil {
 			return err
 		}
-		b = github_flavored_markdown.Markdown(b)
-		_, err = w.Write(b)
+		b := github_flavored_markdown.Markdown(buf.Bytes())
+		_, err := w.Write(b)
+		return err
+	}
+}
+
+func Render(in Source) Source {
+	return func(w io.Writer) error {
+		buf := &bytes.Buffer{}
+		if err := in(buf); err != nil {
+			return err
+		}
+		s, err := renderTemplate(buf.String())
+		if err != nil {
+			return fmt.Errorf("error rendering string: %q", err.Error())
+		}
+		_, err = io.WriteString(w, s)
 		return err
 	}
 }

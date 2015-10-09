@@ -22,17 +22,94 @@
 
 <p>Waiting for <code>bundle install</code> can be looooooooong. A lot of time seems to be network latency.</p>
 
-<p>Geminabox (<strong>TODO: add link</strong>) can help you save quite a bit of time with not much setup overhead.</p>
+<p><a href="https://rubygems.org/gems/geminabox" rel="nofollow">Geminabox</a> can help you save quite a bit of time with not much setup overhead.</p>
 <h2><a name="setup" class="anchor" href="#setup" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
 Setup</h2>
 
-<p>You could just run geminabox via <code>gem install geminabox</code> but I prefer to run it inside a docker container. This is how:</p>
+<p>You could just install geminabox via <code>gem install geminabox</code> but I prefer to run it inside a docker container. This is how:</p>
 
-<p>{{ require &#34;src/geminabox/geminabox.sh&#34; | code}}</p>
+<p>Download: <a href="setup_geminabox.sh" rel="nofollow">setup_geminabox.sh</a></p>
 
-<p>This script 1) builds a new docker container, 2) removes all old indexes named <code>geminabox</code> and 3) starts a new geminabox container in the background</p>
+<pre><code>#!/bin/bash
+set -e # abort on error
 
-<p>See (<strong>TODO: add link</strong>) to find out how you can make docker run on your host.</p>
+RUBY_VERSION=2.2.3
+GEMINABOX_VERSION=0.12.4
+TAG=geminabox:${GEMINABOX_VERSION}
+NAME=geminabox
+PORT=8888
+
+# Setup docker build directory
+BUILD_DIR=$(mktemp -d /tmp/docker-build-XXXXXX)
+cd $BUILD_DIR
+
+# delete build dir when done
+trap &#34;rm -Rf $BUILD_DIR&#34; EXIT
+
+# write Dockerfile
+cat &gt; Dockerfile &lt;&lt;EOF
+FROM ruby:${RUBY_VERSION}
+
+RUN gem install puma --no-ri --no-rdoc
+RUN gem install geminabox -v ${GEMINABOX_VERSION} --no-ri --no-rdoc
+
+RUN mkdir -p /app
+
+COPY config.ru /app/config.ru
+COPY entrypoint.sh /app/entrypoint.sh
+
+RUN chmod a+x /app/entrypoint.sh
+
+WORKDIR /app
+
+ENV RUBYGEMS_PROXY true
+
+ENTRYPOINT [&#34;/bin/bash&#34;, &#34;/app/entrypoint.sh&#34;]
+EOF
+
+# write config.ru
+cat &gt; config.ru &lt;&lt;EOF
+require &#34;rubygems&#34;
+require &#34;geminabox&#34;
+
+Geminabox.data = &#34;/data&#34;
+run Geminabox::Server
+EOF
+
+# write entrypoint.sh
+cat &gt; entrypoint.sh &lt;&lt;&#34;EOF&#34;
+puma -p $PORT -b tcp://0.0.0.0
+EOF
+
+# build docker images
+docker build -t ${TAG} .
+
+# delete old geminabox container if exists
+if docker inspect --type container ${NAME} &gt; /dev/null 2&gt;&amp;1; then
+    docker rm -f ${NAME} &gt; /dev/null
+fi
+
+# start new geminabox container
+# store data in mounted host /data/docker/geminabox to &#34;survive&#34; restarts
+container_id=$(docker run -d -v /data/docker/geminabox:/data -e PORT=${PORT} -p ${PORT}:${PORT} --name ${NAME} ${TAG})
+
+cat &lt;&lt;EOF
+Now please add this to your local bundler config at $HOME/.bundle/config:
+---
+BUNDLE_MIRROR__HTTPS://RUBYGEMS__ORG/: http://127.0.0.1:${PORT}
+BUNDLE_MIRROR__HTTP://RUBYGEMS__ORG/: http://127.0.0.1:${PORT}
+EOF
+</code></pre>
+
+<p>This script</p>
+
+<ol>
+<li>builds a new docker container</li>
+<li>removes an old geminabox container if exists</li>
+<li>starts a new geminabox container in the background</li>
+</ol>
+
+<p>See to find out how you can <a href="https://docs.docker.com/" rel="nofollow">make docker run on your machine</a>.</p>
 <h2><a name="test" class="anchor" href="#test" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
 Test</h2>
 

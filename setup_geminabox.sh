@@ -1,17 +1,20 @@
 #!/bin/bash
-set -e # abort in error
+set -e # abort on error
 
-GEMINABOX_VERSION=0.12.4
 RUBY_VERSION=2.2.3
+GEMINABOX_VERSION=0.12.4
 TAG=geminabox:${GEMINABOX_VERSION}
 NAME=geminabox
-BUILD_DIR=$(mktemp -d /tmp/docker-build-XXXXXX)
 PORT=8888
+
+# Setup docker build directory
+BUILD_DIR=$(mktemp -d /tmp/docker-build-XXXXXX)
 cd $BUILD_DIR
 
 # delete build dir when done
 trap "rm -Rf $BUILD_DIR" EXIT
 
+# write Dockerfile
 cat > Dockerfile <<EOF
 FROM ruby:${RUBY_VERSION}
 
@@ -32,6 +35,7 @@ ENV RUBYGEMS_PROXY true
 ENTRYPOINT ["/bin/bash", "/app/entrypoint.sh"]
 EOF
 
+# write config.ru
 cat > config.ru <<EOF
 require "rubygems"
 require "geminabox"
@@ -40,10 +44,12 @@ Geminabox.data = "/data"
 run Geminabox::Server
 EOF
 
+# write entrypoint.sh
 cat > entrypoint.sh <<"EOF"
 puma -p $PORT -b tcp://0.0.0.0
 EOF
 
+# build docker images
 docker build -t ${TAG} .
 
 # delete old geminabox container if exists

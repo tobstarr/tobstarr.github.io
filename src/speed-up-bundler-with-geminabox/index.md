@@ -2,17 +2,23 @@
 
 Waiting for `bundle install` can be looooooooong. A lot of time seems to be network latency.
 
-Geminabox (__TODO: add link__) can help you save quite a bit of time with not much setup overhead.
+[Geminabox](https://rubygems.org/gems/geminabox) can help you save quite a bit of time with not much setup overhead.
 
 ## Setup
 
-You could just run geminabox via `gem install geminabox` but I prefer to run it inside a docker container. This is how:
+You could just install geminabox via `gem install geminabox` but I prefer to run it inside a docker container. This is how:
 
-{{ require "src/geminabox/geminabox.sh" | code}}
+Download: [setup_geminabox.sh](setup_geminabox.sh)
 
-This script 1) builds a new docker container, 2) removes all old indexes named `geminabox` and 3) starts a new geminabox container in the background
+{{ require "src/speed-up-bundler-with-geminabox/geminabox.sh" | code}}
 
-See (__TODO: add link__) to find out how you can make docker run on your host.
+This script
+
+1. builds a new docker container
+2. removes an old geminabox container if exists
+3. starts a new geminabox container in the background
+
+See to find out how you can [make docker run on your machine](https://docs.docker.com/).
 
 ## Test
 
