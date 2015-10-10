@@ -1,6 +1,6 @@
-default: run
+default: run vet test
 
-build: vet test
+build:
 	@go get -v ./...
 
 vet:

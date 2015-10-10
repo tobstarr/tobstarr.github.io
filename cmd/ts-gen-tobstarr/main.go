@@ -27,6 +27,9 @@ var sources = map[string][]Source{
 	"speed-up-bundler-with-geminabox.html": Layout(MarkdownSource(Render(FileSource("src/speed-up-bundler-with-geminabox/index.md")))),
 	"tobstarr.gpg":                         FileSources("src/tobstarr.gpg"),
 	"versions.html":                        Layout(MarkdownSource(FileSource("src/versions.md"))),
+	"qrcat/index.html":                     Layout(MarkdownSource(Render(FileSource("src/qrcat/index.md")))),
+	"qrcat/qrcat.png":                      FileSources("src/qrcat/qrcat.png"),
+	"qrcat/qrcat.go":                       FileSources("src/qrcat/qrcat.go"),
 }
 
 func chain(s string, funcs ...func(Source) Source) Source {
@@ -147,6 +150,9 @@ func writeFile(l Logger, out string, sources ...Source) error {
 		if err := src(buf); err != nil {
 			return err
 		}
+	}
+	if err := os.MkdirAll(filepath.Dir(out), 0755); err != nil {
+		return err
 	}
 	tmp := out + ".tmp." + strconv.FormatInt(time.Now().UTC().UnixNano(), 36)
 	f, err := os.Create(tmp)
