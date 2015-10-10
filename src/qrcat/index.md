@@ -7,6 +7,9 @@ Send yourself texts from your computer to your smartphone.
 	$ echo sosolongbecauseitissecretpassword | qrcat
 	$ cat credentials.file | qrcat
 
+## Install
+
+	go get github.com/tobstarr/tobstarr.github.io/qrcat
 
 ## Code
 
