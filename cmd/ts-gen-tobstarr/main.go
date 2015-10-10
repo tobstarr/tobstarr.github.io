@@ -30,6 +30,7 @@ var sources = map[string][]Source{
 	"qrcat/index.html":                     Layout(MarkdownSource(Render(FileSource("src/qrcat/index.md")))),
 	"qrcat/qrcat.png":                      FileSources("src/qrcat/qrcat.png"),
 	"qrcat/qrcat.go":                       FileSources("src/qrcat/qrcat.go"),
+	"aws-sdk-go.html":                      Layout(MarkdownSource(Render(FileSource("src/aws-sdk-go/index.md")))),
 }
 
 func chain(s string, funcs ...func(Source) Source) Source {
