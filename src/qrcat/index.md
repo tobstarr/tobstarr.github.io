@@ -10,7 +10,7 @@ Send yourself texts from your computer to your smartphone.
 
 ## Code
 
-Downloads: [qrcat.go](qrcat.go)
+__Download__ [qrcat.go](qrcat.go)
 
 {{ require "src/qrcat/qrcat.go" | code }}
 
