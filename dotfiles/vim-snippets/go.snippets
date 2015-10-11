@@ -250,6 +250,35 @@ snippet dbg "Description" b
 dbg.Printf("${1}")
 endsnippet
 
+snippet cliaction "Description" b
+package main
+
+import (
+	"log"
+	"os"
+
+	"github.com/dynport/dgtk/cli"
+)
+
+func main() {
+	switch err := cli.RunActionWithArgs(&run{}); err {
+	case nil, cli.ErrorHelpRequested, cli.ErrorNoRoute:
+		// ignore
+		return
+	default:
+		log.New(os.Stderr, "", 0).Fatal(err)
+	}
+}
+
+type run struct {
+}
+
+func (r *run) Run() error {
+	${0}
+	return nil
+}
+endsnippet
+
 snippet cliapp "New CLI App" b
 package main
 
