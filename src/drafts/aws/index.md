@@ -39,3 +39,7 @@ canonical owner id: 099720109477
 ## Instance ID
 
 	curl http://169.254.169.254/latest/meta-data/instance-id
+
+## Upload asset with public read
+
+	aws s3 cp --acl public-read
