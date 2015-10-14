@@ -1,5 +1,15 @@
 # Cloudwatch
 
+## Pricing
+
+* you can do 1000 requests for 0.01 USD
+* that is 100.000 requests per 1 USD
+* that is 1.000.000 requests per 10 USD
+
+* 1 mio requests means 1388 requests/hour, 23 requests/minute
+
+For 10 USD you can do 1388 Requests/hour
+
 ## AWS/DynamoDB
 	ProvisionedReadCapacityUnits
 	ProvisionedWriteCapacityUnits
