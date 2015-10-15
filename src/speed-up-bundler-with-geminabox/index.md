@@ -7,20 +7,39 @@ __TODO__: add proof and write about the reasons
 [Geminabox](https://rubygems.org/gems/geminabox) can help you save quite a bit of time with not much setup overhead.
 
 ## Setup
-
 You could just install geminabox via `gem install geminabox` but I prefer to run it inside a docker container. This is how:
 
-Download: [setup_geminabox.sh](setup_geminabox.sh)
+### Build image
 
-{{ require "src/speed-up-bundler-with-geminabox/setup_geminabox.sh" | code}}
+To build the geminabox container you need three files, the `Dockerfile`, a `config.ru` file and `entrypoint.sh`. It is best to place those files in a new and empty directory. You can use `dir=$(mktemp -d /tmp/build-XXX) && cd $dir` to create and cd into a new temporary build directory.
 
-This script
+__# Dockerfile__
 
-1. builds a new docker container
-2. removes an old geminabox container if exists
-3. starts a new geminabox container in the background
+{{ require "src/speed-up-bundler-with-geminabox/Dockerfile" | code}}
+
+__# config.ru__
+
+{{ require "src/speed-up-bundler-with-geminabox/config.ru" | code}}
+
+__# entrypoint.sh__
+
+{{ require "src/speed-up-bundler-with-geminabox/entrypoint.sh" | code}}
+
+Download: __TODO__ add download link to tar archive
+
+Now you can create a new geminabox image by running `docker build -t geminabox:current .`
 
 See to find out how you can [make docker run on your machine](https://docs.docker.com/).
+
+### Run
+
+	# delete old geminabox container if exists
+	docker rm -f geminabox > /dev/null
+
+	# start new geminabox container and daemonize (-d) on
+	# port 8888 (-e PORT=8888) and expose that port to the same port on the current host (-p 8888:8888)
+	# store data in volume /data/docker/geminabox (-v) to "survive" restarts
+	docker run -d -v /data/docker/geminabox:/data -e PORT=8888 -p 8888:8888 --name geminabox geminabox:current
 
 ## Test
 
