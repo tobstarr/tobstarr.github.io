@@ -54,3 +54,7 @@ with config
 		enabled: true
 		interval: 10s
 		threshold: 3
+
+## Detach Container
+
+  C-p C-q
