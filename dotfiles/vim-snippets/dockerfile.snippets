@@ -18,11 +18,13 @@ ENV PATH /go/bin:/src/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbi
 ${0}
 endsnippet
 
-snippet upgrade
-FROM ubuntu:14.04
+snippet install
+RUN apt-get update && apt-get install --no-install-recommends -y ${1} && rm -rf /var/lib/apt/lists/*
+${0}
+endsnippet
 
-ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update && apt-get upgrade -y
+snippet upgrade
+RUN apt-get update && apt-get upgrade -y && rm -rf /var/lib/apt/lists/*
 ${0}
 endsnippet
 
