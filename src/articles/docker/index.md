@@ -58,3 +58,8 @@ with config
 ## Detach Container
 
   C-p C-q
+
+
+## Logging
+
+	docker run --log-driver journald -d ubuntu:15.04 /bin/bash
