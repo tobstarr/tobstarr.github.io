@@ -23,6 +23,10 @@ canonical owner id: 099720109477
 
 	aws ec2 describe-instances | jq -c -r '.Reservations[] | .Instances[] | { id: .InstanceId, name: .Tags[0].Value, state: .State.Name, ip: .PublicIpAddress }'
 
+## Create Tags
+
+	aws ec2 create-tags --resources i-b280590e --tags Key=Name,Value=gm
+
 ## S3 Storage Classes
 
 * STANDARD
