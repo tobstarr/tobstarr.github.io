@@ -8,7 +8,7 @@
 
 canonical owner id: 099720109477
 
-	aws ec2 describe-images --owners 099720109477 --filters 'Name=name,Values=ubuntu/images/hvm/ubuntu-trusty-14.04-amd64-*' | jq -c -r '.Images[] | {name: .Name, id: .ImageId }' | sort -r | less
+	aws ec2 describe-images --owners 099720109477 --filters 'Name=name,Values=ubuntu/images/hvm/ubuntu-*-14.04-amd64-*' | jq -c -r '.Images[] | {name: .Name, id: .ImageId }' | sort -r | less
 
 
 ## List own Images
