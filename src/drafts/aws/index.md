@@ -47,3 +47,7 @@ canonical owner id: 099720109477
 ## Upload asset with public read
 
 	aws s3 cp --acl public-read
+
+## List RHEL amis
+
+	aws ec2 describe-images --owner 309956199498 | jq -c -r '.Images[] | { name: .Name }' | sort
