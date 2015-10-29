@@ -1,5 +1,9 @@
 # AWS
 
+## Links
+
+* [EC2 API](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CopyImage.html)
+
 ## Upload Server Certificate
 
 	aws iam upload-server-certificate --server-certificate-name example.com --certificate-body=file://example.com.crt --private-key file://example.com.key
@@ -51,3 +55,7 @@ canonical owner id: 099720109477
 ## List RHEL amis
 
 	aws ec2 describe-images --owner 309956199498 | jq -c -r '.Images[] | { name: .Name }' | sort
+
+## Run instances
+
+	aws-mfa ec2 run-instances --user-data $(echo $ud | base64) --image-id ami-e25e6cff --key-name tschwab --associate-public-ip-address --instance-type t2.small
