@@ -15,24 +15,26 @@ import (
 )
 
 var sources = map[string][]Source{
+	"aws-sdk-go.html":                      Layout(MarkdownSource(Render(FileSource("src/aws-sdk-go/index.md")))),
+	"aws.html":                             Layout(MarkdownSource(FileSource("src/aws/index.md"))),
 	"cheats.html":                          Layout(FileSource("src/cheats.tpl")),
 	"docker.html":                          Layout(MarkdownSource(FileSource("src/articles/docker/index.md"))),
 	"dotfiles.html":                        Layout(FileSource("src/dotfiles/index.tpl")),
 	"dotfiles/vimrc.conf":                  FileSources("dotfiles/vimrc"),
+	"dotfiles/zshrc.sh":                    FileSources("src/zsh/zshrc.sh"),
 	"gnupg.html":                           Layout(MarkdownSource(FileSource("src/articles/gnupg/index.md"))),
 	"id_rsa.pub":                           FileSources("src/id_rsa.pub"),
 	"index.html":                           Layout(FileSource("src/index.tpl")),
 	"python-web-server.html":               Layout(MarkdownSource(FileSource("src/python-web-server/index.md"))),
+	"qrcat/index.html":                     Layout(MarkdownSource(Render(FileSource("src/qrcat/index.md")))),
+	"qrcat/qrcat.go":                       FileSources("src/qrcat/qrcat.go"),
+	"qrcat/qrcat.png":                      FileSources("src/qrcat/qrcat.png"),
+	"scratch/index.html":                   Layout(MarkdownSource(Render(FileSource("src/scratch/index.md")))),
 	"setup_geminabox.sh":                   FileSources("src/speed-up-bundler-with-geminabox/setup_geminabox.sh"),
 	"speed-up-bundler-with-geminabox.html": Layout(MarkdownSource(Render(FileSource("src/speed-up-bundler-with-geminabox/index.md")))),
 	"tobstarr.gpg":                         FileSources("src/tobstarr.gpg"),
 	"versions.html":                        Layout(MarkdownSource(FileSource("src/versions.md"))),
-	"qrcat/index.html":                     Layout(MarkdownSource(Render(FileSource("src/qrcat/index.md")))),
-	"qrcat/qrcat.png":                      FileSources("src/qrcat/qrcat.png"),
-	"qrcat/qrcat.go":                       FileSources("src/qrcat/qrcat.go"),
-	"aws-sdk-go.html":                      Layout(MarkdownSource(Render(FileSource("src/aws-sdk-go/index.md")))),
-	"scratch/index.html":                   Layout(MarkdownSource(Render(FileSource("src/scratch/index.md")))),
-	"aws.html":                             Layout(MarkdownSource(FileSource("src/aws/index.md"))),
+	"zsh.html":                             Layout(MarkdownSource(Render(FileSource("src/zsh/index.md")))),
 }
 
 func chain(s string, funcs ...func(Source) Source) Source {

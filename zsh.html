@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>tobstarr.com</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/css/default.css" type="text/css" media="screen" title="no title" charset="utf-8">
+</head>
+<body>
+  <div class="container">
+    <div class="header index_link">
+      <a href="/index.html">tobstarr.com</a>
+    </div>
+    <div class="header_links">
+      <a href="/dotfiles.html">Dotfiles</a>
+      |
+      <a href="/cheats.html">Cheats</a>
+    </div>
+    <hr />
+<h1><a name="zsh" class="anchor" href="#zsh" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>zsh</h1>
+<h2><a name="zshrc" class="anchor" href="#zshrc" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+zshrc</h2>
+
+<pre><code>test -f $HOME/.profile &amp;&amp; source $HOME/.profile
+
+ZSH=$HOME/.oh-my-zsh
+
+if [[ ! -e $ZSH ]]; then
+    git clone git://github.com/robbyrussell/oh-my-zsh.git ${HOME}/.oh-my-zsh
+fi
+
+CASE_SENSITIVE=&#34;true&#34;
+COMPLETION_WAITING_DOTS=&#34;true&#34;
+DISABLE_AUTO_UPDATE=&#34;true&#34;
+
+cdpath=$(. ~)
+source $ZSH/oh-my-zsh.sh
+
+export PS1=&#34;%n@%m:%4c $ &#34;
+
+if [ -n $TMUX ]; then
+  export TERM=&#34;screen-256color&#34;
+else
+  export TERM=&#34;xterm-256color&#34;
+fi
+</code></pre>
+</div>
+</body>
+</html>
