@@ -25,6 +25,7 @@
 - [Java](https://registry.hub.docker.com/_/java/)
 - [Mongo](https://registry.hub.docker.com/_/mongo/)
 - [MySQL](https://registry.hub.docker.com/_/mysql/)
+- [Nginx](https://registry.hub.docker.com/_/nginx/)
 - [PHP](https://registry.hub.docker.com/_/php/)
 - [PostgreSQL](https://registry.hub.docker.com/_/postgres/)
 - [Redis](https://registry.hub.docker.com/_/redis/)
