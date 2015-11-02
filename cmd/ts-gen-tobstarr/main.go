@@ -35,6 +35,8 @@ var sources = map[string][]Source{
 	"tobstarr.gpg":                         FileSources("src/tobstarr.gpg"),
 	"versions.html":                        Layout(MarkdownSource(FileSource("src/versions.md"))),
 	"zsh.html":                             Layout(MarkdownSource(Render(FileSource("src/zsh/index.md")))),
+	"systemd.html":                         Layout(MarkdownSource(Render(FileSource("src/systemd/index.md")))),
+	"systemd_timer.html":                   Layout(MarkdownSource(Render(FileSource("src/systemd/timers.md")))),
 }
 
 func chain(s string, funcs ...func(Source) Source) Source {

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>tobstarr.com</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/css/default.css" type="text/css" media="screen" title="no title" charset="utf-8">
+</head>
+<body>
+  <div class="container">
+    <div class="header index_link">
+      <a href="/index.html">tobstarr.com</a>
+    </div>
+    <div class="header_links">
+      <a href="/dotfiles.html">Dotfiles</a>
+      |
+      <a href="/cheats.html">Cheats</a>
+    </div>
+    <hr />
+<h1><a name="systemd-timers" class="anchor" href="#systemd-timers" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>Systemd Timers</h1>
+<h2><a name="service" class="anchor" href="#service" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+Service</h2>
+
+<pre><code>#/etc/systemd/system/journal-backup.service
+[Unit]
+Description=Backup journalctl
+
+[Service]
+ExecStart=/home/tobias/bin/ts-journal
+</code></pre>
+<h2><a name="timer" class="anchor" href="#timer" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+Timer</h2>
+
+<pre><code>#/etc/systemd/system/journal-backup.timer
+[Unit]
+Description=Journal Backup Service
+
+[Timer]
+OnBootSec=1m
+OnUnitActiveSec=5m
+
+[Install]
+WantedBy=timers.target
+</code></pre>
+<h2><a name="display-timer-status" class="anchor" href="#display-timer-status" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+Display Timer Status</h2>
+
+<pre><code>systemctl list-timers journal-backup.timer
+</code></pre>
+<h2><a name="list-logs" class="anchor" href="#list-logs" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+List Logs</h2>
+
+<pre><code>journalctl -u journal-backup
+</code></pre>
+</div>
+</body>
+</html>
