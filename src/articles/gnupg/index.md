@@ -31,3 +31,7 @@
 ## Display Fingerprint
 
 	gpg --fingerprint <key_name> | grep "Key fingerprint" | tr -s " " | cut -d ' ' -f 5-
+
+## Encrypt to self by default
+
+Add `default-recipient-self` to `$HOME/.gnupg/gpg.conf`
