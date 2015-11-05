@@ -505,7 +505,9 @@ func render(t string, i interface{}) (string, error) {
 endsnippet
 
 snippet ex "Description"
-expect(${1}).To
+if v, ex := ${1}, "-1"; ex != v {
+	t.Errorf("expected $1 to be %q, was %q", ex, v)
+}
 endsnippet
 
 snippet e "fmt.Errorf"
