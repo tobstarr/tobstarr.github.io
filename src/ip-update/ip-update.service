@@ -1,0 +1,10 @@
+[Unit]
+Description=IP Update
+
+[Service]
+Type=oneshot
+Environment="PATH=/home/tobias/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin" "SLACKME_URL=SECRET"
+ExecStart=/bin/bash /home/tobias/scripts/ip_update
+
+[Install]
+WantedBy=multi-user.target
