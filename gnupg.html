@@ -59,6 +59,10 @@ Display Fingerprint</h2>
 
 <pre><code>gpg --fingerprint &lt;key_name&gt; | grep &#34;Key fingerprint&#34; | tr -s &#34; &#34; | cut -d &#39; &#39; -f 5-
 </code></pre>
+<h2><a name="encrypt-to-self-by-default" class="anchor" href="#encrypt-to-self-by-default" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+Encrypt to self by default</h2>
+
+<p>Add <code>default-recipient-self</code> to <code>$HOME/.gnupg/gpg.conf</code></p>
 </div>
 </body>
 </html>
