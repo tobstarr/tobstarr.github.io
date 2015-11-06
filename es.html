@@ -22,18 +22,18 @@
 <h2><a name="not-analyzed-mapping" class="anchor" href="#not-analyzed-mapping" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
 Not analyzed mapping</h2>
 
-<p>{
-     &#34;template&#34;: &#34;<em>&#34;,
+<pre><code>{
+     &#34;template&#34;: &#34;*&#34;,
      &#34;settings&#34;: {
-            &#34;number<em>of_shards&#34;: 1,
+            &#34;number_of_shards&#34;: 1,
             &#34;replicas&#34;: 1
      },
      &#34;mappings&#34;: {
-            &#34;_default</em>&#34;: {
+            &#34;_default_&#34;: {
                  &#34;dynamic_templates&#34;: [
                         {
                              &#34;template_1&#34;: {
-                                    &#34;match&#34;: &#34;</em>&#34;,
+                                    &#34;match&#34;: &#34;*&#34;,
                                     &#34;match_mapping_type&#34;: &#34;string&#34;,
                                     &#34;mapping&#34;: {
                                          &#34;type&#34;: &#34;string&#34;,
@@ -44,7 +44,8 @@ Not analyzed mapping</h2>
                  ]
             }
      }
-}</p>
+}
+</code></pre>
 
 <p>curl -X PUT <a href="http://127.0.0.1:9200/_template/template_not_analyzed" rel="nofollow">http://127.0.0.1:9200/_template/template_not_analyzed</a></p>
 </div>
