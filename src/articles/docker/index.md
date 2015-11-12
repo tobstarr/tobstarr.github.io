@@ -63,3 +63,11 @@ with config
 ## Logging
 
 	docker run --log-driver journald -d ubuntu:15.04 /bin/bash
+
+## cleanup exited containers
+
+	docker ps -f status=exited -q  | xargs docker rm
+
+## cleanup images
+
+	for id in $(docker images | grep none | awk '{ print $3 }'); do docker rmi $id; done

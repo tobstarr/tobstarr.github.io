@@ -90,6 +90,16 @@ Logging</h2>
 
 <pre><code>docker run --log-driver journald -d ubuntu:15.04 /bin/bash
 </code></pre>
+<h2><a name="cleanup-exited-containers" class="anchor" href="#cleanup-exited-containers" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+cleanup exited containers</h2>
+
+<pre><code>docker ps -f status=exited -q  | xargs docker rm
+</code></pre>
+<h2><a name="cleanup-images" class="anchor" href="#cleanup-images" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+cleanup images</h2>
+
+<pre><code>for id in $(docker images | grep none | awk &#39;{ print $3 }&#39;); do docker rmi $id; done
+</code></pre>
 </div>
 </body>
 </html>
