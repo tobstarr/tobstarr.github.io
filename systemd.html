@@ -36,6 +36,11 @@ User</h1>
 <pre><code>[Service]
 User=tobias # run as specific user
 </code></pre>
+<h2><a name="run-commands-in-systemd-context" class="anchor" href="#run-commands-in-systemd-context" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+Run commands in systemd context</h2>
+
+<pre><code>sudo systemd-run bash -c &#34;while true; do date; sleep 10; done&#34;
+</code></pre>
 </div>
 </body>
 </html>

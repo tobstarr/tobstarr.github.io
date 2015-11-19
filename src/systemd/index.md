@@ -14,3 +14,7 @@
 
 	[Service]
 	User=tobias # run as specific user
+
+## Run commands in systemd context
+
+	sudo systemd-run bash -c "while true; do date; sleep 10; done"
