@@ -5,6 +5,12 @@ VERSION=${VERSION-:1.5.1}
 ARCH=$(uname | awk '{print tolower($0)}')-amd64
 DST=/usr/local/go${VERSION}
 
+sudo_prefix=""
+
+if [[ $(id -u) != "0" ]]; 
+	sudo_prefix="sudo"
+fi
+
 echo "using VERSION=${VERSION}"
 
 if [[ ! -e $DST/bin/go ]]; then
@@ -15,13 +21,13 @@ if [[ ! -e $DST/bin/go ]]; then
 	TMP=$(mktemp -d /tmp/goXXXXXX)
 	cd ${TMP} && curl -SfL https://storage.googleapis.com/golang/go${VERSION}.${ARCH}.tar.gz | tar xfz - --strip=1
 
-	sudo mv ${TMP} ${DST}
-	sudo chmod 0755 ${DST}
+	$sudo_prefix mv ${TMP} ${DST}
+	$sudo_prefix chmod 0755 ${DST}
 fi
 
 rm -Rf $HOME/pkg
 
-sudo ln -nfs ${DST} /usr/local/go
+$sudo_prefix ln -nfs ${DST} /usr/local/go
 
 # it is also helpful to delete $GOPATH/pkg (at least when upgrading go < 1.5)
 # also make sure to add /usr/local/go/bin to your PATH
