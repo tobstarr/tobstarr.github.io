@@ -33,7 +33,7 @@ if [[ ! -e /usr/local/bin/vim ]]; then
   cd $HOME
   rm -Rf $tmp
 else
-  echo "go already installed"
+  echo "vim already installed"
 fi
 
 if [[ ! -e ${HOME}/.vim/bundle/Vundle.vim ]]; then
