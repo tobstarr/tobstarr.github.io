@@ -2,8 +2,9 @@
 
 ## API Documentation Links
 
-* [EC2](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CopyImage.html)
+* [EC2](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_Operations.html)
 * [ELB](http://docs.aws.amazon.com/ElasticLoadBalancing/latest/APIReference/API_Operations.html)
+* [RDS](http://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_Operations.html)
 
 ## Upload Server Certificate
 
