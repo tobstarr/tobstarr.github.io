@@ -7,7 +7,7 @@ DST=/usr/local/go${VERSION}
 
 sudo_prefix=""
 
-if [[ $(id -u) != "0" ]]; 
+if [[ $(id -u) != "0" ]]; then
 	sudo_prefix="sudo"
 fi
 
