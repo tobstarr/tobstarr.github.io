@@ -12,3 +12,14 @@
 ## find out if a commit "contains" another commit
 
 	git rev-list f5ee3a8 | grep $(git rev-parse b9281ca)
+
+
+## empty pushes
+
+	git commit --allow-empty -m "update" && git push aws
+
+## update hook
+
+	$1: old commit
+	$2: new commit
+	$3: symbolic reference
