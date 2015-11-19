@@ -22,14 +22,35 @@
 <h2><a name="mysql" class="anchor" href="#mysql" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
 MySQL</h2>
 
-<pre><code>#!/bin/bash
+<pre><code>[Unit]
+Description = MySQL
+Requires=network.service
+After=network.service
 
-## this should be some ExecStartPre
-sudo mkdir -p /var/run/mysqld /opt/rkt/mysql
-sudo chown 999 /var/run/mysqld
+[Service]
+ExecStartPre=-/bin/mkdir -p /var/run/mysqld /opt/rkt/mysql
+ExecStartPre=-/bin/chown 9999 /var/run/mysqld
+ExecStartPre=/usr/local/bin/rkt fetch --insecure-skip-verify docker://mysql:5.6.27
+ExecStart=/usr/local/bin/rkt run --set-env=MYSQL_ALLOW_EMPTY_PASSWORD=true --volume volume-var-lib-mysql,kind=host,source=/opt/rkt/mysql --volume socket,kind=host,source=/var/run/mysqld --mount=volume=socket,target=/run/mysqld --insecure-skip-verify docker://mysql:5.6.27
 
-## this should be ExecStart
-sudo rkt run --set-env=MYSQL_ALLOW_EMPTY_PASSWORD=true --volume volume-var-lib-mysql,kind=host,source=/opt/rkt/mysql --volume socket,kind=host,source=/var/run/mysqld --mount=volume=socket,target=/run/mysqld --insecure-skip-verify docker://mysql:5.6.27
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+<h2><a name="redis" class="anchor" href="#redis" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+Redis</h2>
+
+<pre><code>[Unit]
+Description=Redis
+After=network.target
+Requires=network.target
+
+[Service]
+ExecStartPre=-/bin/mkdir -p /opt/rkt/redis
+ExecStartPre=/usr/local/bin/rkt fetch docker://redis:3.0.5
+ExecStart=/usr/local/bin/rkt run --net=host --volume volume-data,kind=host,source=/opt/rkt/redis --insecure-skip-verify docker://redis:3.0.5
+
+[Install]
+WantedBy=multi-user.target
 </code></pre>
 </div>
 </body>
