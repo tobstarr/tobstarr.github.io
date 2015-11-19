@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>tobstarr.com</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/css/default.css" type="text/css" media="screen" title="no title" charset="utf-8">
+</head>
+<body>
+  <div class="container">
+    <div class="header index_link">
+      <a href="/index.html">tobstarr.com</a>
+    </div>
+    <div class="header_links">
+      <a href="/dotfiles.html">Dotfiles</a>
+      |
+      <a href="/cheats.html">Cheats</a>
+    </div>
+    <hr />
+<h1><a name="rkt" class="anchor" href="#rkt" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>rkt</h1>
+<h2><a name="mysql" class="anchor" href="#mysql" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+MySQL</h2>
+
+<pre><code>#!/bin/bash
+
+## this should be some ExecStartPre
+sudo mkdir -p /var/run/mysqld /opt/rkt/mysql
+sudo chown 999 /var/run/mysqld
+
+## this should be ExecStart
+sudo rkt run --set-env=MYSQL_ALLOW_EMPTY_PASSWORD=true --volume volume-var-lib-mysql,kind=host,source=/opt/rkt/mysql --volume socket,kind=host,source=/var/run/mysqld --mount=volume=socket,target=/run/mysqld --insecure-skip-verify docker://mysql:5.6.27
+</code></pre>
+</div>
+</body>
+</html>
