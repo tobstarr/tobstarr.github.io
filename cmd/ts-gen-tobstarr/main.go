@@ -39,6 +39,8 @@ var sources = map[string][]Source{
 	"systemd.html":                         Layout(MarkdownSource(Render(FileSource("src/systemd/index.md")))),
 	"systemd_timer.html":                   Layout(MarkdownSource(Render(FileSource("src/systemd/timers.md")))),
 	"es.html":                              Layout(MarkdownSource(Render(FileSource("src/es/index.md")))),
+	"setup_vim.sh":                         Layout(Render(FileSource("src/articles/setup-vim/setup_vim.sh"))),
+	"setup_go.sh":                          Layout(Render(FileSource("src/articles/setup-go/install.sh"))),
 }
 
 func chain(s string, funcs ...func(Source) Source) Source {
