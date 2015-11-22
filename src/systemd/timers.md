@@ -28,3 +28,8 @@
 	
 	journalctl -u journal-backup
 
+
+## Enable
+
+	systemctl enable journal-backup.timer
+	systemctl start journal-backup.{service,timer}
