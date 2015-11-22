@@ -14,8 +14,7 @@
 	Description=Journal Backup Service
 
 	[Timer]
-	OnBootSec=1m
-	OnUnitActiveSec=5m
+	OnCalendar=*:0/5:0 # every 5 minutes
 
 	[Install]
 	WantedBy=timers.target
@@ -28,8 +27,19 @@
 	
 	journalctl -u journal-backup
 
+## Reenable timer
+
+	systemctl reenable --now journal-backup.timer
+
 
 ## Enable
 
 	systemctl enable journal-backup.timer
-	systemctl start journal-backup.{service,timer}
+	systemctl start journal-backup.timer
+
+## OnCalendar Patterns
+
+name | pattern
+---|---
+every 15 seconds | OnCalendar=*:*:0/15 
+every 10 minutes | OnCalendar=*:0/10:0
