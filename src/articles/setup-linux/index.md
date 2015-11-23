@@ -42,3 +42,7 @@ remove shortcut super+v for notification list (in system tab)
 
 	sudo dmidecode
 	sudo lspic
+
+## Heroku Toolbelt
+
+	wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh
