@@ -95,6 +95,11 @@ Run instances</h2>
 
 <pre><code>aws-mfa ec2 run-instances --user-data $(echo $ud | base64) --image-id ami-e25e6cff --key-name tschwab --associate-public-ip-address --instance-type t2.small
 </code></pre>
+<h2><a name="attached-policies" class="anchor" href="#attached-policies" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+Attached Policies</h2>
+
+<pre><code>aws iam list-policies | jq -c -r &#39;.Policies[] | select(.AttachmentCount != 0)&#39;
+</code></pre>
 </div>
 </body>
 </html>

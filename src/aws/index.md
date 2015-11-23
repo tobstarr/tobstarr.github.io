@@ -61,3 +61,7 @@ canonical owner id: 099720109477
 ## Run instances
 
 	aws-mfa ec2 run-instances --user-data $(echo $ud | base64) --image-id ami-e25e6cff --key-name tschwab --associate-public-ip-address --instance-type t2.small
+
+## Attached Policies
+
+	aws iam list-policies | jq -c -r '.Policies[] | select(.AttachmentCount != 0)'
