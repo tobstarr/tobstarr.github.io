@@ -37,8 +37,7 @@ Timer</h2>
 Description=Journal Backup Service
 
 [Timer]
-OnBootSec=1m
-OnUnitActiveSec=5m
+OnCalendar=*:0/5:0 # every 5 minutes
 
 [Install]
 WantedBy=timers.target
@@ -53,6 +52,40 @@ List Logs</h2>
 
 <pre><code>journalctl -u journal-backup
 </code></pre>
+<h2><a name="reenable-timer" class="anchor" href="#reenable-timer" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+Reenable timer</h2>
+
+<pre><code>systemctl reenable --now journal-backup.timer
+</code></pre>
+<h2><a name="enable" class="anchor" href="#enable" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+Enable</h2>
+
+<pre><code>systemctl enable journal-backup.timer
+systemctl start journal-backup.timer
+</code></pre>
+<h2><a name="oncalendar-patterns" class="anchor" href="#oncalendar-patterns" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+OnCalendar Patterns</h2>
+
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>pattern</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>every 15 seconds</td>
+<td>OnCalendar=<em>:</em>:0/15</td>
+</tr>
+
+<tr>
+<td>every 10 minutes</td>
+<td>OnCalendar=*:0/10:0</td>
+</tr>
+</tbody>
+</table>
 </div>
 </body>
 </html>
