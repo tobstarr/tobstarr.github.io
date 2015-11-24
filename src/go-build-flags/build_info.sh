@@ -18,16 +18,16 @@ if [[ -n $GIT_HISTORY ]]; then
 	GIT_HISTORY='['$GIT_HISTORY']'
 fi
 
-BUILT_AT=$(TZ=utc date +"%Y-%m-%dT%H:%M:%S")
+BUILT_AT="$(TZ=UTZ date +"%Y-%m-%dT%H:%M:%S%:z")"
 
 build=$(cat <<EOF
 {
-  "build_at":    "$BUILT_AT",
+  "built_at":    "$BUILT_AT",
   "git_history": $GIT_HISTORY,
   "git_sha":     "$(echo $GIT_COMMIT | cut -b 1-12)",
-  "changes": $(if git status --porcelain > /dev/null 2>&1; then echo true; else false; fi),
-  "hostname": "$(hostname)",
-  "user": "$(whoami)"
+  "changes":     $(if git status --porcelain > /dev/null 2>&1; then echo true; else false; fi),
+  "hostname":    "$(hostname)",
+  "user":        "$(whoami)"
 }
 EOF
 )
