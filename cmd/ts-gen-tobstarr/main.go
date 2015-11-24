@@ -43,6 +43,7 @@ var sources = map[string][]Source{
 	"versions.html":                        Layout(MarkdownSource(FileSource("src/versions.md"))),
 	"zsh.html":                             Layout(MarkdownSource(Render(FileSource("src/zsh/index.md")))),
 	"rkt.html":                             markdown("src/rkt/index.md"),
+	"go-build-flags.html":                  markdown("src/go-build-flags/index.md"),
 }
 
 func markdown(s string) []Source {
