@@ -4,5 +4,9 @@ set -e
 f=$(mktemp /tmp/go-build-flags-XXXX)
 trap "rm -f $f" EXIT
 
-go build -ldflags "-X main.REVISION $(HISTORY_LIMIT=10 bash ./build_info.sh)" -o $f
+if go version | grep "go version go1.4" > /dev/null; then
+	go build -ldflags "-X main.REVISION $(HISTORY_LIMIT=10 bash ./build_info.sh)" -o $f
+else
+	go build -ldflags "-X main.REVISION=$(HISTORY_LIMIT=10 bash ./build_info.sh)" -o $f
+fi
 $f
