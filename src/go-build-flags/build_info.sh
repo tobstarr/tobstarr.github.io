@@ -1,12 +1,13 @@
 #!/bin/sh
 set -e
 
-REPO_PATH=$HOME/src/github.com/tobstarr/tobstarr.github.io/.git
-GIT_COMMIT=$(git --git-dir $REPO_PATH rev-parse HEAD)
+if [[ -z $GIT_COMMIT ]]; then
+  GIT_COMMIT=$(git rev-parse HEAD)
+fi
 
 HISTORY_LIMIT=${HISTORY_LIMIT:-50}
 GIT_HISTORY=""
-for name in $(git --git-dir $REPO_PATH rev-list HEAD -n $HISTORY_LIMIT); do
+for name in $(git rev-list $GIT_COMMIT -n $HISTORY_LIMIT); do
 	n=$(echo $name | cut -b 1-12)
 	if [[ -n $GIT_HISTORY ]]; then
 		GIT_HISTORY=${GIT_HISTORY},
