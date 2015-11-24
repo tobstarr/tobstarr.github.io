@@ -9,7 +9,7 @@ import (
 	"time"
 )
 
-var REVISION string
+var BUILD_INFO string
 
 func main() {
 	i, err := loadBuildInfo()
@@ -36,7 +36,7 @@ type BuildInfo struct {
 }
 
 func loadBuildInfo() (i *BuildInfo, err error) {
-	if err := json.Unmarshal([]byte(REVISION), &i); err != nil {
+	if err := json.Unmarshal([]byte(BUILD_INFO), &i); err != nil {
 		return nil, err
 	}
 	i.GOOS = runtime.GOOS

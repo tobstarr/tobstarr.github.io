@@ -69,9 +69,9 @@ f=$(mktemp /tmp/go-build-flags-XXXX)
 trap &#34;rm -f $f&#34; EXIT
 
 if go version | grep &#34;go version go1.4&#34; &gt; /dev/null; then
-    go build -ldflags &#34;-X main.REVISION $(HISTORY_LIMIT=10 bash ./build_info.sh)&#34; -o $f
+  go build -ldflags &#34;-X main.BUILD_INFO $(HISTORY_LIMIT=10 bash ./build_info.sh)&#34; -o $f
 else
-    go build -ldflags &#34;-X main.REVISION=$(HISTORY_LIMIT=10 bash ./build_info.sh)&#34; -o $f
+    go build -ldflags &#34;-X main.BUILD_INFO=$(HISTORY_LIMIT=10 bash ./build_info.sh)&#34; -o $f
 fi
 $f
 </code></pre>
@@ -89,7 +89,7 @@ import (
     &#34;time&#34;
 )
 
-var REVISION string
+var BUILD_INFO string
 
 func main() {
     i, err := loadBuildInfo()
@@ -116,7 +116,7 @@ type BuildInfo struct {
 }
 
 func loadBuildInfo() (i *BuildInfo, err error) {
-    if err := json.Unmarshal([]byte(REVISION), &amp;i); err != nil {
+    if err := json.Unmarshal([]byte(BUILD_INFO), &amp;i); err != nil {
         return nil, err
     }
     i.GOOS = runtime.GOOS
