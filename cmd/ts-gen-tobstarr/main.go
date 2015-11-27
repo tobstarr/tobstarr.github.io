@@ -3,16 +3,143 @@ package main
 import (
 	"bytes"
 	"fmt"
+	"html/template"
 	"io"
 	"log"
 	"os"
 	"path/filepath"
+	"sort"
 	"strconv"
 	"strings"
 	"time"
 
 	"github.com/tobstarr/tobstarr.github.io/cmd/ts-gen-tobstarr/Godeps/_workspace/src/github.com/shurcooL/github_flavored_markdown"
 )
+
+type version struct {
+	Name    string
+	Website string
+	Docker  string
+}
+
+var versionsMap = map[string]*version{
+	"Consul": {
+		Website: "https://www.consul.io/downloads.html",
+	},
+	"CoreOS": {
+		Website: "https://coreos.com/releases/",
+	},
+	"Docker": {
+		Website: "https://github.com/docker/docker/blob/master/CHANGELOG.md",
+	},
+	"Docker Registry": {
+		Docker: "https://hub.docker.com/_/registry/",
+	},
+	"ElasticSearch": {
+		Website: "https://www.elastic.co/downloads/elasticsearch",
+		Docker:  "https://registry.hub.docker.com/_/elasticsearch/",
+	},
+	"Geminabox": {
+		Website: "https://github.com/geminabox/geminabox/releases",
+	},
+	"Golang": {
+		Website: "https://golang.org/dl/",
+		Docker:  "https://registry.hub.docker.com/_/golang/",
+	},
+	"JQuery": {
+		Website: "http://jquery.com/",
+	},
+	"Java": {
+		Docker: "https://registry.hub.docker.com/_/java/",
+	},
+	"Jenkins": {
+		Website: "https://jenkins-ci.org/changelog",
+	},
+	"Kibana": {
+		Website: "https://www.elastic.co/downloads/kibana",
+		Docker:  "https://registry.hub.docker.com/_/kibana/",
+	},
+	"Mongo": {
+		Docker: "https://registry.hub.docker.com/_/mongo/",
+	},
+	"MySQL": {
+		Website: "http://dev.mysql.com/downloads/mysql/",
+		Docker:  "https://registry.hub.docker.com/_/mysql/",
+	},
+	"Nginx": {
+		Website: "http://nginx.org/en/download.html",
+		Docker:  "https://registry.hub.docker.com/_/nginx/",
+	},
+	"PHP": {
+		Docker: "https://registry.hub.docker.com/_/php/",
+	},
+	"Percona": {
+		Docker: "https://hub.docker.com/_/percona/",
+	},
+	"PostgreSQL": {
+		Website: "http://www.postgresql.org/ftp/source/",
+		Docker:  "https://registry.hub.docker.com/_/postgres/",
+	},
+	"Redis": {
+		Website: "http://redis.io/download",
+		Docker:  "https://registry.hub.docker.com/_/redis/",
+	},
+	"Ruby": {
+		Website: "https://www.ruby-lang.org/en/downloads/",
+		Docker:  "https://registry.hub.docker.com/_/ruby/",
+	},
+	"SyslogNG": {
+		Website: "https://github.com/balabit/syslog-ng/releases",
+	},
+}
+
+var versionsTpl = `<h2>Versions</h2>
+
+<table class="table table-striped">
+<tr><th>Name<th>Original<th>Docker
+{{ range . }}
+<tr>
+  <td>{{ .Name }}
+  <td>{{ if .Website }}<a href="{{ .Website }}">{{ .Name }}</a>{{ end }}
+  <td>{{ if .Docker }}<a href="{{ .Docker }}">{{ .Name }}</a>{{ end }}
+{{ end }}
+</table>
+`
+
+func versionsSrc() (string, error) {
+	t, err := template.New("").Parse(versionsTpl)
+	if err != nil {
+		return "", err
+	}
+	buf := &bytes.Buffer{}
+	if err := t.Execute(buf, allVersions()); err != nil {
+		return "", err
+	}
+	return buf.String(), nil
+}
+
+func allVersions() (list versions) {
+	for name, c := range versionsMap {
+		c.Name = name
+		list = append(list, c)
+	}
+	sort.Sort(list)
+	return list
+}
+
+type versions []*version
+
+func (list versions) Len() int {
+	return len(list)
+}
+
+func (list versions) Swap(a, b int) {
+	list[a], list[b] = list[b], list[a]
+}
+
+func (list versions) Less(a, b int) bool {
+	return list[a].Name < list[b].Name
+}
 
 var sources = map[string][]Source{
 	"aws-sdk-go.html":                      Layout(MarkdownSource(Render(FileSource("src/aws-sdk-go/index.md")))),
@@ -40,7 +167,7 @@ var sources = map[string][]Source{
 	"systemd.html":                         Layout(MarkdownSource(Render(FileSource("src/systemd/index.md")))),
 	"systemd_timer.html":                   Layout(MarkdownSource(Render(FileSource("src/systemd/timers.md")))),
 	"tobstarr.gpg":                         FileSources("src/tobstarr.gpg"),
-	"versions.html":                        Layout(MarkdownSource(FileSource("src/versions.md"))),
+	"versions.html":                        Layout(TemplateSource(versionsTpl, allVersions())),
 	"zsh.html":                             Layout(MarkdownSource(Render(FileSource("src/zsh/index.md")))),
 	"rkt.html":                             markdown("src/rkt/index.md"),
 	"go-build-flags.html":                  markdown("src/go-build-flags/index.md"),
@@ -94,6 +221,16 @@ func loadHTMLFiles() (list map[string]struct{}, err error) {
 
 func Layout(s Source) []Source {
 	return []Source{FileSource("src/header.tpl"), s, FileSource("src/footer.tpl")}
+}
+
+func TemplateSource(tpl string, payload interface{}) Source {
+	return func(w io.Writer) error {
+		t, err := template.New("").Parse(tpl)
+		if err != nil {
+			return err
+		}
+		return t.Execute(w, payload)
+	}
 }
 
 func MarkdownSource(in Source) Source {
