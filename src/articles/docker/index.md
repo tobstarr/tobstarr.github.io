@@ -66,7 +66,7 @@ with config
 
 ## cleanup exited containers
 
-	docker ps -f status=exited -q  | xargs docker rm
+	for id in $(docker ps -f status=exited -q); do echo docker rm $id; done
 
 ## cleanup images
 
