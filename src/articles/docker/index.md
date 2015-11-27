@@ -68,6 +68,10 @@ with config
 
 	for id in $(docker ps -f status=exited -q); do echo docker rm $id; done
 
+## cleanup images by pattern
+
+	for id in $(docker images | grep PATTERN | awk '{ print $3 }'); do docker rmi $id; done
+
 ## cleanup images
 
 	for id in $(docker images | grep none | awk '{ print $3 }'); do docker rmi $id; done

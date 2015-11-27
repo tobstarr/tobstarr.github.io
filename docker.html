@@ -95,6 +95,11 @@ cleanup exited containers</h2>
 
 <pre><code>for id in $(docker ps -f status=exited -q); do echo docker rm $id; done
 </code></pre>
+<h2><a name="cleanup-images-by-pattern" class="anchor" href="#cleanup-images-by-pattern" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+cleanup images by pattern</h2>
+
+<pre><code>for id in $(docker images | grep PATTERN | awk &#39;{ print $3 }&#39;); do docker rmi $id; done
+</code></pre>
 <h2><a name="cleanup-images" class="anchor" href="#cleanup-images" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
 cleanup images</h2>
 
