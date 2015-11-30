@@ -28,6 +28,7 @@ Plugin 'bling/vim-airline'
 Plugin 'morhetz/gruvbox'
 Plugin 'thinca/vim-localrc'
 Plugin 'mtth/scratch.vim'
+Plugin 'airblade/vim-gitgutter'
 call vundle#end()
 filetype plugin indent on
 
