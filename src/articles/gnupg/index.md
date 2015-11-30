@@ -20,6 +20,10 @@
 
 	cat some.file | gpg -e -a --trust-model always --recipient tobstarr@gmail.com
 
+## Be more quiet
+	
+	gpg --no-tty
+
 ## Generate a new key
 
 	gpg --gen-key
@@ -39,3 +43,14 @@
 ## Encrypt to self by default
 
 Add `default-recipient-self` to `$HOME/.gnupg/gpg.conf`
+
+## git diff
+
+see http://magit.vc/manual/magit/How-to-show-diffs-for-gpg_002dencrypted-files_003f.html
+
+	git config --global diff.gpg.textconv "gpg --no-tty --decrypt"
+	# it seems we cannot glob for two extensions in one line :(
+	cat > .gitattributes <<EOF
+		*.gpg filter=gpg diff=gpg
+		*.asc filter=gpg diff=gpg
+	EOF

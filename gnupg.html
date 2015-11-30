@@ -44,6 +44,11 @@ Encrypt a stream without confirmation</h2>
 
 <pre><code>cat some.file | gpg -e -a --trust-model always --recipient tobstarr@gmail.com
 </code></pre>
+<h2><a name="be-more-quiet" class="anchor" href="#be-more-quiet" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+Be more quiet</h2>
+
+<pre><code>gpg --no-tty
+</code></pre>
 <h2><a name="generate-a-new-key" class="anchor" href="#generate-a-new-key" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
 Generate a new key</h2>
 
@@ -68,6 +73,18 @@ Encrypt with hidden recipients</h2>
 Encrypt to self by default</h2>
 
 <p>Add <code>default-recipient-self</code> to <code>$HOME/.gnupg/gpg.conf</code></p>
+<h2><a name="git-diff" class="anchor" href="#git-diff" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+git diff</h2>
+
+<p>see <a href="http://magit.vc/manual/magit/How-to-show-diffs-for-gpg_002dencrypted-files_003f.html" rel="nofollow">http://magit.vc/manual/magit/How-to-show-diffs-for-gpg_002dencrypted-files_003f.html</a></p>
+
+<pre><code>git config --global diff.gpg.textconv &#34;gpg --no-tty --decrypt&#34;
+# it seems we cannot glob for two extensions in one line :(
+cat &gt; .gitattributes &lt;&lt;EOF
+    *.gpg filter=gpg diff=gpg
+    *.asc filter=gpg diff=gpg
+EOF
+</code></pre>
 </div>
 </body>
 </html>
