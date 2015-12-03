@@ -123,12 +123,24 @@ map <Down> <Nop>
 scriptencoding utf-8
 set encoding=utf-8
 
+" from https://github.com/garybernhardt/dotfiles/blob/master/.vimrc#L182
+function! RenameFile()
+    let old_name = expand('%')
+    let new_name = input('New file name: ', expand('%'), 'file')
+    if new_name != '' && new_name != old_name
+        exec ':saveas ' . new_name
+        exec ':silent !rm ' . old_name
+        redraw!
+    endif
+endfunction
+
 map ,, :w<CR>:VimuxRunLastCommand<CR>
 map ,. :w<CR>:make -f Makefile.wip<CR>
 map ,/ :VimuxRunLastCommand<CR>
 map ,c :set relativenumber!<CR>:set number!<CR>
-map ,l :File<CR>
 map ,ff :CtrlPClearCache<CR>
+map ,l :File<CR>
+map ,n :call RenameFile()<cr>
 map ,nt :NERDTreeToggle<CR>
 map ,p :set paste!<CR>
 map ,q :q<CR>
