@@ -25,14 +25,18 @@ var sources = map[string][]Source{
 	"dotfiles/zshrc.sh":                    FileSources("src/zsh/zshrc.sh"),
 	"es.html":                              Layout(MarkdownSource(Render(FileSource("src/es/index.md")))),
 	"gnupg.html":                           Layout(MarkdownSource(FileSource("src/articles/gnupg/index.md"))),
+	"go-build-flags.html":                  markdown("src/go-build-flags/index.md"),
 	"goerrors.html":                        Layout(MarkdownSource(Render(FileSource(("src/go-errors/index.md"))))),
 	"id_rsa.pub":                           FileSources("src/id_rsa.pub"),
 	"index.html":                           Layout(FileSource("src/index.tpl")),
+	"keybase.txt":                          FileSources("src/keybase.txt"),
 	"loop.sh":                              Layout(MarkdownSource(Render(FileSource("src/loop/loop.sh")))),
+	"nfl.txt":                              FileSources("src/nfl.txt"),
 	"python-web-server.html":               Layout(MarkdownSource(FileSource("src/python-web-server/index.md"))),
 	"qrcat/index.html":                     Layout(MarkdownSource(Render(FileSource("src/qrcat/index.md")))),
 	"qrcat/qrcat.go":                       FileSources("src/qrcat/qrcat.go"),
 	"qrcat/qrcat.png":                      FileSources("src/qrcat/qrcat.png"),
+	"rkt.html":                             markdown("src/rkt/index.md"),
 	"scratch/index.html":                   Layout(MarkdownSource(Render(FileSource("src/scratch/index.md")))),
 	"setup_geminabox.sh":                   FileSources("src/speed-up-bundler-with-geminabox/setup_geminabox.sh"),
 	"setup_go.sh":                          FileSources("src/articles/setup-go/install.sh"),
@@ -43,8 +47,6 @@ var sources = map[string][]Source{
 	"tobstarr.gpg":                         FileSources("src/tobstarr.gpg"),
 	"versions.html":                        Layout(TemplateSource(versionsTpl, allVersions())),
 	"zsh.html":                             Layout(MarkdownSource(Render(FileSource("src/zsh/index.md")))),
-	"rkt.html":                             markdown("src/rkt/index.md"),
-	"go-build-flags.html":                  markdown("src/go-build-flags/index.md"),
 }
 
 func markdown(s string) []Source {

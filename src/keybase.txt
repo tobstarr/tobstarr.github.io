@@ -1,0 +1,74 @@
+==================================================================
+https://keybase.io/tobstarr
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://tobstarr.com
+  * I am tobstarr (https://keybase.io/tobstarr) on keybase.
+  * I have a public key with fingerprint 17C0 8185 AD46 9086 E682  1F5B D469 0F65 7ABB 812F
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "eldest_kid": "010112fcfa20abc149b4d9e2e6d8e2828c64ca3fe51611428b9d08e44d16c8e222c70a",
+            "fingerprint": "17c08185ad469086e6821f5bd4690f657abb812f",
+            "host": "keybase.io",
+            "key_id": "d4690f657abb812f",
+            "kid": "010112fcfa20abc149b4d9e2e6d8e2828c64ca3fe51611428b9d08e44d16c8e222c70a",
+            "uid": "06113510fb8bb293a0cd7a651bb56700",
+            "username": "tobstarr"
+        },
+        "service": {
+            "hostname": "tobstarr.com",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1445937137,
+    "expire_in": 157680000,
+    "prev": "aaabacbd691fc7e049cb22dd8a67e6ec59123f6400f48083ce5c810d71ce87e5",
+    "seqno": 32,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: GnuPG v1
+
+owGtkn9QFGUYx48zkC4VdCbLCYkWrzE7YN+9/YmQMCFCMTeERmbg9e7uu+cOcIt7
+CxwReg03cBXxS5KRGHSMoTFzRMhsdEh0igwMBE5xEhoq1PEHM/1QKYypXap/mv7s
+/eed53k/3+/zPO88DUsXmcwhQTkCvXbqjYSQwRu8KTdhw2wFxitiOZZYgRWghQsV
+isijOQtkEUvEcIADQEiCBAkc8gIgOZ4UOUQgWmQRwRKsQJMCtEuIAjQAJMHynIiz
+iCRFQAs6QRACg0PMhkmy24XUYlV2a7otYAScBSwFRZLmcJZGNEsAieIXQommGMjz
+rF5XF+5QPIZCb46HHhQvK3pOD5wL7f0H/z/3XfKXnQ7ZKYBLPMvzBGeHuCAykKYA
+z1M0g+MG6EGqGxYhndYU3qNBVcUqbZieLZUFZHysMcm/iHhBKdK1xaqiKYJSqL/s
+0LTiREOolRcbZBninX97OHnZLerfqAtKkeqRFTeWCHRS0GTDFJAkxdkZYGdsGPIW
+yypyygZBMTSL68cog0p1SwghDwVe3EpzQBIYhJOcwBOEKLKQZhCNBIoDhF2iSRyX
+SBZn7QKiBBbgIgMExDKIwoyxdroVLNFO6I1Cl27qkV1uqJWoCKu0vGmOesAUYjaF
+hZqNDTNZHoz8Z+3UyUhTG9b8cdInPYsaDoV93ff20Znysx1ebE91cE2CAw+7OtCQ
+tj+21Zw3NZebvOFCQuv7Ze/U1C+xpvjPj8fXdgV+XmmaZp7cHlsL5u2z0cvk4bZ3
+Hw00yNixsfGIvbd6IrLGp5N/hLHP2hrb/eorNebZewHLaPcawVfNhXel+zD/Kv/h
+Ce7SrS7XD6d9EX8EU+ND696Krv7GdOC8VPTCldSXXx3rHMIe333ibsZMuHXr+ibL
+Ns+No2ETJu74OZjl6s3mjmH96S/FLT/T/21ldUFlSpK1jn1PW49ntFH7X8xxZvyW
+u7RtZHjckdRhZTdev95Ykd35dG/U5fm1/bb+fWWT93y7UmK8BReu3d94s6Ql4dRd
+S3D1ppqJUCdcHjjkWDwz1O7IX9f05cPpPu+nd4oan9pVwmin7/8+eaTutiW8dlXe
+9FRT6pLd66ouZt3JrI/b1n28f+DkfFXYdv/BvtyuuLNVB5/Y0xsb+d1e/5F9KzaL
+nk7rF9OXctIcXtuWc8vKoiMnDozFtIdysb5ftfHQuZTmYHJgUyBPufhM6nOZJ/JP
+ToxkW1o/v3L5jLesO9plbYykxWtbNntHd2a11MPB4Z9ur2zw/bJ4Liv5g/zX14bE
+DPR4/IOZ4V81frYi018KalseWV0x9P3IDP7QUE6EreP5m05R+dB2+KOowbS+YE/z
+aGHv1GMxV/8E
+=aOJi
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/tobstarr
+
+==================================================================
+
