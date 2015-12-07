@@ -35,7 +35,7 @@ var sources = map[string][]Source{
 	"index.html":                           Layout(FileSource("src/index.tpl")),
 	"keybase.txt":                          FileSources("src/keybase.txt"),
 	"loop.sh":                              Layout(MarkdownSource(Render(FileSource("src/loop/loop.sh")))),
-	"nfl.html":                             FileSources("src/nfl.html"),
+	"nfl.html":                             Layout(FileSource("src/nfl.html")),
 	"python-web-server.html":               Layout(MarkdownSource(FileSource("src/python-web-server/index.md"))),
 	"qrcat/index.html":                     Layout(MarkdownSource(Render(FileSource("src/qrcat/index.md")))),
 	"qrcat/qrcat.go":                       FileSources("src/qrcat/qrcat.go"),
