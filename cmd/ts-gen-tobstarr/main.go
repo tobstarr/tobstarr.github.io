@@ -248,7 +248,12 @@ func run(l *log.Logger) error {
 		}
 		return fmt.Errorf("%s: %q", err, buf.String())
 	}
-	return nil
+
+	c = exec.Command("git", "push")
+	c.Dir = wd
+	c.Stdout = os.Stdout
+	c.Stderr = os.Stderr
+	return c.Run()
 }
 
 func FileSource(path string) Source {
