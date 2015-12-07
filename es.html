@@ -48,6 +48,20 @@ Not analyzed mapping</h2>
 </code></pre>
 
 <p>curl -X PUT <a href="http://127.0.0.1:9200/_template/template_not_analyzed" rel="nofollow">http://127.0.0.1:9200/_template/template_not_analyzed</a></p>
+<h2><a name="sort-by-randomk" class="anchor" href="#sort-by-randomk" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+sort by RandomK</h2>
+
+<p>see <a href="http://stackoverflow.com/questions/9796470/random-order-pagination-elasticsearch" rel="nofollow">http://stackoverflow.com/questions/9796470/random-order-pagination-elasticsearch</a></p>
+
+<pre><code>curl -XGET &#39;localhost:9200/_search&#39; -d &#39;{
+    &#34;query&#34;: {
+        &#34;function_score&#34; : {
+            &#34;query&#34; : { &#34;match_all&#34;: {} },
+            &#34;random_score&#34; : {}
+        }
+    }
+}&#39;
+</code></pre>
 </div>
 </body>
 </html>
