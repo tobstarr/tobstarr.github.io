@@ -11,3 +11,7 @@
 ## Print date relative to now
 
 	TZ=UTC date +"%Y-%m-%dT%H:%M:%S" -d "1 day ago"
+
+## Unix time with nanoseconds
+
+	TZ=UTC date +"%s.%N"
