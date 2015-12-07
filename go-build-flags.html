@@ -43,7 +43,7 @@ if [[ -n $GIT_HISTORY ]]; then
     GIT_HISTORY=&#39;[&#39;$GIT_HISTORY&#39;]&#39;
 fi
 
-BUILT_AT=&#34;$(TZ=UTZ date +&#34;%Y-%m-%dT%H:%M:%S%:z&#34;)&#34;
+BUILT_AT=&#34;$(TZ=UTZ date +&#34;%Y-%m-%dT%H:%M:%SZ&#34;)&#34;
 
 build=$(cat &lt;&lt;EOF
 {

@@ -1,19 +1,0 @@
-#!/bin/bash
-set -e
-
-CACHE_PATH=/tmp/ip_updates.cs
-
-res=$(ip a show | grep "^[^\ ]\|inet " | sed -s 's/^\s*//g')
-cs=$(echo "$res" | md5sum | awk '{ print $1 }')
-
-if [[ -f $CACHE_PATH ]]; then
-  exists=$(cat $CACHE_PATH)
-fi
-
-if [[ $exists != $cs ]]; then
-  echo "changed. $exists != $cs"
-  echo "ip update: $(hostname)$res" | slackme
-  echo -n $cs> $CACHE_PATH
-else
-  echo "unchanged"
-fi

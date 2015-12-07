@@ -1,9 +1,0 @@
-# Test Times
-
-## Example
-
-	{ for i in 1 2 3 4; do time bundle exec rspec spec/services/search/elastic_search/elastic_search_adapter_spec.rb:102; done } 2>&1 | tee perf.log
-
-## Grep
-
-	grep "^Finished\|^bundle exec" perf.log

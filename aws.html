@@ -100,6 +100,11 @@ Attached Policies</h2>
 
 <pre><code>aws iam list-policies | jq -c -r &#39;.Policies[] | select(.AttachmentCount != 0)&#39;
 </code></pre>
+<h2><a name="list-rds-instances-with-status" class="anchor" href="#list-rds-instances-with-status" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+List RDS instances with status</h2>
+
+<pre><code>aws rds describe-db-instances | jq -c -r &#39;.DBInstances[] | {id: .DBInstanceIdentifier, status: .DBInstanceStatus}&#39;
+</code></pre>
 </div>
 </body>
 </html>
