@@ -253,7 +253,11 @@ func run(l *log.Logger) error {
 	c.Dir = wd
 	c.Stdout = os.Stdout
 	c.Stderr = os.Stderr
-	return c.Run()
+	if err := c.Run(); err != nil {
+		return err
+	}
+	l.Printf("released!")
+	return nil
 }
 
 func FileSource(path string) Source {
