@@ -48,6 +48,7 @@ var sources = map[string][]Source{
 	"speed-up-bundler-with-geminabox.html": Layout(MarkdownSource(Render(FileSource("src/speed-up-bundler-with-geminabox/index.md")))),
 	"systemd.html":                         Layout(MarkdownSource(Render(FileSource("src/systemd/index.md")))),
 	"systemd_timer.html":                   Layout(MarkdownSource(Render(FileSource("src/systemd/timers.md")))),
+	"tmux.conf":                            FileSources("src/tmux.conf"),
 	"tobstarr.gpg":                         FileSources("src/tobstarr.gpg"),
 	"versions.html":                        Layout(TemplateSource(versionsTpl, allVersions())),
 	"vimrc":                                FileSources("src/vimrc"),
