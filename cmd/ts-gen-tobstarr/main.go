@@ -1,12 +1,14 @@
 package main
 
 import (
+	"bufio"
 	"bytes"
 	"fmt"
 	"html/template"
 	"io"
 	"log"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"strconv"
 	"strings"
@@ -16,17 +18,19 @@ import (
 )
 
 var sources = map[string][]Source{
+	"CNAME":                                FileSources("src/CNAME"),
 	"aws-sdk-go.html":                      Layout(MarkdownSource(Render(FileSource("src/aws-sdk-go/index.md")))),
 	"aws.html":                             Layout(MarkdownSource(FileSource("src/aws/index.md"))),
 	"cheats.html":                          Layout(FileSource("src/cheats.tpl")),
+	"css/bootstrap.min.css":                FileSources("src/css/bootstrap.min.css"),
+	"css/default.css":                      FileSources("src/css/default.css"),
 	"docker.html":                          Layout(MarkdownSource(FileSource("src/articles/docker/index.md"))),
 	"dotfiles.html":                        Layout(FileSource("src/dotfiles/index.tpl")),
-	"dotfiles/vimrc.conf":                  FileSources("dotfiles/vimrc"),
-	"dotfiles/zshrc.sh":                    FileSources("src/zsh/zshrc.sh"),
 	"es.html":                              Layout(MarkdownSource(Render(FileSource("src/es/index.md")))),
 	"gnupg.html":                           Layout(MarkdownSource(FileSource("src/articles/gnupg/index.md"))),
 	"go-build-flags.html":                  markdown("src/go-build-flags/index.md"),
 	"goerrors.html":                        Layout(MarkdownSource(Render(FileSource(("src/go-errors/index.md"))))),
+	"hello.txt":                            FileSources("src/hello.txt"),
 	"id_rsa.pub":                           FileSources("src/id_rsa.pub"),
 	"index.html":                           Layout(FileSource("src/index.tpl")),
 	"keybase.txt":                          FileSources("src/keybase.txt"),
@@ -46,7 +50,10 @@ var sources = map[string][]Source{
 	"systemd_timer.html":                   Layout(MarkdownSource(Render(FileSource("src/systemd/timers.md")))),
 	"tobstarr.gpg":                         FileSources("src/tobstarr.gpg"),
 	"versions.html":                        Layout(TemplateSource(versionsTpl, allVersions())),
+	"vimrc":                                FileSources("src/vimrc"),
+	"vimrc.conf":                           FileSources("src/vimrc"),
 	"zsh.html":                             Layout(MarkdownSource(Render(FileSource("src/zsh/index.md")))),
+	"zshrc.sh":                             FileSources("src/zsh/zshrc.sh"),
 }
 
 func markdown(s string) []Source {
@@ -136,23 +143,110 @@ func Render(in Source) Source {
 	}
 }
 
+func getOrigin() (string, error) {
+	b, err := exec.Command("git", "remote", "-v").CombinedOutput()
+	if err != nil {
+		return "", fmt.Errorf("%s:\b%s", err, b)
+	}
+	for _, line := range strings.Split(string(b), "\n") {
+		fields := strings.Fields(line)
+		if len(fields) == 3 && fields[0] == "origin" && fields[2] == "(push)" {
+			return fields[1], nil
+		}
+	}
+	return "", fmt.Errorf("unable to extract origin from\n%s", b)
+}
+
 func run(l *log.Logger) error {
 	start := time.Now()
-	m, err := loadHTMLFiles()
+	res, err := exec.Command("git", "status", "--porcelain").CombinedOutput()
+	if err != nil {
+		return fmt.Errorf("%s\n%s", res, err)
+	}
+	if len(res) > 0 {
+		return fmt.Errorf("status not clean:\n%s", res)
+	}
+	wd := ".release"
+	if _, err := os.Stat(filepath.Join(wd, ".git", "HEAD")); err != nil {
+		origin, err := getOrigin()
+		if err != nil {
+			return err
+		}
+		c := exec.Command("git", "clone", "-b", "master", "--depth", "1", origin, wd)
+		c.Stdout = os.Stdout
+		c.Stderr = os.Stderr
+		if err := c.Run(); err != nil {
+			return err
+		}
+	}
+	c := exec.Command("git", "reset", "origin/master")
+	c.Dir = wd
+	c.Stdout = os.Stdout
+	c.Stderr = os.Stderr
+	if err := c.Run(); err != nil {
+		return err
+	}
+	err = filepath.Walk(wd, func(p string, info os.FileInfo, err error) error {
+		if p == wd {
+			return nil
+		}
+		if filepath.Base(p) == ".git" {
+			return filepath.SkipDir
+		}
+		if err := os.RemoveAll(p); err != nil {
+			return err
+		}
+		if info.IsDir() {
+			return filepath.SkipDir
+		}
+		return nil
+	})
 	if err != nil {
 		return err
 	}
 	for path, sources := range sources {
-		if err := writeFile(l, path, sources...); err != nil {
+		if err := writeFile(l, filepath.Join(wd, path), sources...); err != nil {
 			return err
 		}
-		delete(m, path)
-	}
-	for k := range m {
-		l.Printf("deleting file %s", k)
-		os.RemoveAll(k)
 	}
 	l.Printf("finished in %.06f", time.Since(start).Seconds())
+	c = exec.Command("git", "add", ".")
+	c.Dir = wd
+	c.Stdout = os.Stdout
+	c.Stderr = os.Stderr
+	c.Stdin = os.Stdin
+	if err := c.Run(); err != nil {
+		return err
+	}
+
+	buf := &bytes.Buffer{}
+	c = exec.Command("git", "diff", "--cached")
+	c.Dir = wd
+	c.Stdin = os.Stdin
+	c.Stdout = os.Stdout
+	c.Stderr = os.Stderr
+	if err := c.Run(); err != nil {
+		return err
+	}
+	fmt.Printf("commit message: ")
+	line, _, err := bufio.NewReader(os.Stdin).ReadLine()
+	if err != nil {
+		return err
+	}
+
+	buf = &bytes.Buffer{}
+	c = exec.Command("git", "commit", "-m", string(line))
+	c.Dir = wd
+	c.Stdout = buf
+	c.Stderr = os.Stderr
+	c.Stdin = os.Stdin
+	if err := c.Run(); err != nil {
+		if strings.Contains(buf.String(), "nothing to commit, working directory clean") {
+			l.Printf("nothing to commit")
+			return nil
+		}
+		return fmt.Errorf("%s: %q", err, buf.String())
+	}
 	return nil
 }
 
@@ -175,7 +269,7 @@ type Logger interface {
 }
 
 func writeFile(l Logger, out string, sources ...Source) error {
-	start := time.Now()
+	//start := time.Now()
 	buf := &bytes.Buffer{}
 	for _, src := range sources {
 		if err := src(buf); err != nil {
@@ -199,6 +293,6 @@ func writeFile(l Logger, out string, sources ...Source) error {
 	if err != nil {
 		return err
 	}
-	l.Printf("write file %s in %.6f", out, time.Since(start).Seconds())
+	//l.Printf("write file %s in %.6f", out, time.Since(start).Seconds())
 	return nil
 }
