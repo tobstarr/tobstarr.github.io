@@ -2,3 +2,17 @@ snippet #! "shabang" b
 #!/bin/bash
 ${0}
 endsnippet
+
+snippet z "if zero" b
+if [[ -z ${1} ]]; then
+  ${0}
+fi
+endsnippet
+
+snippet abort "abort function" b
+function abort() {
+  echo $@
+  exit 1
+}
+${0}
+endsnippet
