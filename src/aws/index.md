@@ -68,3 +68,7 @@ canonical owner id: 099720109477
 
 ## List RDS instances with status
 	aws rds describe-db-instances | jq -c -r '.DBInstances[] | {id: .DBInstanceIdentifier, status: .DBInstanceStatus}'
+
+## IAM list Users
+
+	aws iam list-users | jq -c -r '.Users[] | .UserName'
