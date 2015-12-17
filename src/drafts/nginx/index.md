@@ -10,4 +10,6 @@ This can be e.g. used in the listener config of an AWS ElasticLoadBalancer. Just
       rewrite ^/(.*)$ https://example.com/$1 permanent;
   }
 
+## Log to syslog
 
+	access_log syslog:server=unix:/dev/log main;
