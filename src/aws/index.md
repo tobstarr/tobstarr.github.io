@@ -72,3 +72,15 @@ canonical owner id: 099720109477
 ## IAM list Users
 
 	aws iam list-users | jq -c -r '.Users[] | .UserName'
+
+## Volume Management
+
+	vol_id=vol-10af2ae3
+	image_id=i-8eaade05
+	aws-mfa ec2 create-volume --availability-zone eu-west-1a --size 100 --volume-type gp2
+
+	# wait for volume to be available
+	aws-mfa ec2 describe-volumes --volume-id=$vol_id
+
+	aws-mfa ec2 attach-volume --volume-id=$vol_id --instance-id=i-8eaade05 --device /dev/xvdb
+	# wair for volume to be available
