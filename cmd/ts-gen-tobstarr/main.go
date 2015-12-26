@@ -55,6 +55,7 @@ var sources = map[string][]Source{
 	"vimrc.conf":                           FileSources("src/vimrc"),
 	"zsh.html":                             Layout(MarkdownSource(Render(FileSource("src/zsh/index.md")))),
 	"zshrc.sh":                             FileSources("src/zsh/zshrc.sh"),
+	"umlauts.html":                         FileSources("src/umlauts.html"),
 }
 
 func markdown(s string) []Source {
