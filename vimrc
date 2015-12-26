@@ -158,9 +158,9 @@ let g:godef_split=0
 let g:go_fmt_command='goimports'
 let g:go_autodetect_gopath = 0
 
-set spell spelllang=en_us
-
+" set spell spelllang=en_us
 map ,s :setlocal spell!<CR>
+set nohlsearch
 
 command! File normal :echo expand('%:p')<CR>
 command! -range AddJsonTags <line1>,<line2>normal ^vEyA `json:""crsA,omitempty"`^j

@@ -49,7 +49,7 @@ build=$(cat &lt;&lt;EOF
 {
   &#34;built_at&#34;:    &#34;$BUILT_AT&#34;,
   &#34;git_history&#34;: $GIT_HISTORY,
-  &#34;git_sha&#34;:     &#34;$(echo $GIT_COMMIT | cut -b 1-12)&#34;,
+  &#34;git_sha&#34;:     &#34;$GIT_COMMIT&#34;,
   &#34;changes&#34;:     $(if git status --porcelain &gt; /dev/null 2&gt;&amp;1; then echo true; else false; fi),
   &#34;hostname&#34;:    &#34;$(hostname)&#34;,
   &#34;user&#34;:        &#34;$(whoami)&#34;
