@@ -92,7 +92,7 @@ type run struct {
 func (r *run) Run() error {
 	l := log.New(os.Stderr, "", 0)
 	wd, err := createRelease(l)
-	if err != nil {
+	if err != nil || r.DoNotPush {
 		return err
 	}
 	c := exec.Command("git", "add", ".")
