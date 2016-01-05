@@ -38,14 +38,28 @@ var versionsMap = map[string]*version{
 var versionsTpl = `<h2>Versions</h2>
 
 <table class="table table-striped">
-<tr><th>Name<th>Original<th>Docker
+<thead>
+	<tr>
+		<th>Name</th>
+		<th>Original</th>
+		<th>Docker</th>
+	</tr>
+</thead>
+<tbody>
 {{ range . }}
 <tr>
   <td>{{ .Name }}
   <td>{{ if .Website }}<a href="{{ .Website }}">{{ .Name }}</a>{{ end }}
   <td>{{ if .Docker }}<a href="{{ .Docker }}">{{ .Name }}</a>{{ end }}
 {{ end }}
+</tbody>
 </table>
+
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function() {
+	$('table').DataTable({pageLength: 100});
+})
+</script>
 `
 
 func versionsSrc() (string, error) {

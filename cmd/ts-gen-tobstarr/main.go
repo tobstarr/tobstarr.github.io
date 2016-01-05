@@ -14,6 +14,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/tobstarr/tobstarr.github.io/cmd/ts-gen-tobstarr/Godeps/_workspace/src/github.com/dynport/dgtk/cli"
 	"github.com/tobstarr/tobstarr.github.io/cmd/ts-gen-tobstarr/Godeps/_workspace/src/github.com/shurcooL/github_flavored_markdown"
 )
 
@@ -33,6 +34,8 @@ var sources = map[string][]Source{
 	"hello.txt":                            FileSources("src/hello.txt"),
 	"id_rsa.pub":                           FileSources("src/id_rsa.pub"),
 	"index.html":                           Layout(FileSource("src/index.tpl")),
+	"js/jquery.dataTables.min.js":          FileSources("src/js/jquery.dataTables.min.js"),
+	"js/jquery.min.js":                     FileSources("src/js/jquery.min.js"),
 	"keybase.txt":                          FileSources("src/keybase.txt"),
 	"loop.sh":                              Layout(MarkdownSource(Render(FileSource("src/loop/loop.sh")))),
 	"nfl.html":                             Layout(FileSource("src/nfl.html")),
@@ -73,10 +76,72 @@ func chain(s string, funcs ...func(Source) Source) Source {
 }
 
 func main() {
-	l := log.New(os.Stderr, "", 0)
-	if err := run(l); err != nil {
-		log.Fatal(err)
+	switch err := cli.RunActionWithArgs(&run{}); err {
+	case nil, cli.ErrorHelpRequested, cli.ErrorNoRoute:
+		// ignore
+		return
+	default:
+		log.New(os.Stderr, "", 0).Fatal(err)
 	}
+}
+
+type run struct {
+	DoNotPush bool `cli:"opt --do-not-push"`
+}
+
+func (r *run) Run() error {
+	l := log.New(os.Stderr, "", 0)
+	wd, err := createRelease(l)
+	if err != nil {
+		return err
+	}
+	c := exec.Command("git", "add", ".")
+	c.Dir = wd
+	c.Stdout = os.Stdout
+	c.Stderr = os.Stderr
+	c.Stdin = os.Stdin
+	if err := c.Run(); err != nil {
+		return err
+	}
+
+	buf := &bytes.Buffer{}
+	c = exec.Command("git", "diff", "--cached")
+	c.Dir = wd
+	c.Stdin = os.Stdin
+	c.Stdout = os.Stdout
+	c.Stderr = os.Stderr
+	if err := c.Run(); err != nil {
+		return err
+	}
+	fmt.Printf("commit message: ")
+	line, _, err := bufio.NewReader(os.Stdin).ReadLine()
+	if err != nil {
+		return err
+	}
+
+	buf = &bytes.Buffer{}
+	c = exec.Command("git", "commit", "-m", string(line))
+	c.Dir = wd
+	c.Stdout = buf
+	c.Stderr = os.Stderr
+	c.Stdin = os.Stdin
+	if err := c.Run(); err != nil {
+		if strings.Contains(buf.String(), "nothing to commit, working directory clean") {
+			l.Printf("nothing to commit")
+			return nil
+		}
+		return fmt.Errorf("%s: %q", err, buf.String())
+	}
+
+	c = exec.Command("git", "push")
+	c.Dir = wd
+	c.Stdout = os.Stdout
+	c.Stderr = os.Stderr
+	if err := c.Run(); err != nil {
+		return err
+	}
+	l.Printf("released!")
+	return nil
 }
 
 func FileSources(paths ...string) (list []Source) {
@@ -159,26 +224,26 @@ func getOrigin() (string, error) {
 	return "", fmt.Errorf("unable to extract origin from\n%s", b)
 }
 
-func run(l *log.Logger) error {
+func createRelease(l Logger) (dir string, err error) {
 	start := time.Now()
 	res, err := exec.Command("git", "status", "--porcelain").CombinedOutput()
 	if err != nil {
-		return fmt.Errorf("%s\n%s", res, err)
+		return "", fmt.Errorf("%s\n%s", res, err)
 	}
 	if len(res) > 0 {
-		return fmt.Errorf("status not clean:\n%s", res)
+		return "", fmt.Errorf("status not clean:\n%s", res)
 	}
 	wd := ".release"
 	if _, err := os.Stat(filepath.Join(wd, ".git", "HEAD")); err != nil {
 		origin, err := getOrigin()
 		if err != nil {
-			return err
+			return "", err
 		}
 		c := exec.Command("git", "clone", "-b", "master", "--depth", "1", origin, wd)
 		c.Stdout = os.Stdout
 		c.Stderr = os.Stderr
 		if err := c.Run(); err != nil {
-			return err
+			return "", err
 		}
 	}
 	c := exec.Command("git", "reset", "origin/master")
@@ -186,7 +251,7 @@ func run(l *log.Logger) error {
 	c.Stdout = os.Stdout
 	c.Stderr = os.Stderr
 	if err := c.Run(); err != nil {
-		return err
+		return "", err
 	}
 	err = filepath.Walk(wd, func(p string, info os.FileInfo, err error) error {
 		if p == wd {
@@ -204,61 +269,15 @@ func run(l *log.Logger) error {
 		return nil
 	})
 	if err != nil {
-		return err
+		return "", err
 	}
 	for path, sources := range sources {
 		if err := writeFile(l, filepath.Join(wd, path), sources...); err != nil {
-			return err
+			return "", err
 		}
 	}
 	l.Printf("finished in %.06f", time.Since(start).Seconds())
-	c = exec.Command("git", "add", ".")
-	c.Dir = wd
-	c.Stdout = os.Stdout
-	c.Stderr = os.Stderr
-	c.Stdin = os.Stdin
-	if err := c.Run(); err != nil {
-		return err
-	}
-
-	buf := &bytes.Buffer{}
-	c = exec.Command("git", "diff", "--cached")
-	c.Dir = wd
-	c.Stdin = os.Stdin
-	c.Stdout = os.Stdout
-	c.Stderr = os.Stderr
-	if err := c.Run(); err != nil {
-		return err
-	}
-	fmt.Printf("commit message: ")
-	line, _, err := bufio.NewReader(os.Stdin).ReadLine()
-	if err != nil {
-		return err
-	}
-
-	buf = &bytes.Buffer{}
-	c = exec.Command("git", "commit", "-m", string(line))
-	c.Dir = wd
-	c.Stdout = buf
-	c.Stderr = os.Stderr
-	c.Stdin = os.Stdin
-	if err := c.Run(); err != nil {
-		if strings.Contains(buf.String(), "nothing to commit, working directory clean") {
-			l.Printf("nothing to commit")
-			return nil
-		}
-		return fmt.Errorf("%s: %q", err, buf.String())
-	}
-
-	c = exec.Command("git", "push")
-	c.Dir = wd
-	c.Stdout = os.Stdout
-	c.Stderr = os.Stderr
-	if err := c.Run(); err != nil {
-		return err
-	}
-	l.Printf("released!")
-	return nil
+	return wd, nil
 }
 
 func FileSource(path string) Source {
