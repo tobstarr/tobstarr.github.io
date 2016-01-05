@@ -32,7 +32,7 @@ notice | 5
 info | 6
 debug | 7
 
-## Write to yournal
+## Write to journal
 
 `systemd-cat -t uptime uptime`
 
