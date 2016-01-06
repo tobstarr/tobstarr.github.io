@@ -1,4 +1,4 @@
-default: test vet run
+default: test vet build
 
 build:
 	@go get -v ./...
