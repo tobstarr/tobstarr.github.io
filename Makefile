@@ -9,7 +9,7 @@ vet:
 test:
 	go test ./...
 
-run: build
+release: build
 	ts-gen-tobstarr
 
 preview: build
