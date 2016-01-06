@@ -21,7 +21,14 @@
 <h2>Versions</h2>
 
 <table class="table table-striped">
-<tr><th>Name<th>Original<th>Docker
+<thead>
+	<tr>
+		<th>Name</th>
+		<th>Original</th>
+		<th>Docker</th>
+	</tr>
+</thead>
+<tbody>
 
 <tr>
   <td>Consul
@@ -128,7 +135,14 @@
   <td><a href="https://github.com/coreos/rkt/releases">rkt</a>
   <td>
 
+</tbody>
 </table>
+
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function() {
+	$('table').DataTable({pageLength: 100});
+})
+</script>
 </div>
 </body>
 </html>

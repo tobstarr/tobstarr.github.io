@@ -123,6 +123,15 @@ aws-mfa ec2 describe-volumes --volume-id=$vol_id
 aws-mfa ec2 attach-volume --volume-id=$vol_id --instance-id=i-8eaade05 --device /dev/xvdb
 # wair for volume to be available
 </code></pre>
+<h2><a name="update-hostname" class="anchor" href="#update-hostname" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+Update Hostname</h2>
+
+<pre><code>#!/bin/bash
+
+sed -s &#34;s/^127.0.0.1.*/127.0.0.1 localhost $(ec2metadata --instance-id)/g&#34; -i /etc/hosts
+ec2metadata --instance-id &gt; /etc/hostname
+hostname -F /etc/hostname
+</code></pre>
 </div>
 </body>
 </html>
