@@ -21,7 +21,7 @@ import (
 var sources = map[string][]Source{
 	"CNAME":                                FileSources("src/CNAME"),
 	"aws-sdk-go.html":                      Layout(MarkdownSource(Render(FileSource("src/aws-sdk-go/index.md")))),
-	"aws.html":                             Layout(MarkdownSource(FileSource("src/aws/index.md"))),
+	"aws.html":                             Layout(MarkdownSource(Render(FileSource("src/aws/index.md")))),
 	"cheats.html":                          Layout(FileSource("src/cheats.tpl")),
 	"css/bootstrap.min.css":                FileSources("src/css/bootstrap.min.css"),
 	"css/default.css":                      FileSources("src/css/default.css"),

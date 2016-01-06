@@ -84,3 +84,7 @@ canonical owner id: 099720109477
 
 	aws-mfa ec2 attach-volume --volume-id=$vol_id --instance-id=i-8eaade05 --device /dev/xvdb
 	# wair for volume to be available
+
+## Update Hostname
+
+{{ require "src/aws/aws_update_hostname.sh" | code }}
