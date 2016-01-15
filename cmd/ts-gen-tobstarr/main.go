@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bufio"
 	"bytes"
 	"fmt"
 	"html/template"
@@ -113,22 +112,7 @@ func (r *run) Run() error {
 	}
 
 	buf := &bytes.Buffer{}
-	c = exec.Command("git", "diff", "--cached")
-	c.Dir = wd
-	c.Stdin = os.Stdin
-	c.Stdout = os.Stdout
-	c.Stderr = os.Stderr
-	if err := c.Run(); err != nil {
-		return err
-	}
-	fmt.Printf("commit message: ")
-	line, _, err := bufio.NewReader(os.Stdin).ReadLine()
-	if err != nil {
-		return err
-	}
-
-	buf = &bytes.Buffer{}
-	c = exec.Command("git", "commit", "-m", string(line))
+	c = exec.Command("git", "commit", "-m", "release")
 	c.Dir = wd
 	c.Stdout = buf
 	c.Stderr = os.Stderr
