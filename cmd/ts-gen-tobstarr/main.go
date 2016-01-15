@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"html/template"
 	"io"
+	"io/ioutil"
 	"log"
 	"os"
 	"os/exec"
@@ -92,9 +93,15 @@ type run struct {
 
 func (r *run) Run() error {
 	l := log.New(os.Stderr, "", 0)
-	wd, err := createRelease(l)
-	if err != nil || r.DoNotPush {
+	wd, err := createRelease(l, r.DoNotPush)
+	if err != nil {
 		return err
+	} else if r.DoNotPush {
+		c := exec.Command("ts-fs", "-d", wd)
+		c.Env = append(os.Environ(), "PORT=9999")
+		c.Stdout = os.Stdout
+		c.Stderr = os.Stderr
+		return c.Run()
 	}
 	c := exec.Command("git", "add", ".")
 	c.Dir = wd
@@ -225,29 +232,40 @@ func getOrigin() (string, error) {
 	return "", fmt.Errorf("unable to extract origin from\n%s", b)
 }
 
-func createRelease(l Logger) (dir string, err error) {
-	start := time.Now()
+func validateGitClean() error {
 	res, err := exec.Command("git", "status", "--porcelain").CombinedOutput()
 	if err != nil {
-		return "", fmt.Errorf("%s\n%s", res, err)
+		return fmt.Errorf("%s\n%s", res, err)
 	}
 	if len(res) > 0 {
-		return "", fmt.Errorf("status not clean:\n%s", res)
+		return fmt.Errorf("status not clean:\n%s", res)
 	}
-	wd := ".release"
-	if _, err := os.Stat(filepath.Join(wd, ".git", "HEAD")); err != nil {
-		origin, err := getOrigin()
-		if err != nil {
-			return "", err
-		}
-		c := exec.Command("git", "clone", "-b", "master", "--depth", "1", origin, wd)
-		c.Stdout = os.Stdout
-		c.Stderr = os.Stderr
-		if err := c.Run(); err != nil {
+	return nil
+}
+
+func createRelease(l Logger, skipGitClean bool) (dir string, err error) {
+	start := time.Now()
+	if !skipGitClean {
+		if err := validateGitClean(); err != nil {
 			return "", err
 		}
 	}
-	c := exec.Command("git", "reset", "origin/master")
+	wd, err := ioutil.TempDir("/tmp", "blog.")
+	if err != nil {
+		return "", err
+	}
+	l.Printf("writing to %s", wd)
+	cwd, err := os.Getwd()
+	if err != nil {
+		return "", err
+	}
+	c := exec.Command("git", "clone", "-b", "master", "--depth", "1", "file://"+cwd, wd)
+	c.Stdout = os.Stdout
+	c.Stderr = os.Stderr
+	if err := c.Run(); err != nil {
+		return "", err
+	}
+	c = exec.Command("git", "reset", "origin/master")
 	c.Dir = wd
 	c.Stdout = os.Stdout
 	c.Stderr = os.Stderr
