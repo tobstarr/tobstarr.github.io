@@ -20,6 +20,7 @@ import (
 
 var sources = map[string][]Source{
 	"CNAME":                                FileSources("src/CNAME"),
+	"go-errors.html":                       Layout(MarkdownSource(Render(FileSource("src/go-errors/index.md")))),
 	"aws-sdk-go.html":                      Layout(MarkdownSource(Render(FileSource("src/aws-sdk-go/index.md")))),
 	"aws.html":                             Layout(MarkdownSource(Render(FileSource("src/aws/index.md")))),
 	"cheats.html":                          Layout(FileSource("src/cheats.tpl")),
