@@ -12,7 +12,7 @@ func TestVendoring(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	b, err := exec.Command("go", "list", "-f", `{{ join .Deps "\n" }}`).CombinedOutput()
+	b, err := exec.Command("go", "list", "-f", `{{ join .Deps "\n" }}`, "./...").CombinedOutput()
 	if err != nil {
 		t.Fatal(err)
 	}
