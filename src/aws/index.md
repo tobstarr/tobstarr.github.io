@@ -88,3 +88,8 @@ canonical owner id: 099720109477
 ## Update Hostname
 
 {{ require "src/aws/aws_update_hostname.sh" | code }}
+
+## DB Versions
+
+	aws-rebelle rds describe-db-engine-versions | jq '.DBEngineVersions[] | .' -c -r | grep mysql | jq '.EngineVersion' -c -r | sort
+
