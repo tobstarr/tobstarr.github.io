@@ -57,7 +57,7 @@ with config
 
 ## Detach Container
 
-  C-p C-q
+	C-p C-q
 
 
 ## Logging
