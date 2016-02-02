@@ -6,29 +6,31 @@
 filetype plugin off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-Plugin 'kien/ctrlp.vim'
-Plugin 'fatih/vim-go'
+Plugin 'mileszs/ack.vim'
 Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'scrooloose/syntastic'
-Plugin 'tpope/vim-abolish'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'benmills/vimux'
+Plugin 'bling/vim-airline'
+Plugin 'elzr/vim-json'
+Plugin 'fatih/vim-go'
+Plugin 'honza/dockerfile.vim'
+Plugin 'honza/vim-snippets'
+Plugin 'jamessan/vim-gnupg'
+Plugin 'kien/ctrlp.vim'
+Plugin 'majutsushi/tagbar'
+Plugin 'morhetz/gruvbox'
+Plugin 'mtth/scratch.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'slim-template/vim-slim'
+Plugin 'thinca/vim-localrc'
+Plugin 'toyamarinyon/vim-swift'
+Plugin 'tpope/vim-abolish'
+Plugin 'tpope/vim-dispatch'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-markdown'
-Plugin 'toyamarinyon/vim-swift'
-Plugin 'honza/dockerfile.vim'
-Plugin 'majutsushi/tagbar'
-Plugin 'scrooloose/nerdtree'
-Plugin 'slim-template/vim-slim'
 Plugin 'tpope/vim-rake'
-Plugin 'elzr/vim-json'
-Plugin 'jamessan/vim-gnupg'
-Bundle 'mileszs/ack.vim'
-Plugin 'bling/vim-airline'
-Plugin 'morhetz/gruvbox'
-Plugin 'thinca/vim-localrc'
-Plugin 'mtth/scratch.vim'
-Plugin 'airblade/vim-gitgutter'
+Plugin 'janko-m/vim-test'
 call vundle#end()
 filetype plugin indent on
 
@@ -95,7 +97,10 @@ autocmd FileType make set noexpandtab nolist shiftwidth=4 tabstop=4 softtabstop=
 " expand to current directory
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
 
-map tt :TagbarToggle<CR>
+map tf :TestFile<CR>
+map tl :TestLast<CR>
+map tn :TestNearest<CR>
+map tv :TestVisit<CR>
 
 filetype plugin on
 set ignorecase
@@ -140,7 +145,7 @@ function! RenameFile()
 endfunction
 
 map ,, :w<CR>:VimuxRunLastCommand<CR>
-map ,. :w<CR>:make -f Makefile.wip<CR>
+map ,. :w<CR>:Dispatch bash ./wip.sh<CR>
 map ,/ :VimuxRunLastCommand<CR>
 map ,c :set relativenumber!<CR>:set number!<CR>
 map ,ff :CtrlPClearCache<CR>

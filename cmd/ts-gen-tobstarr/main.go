@@ -20,7 +20,6 @@ import (
 
 var sources = map[string][]Source{
 	"CNAME":                                FileSources("src/CNAME"),
-	"go-errors.html":                       Layout(MarkdownSource(Render(FileSource("src/go-errors/index.md")))),
 	"aws-sdk-go.html":                      Layout(MarkdownSource(Render(FileSource("src/aws-sdk-go/index.md")))),
 	"aws.html":                             Layout(MarkdownSource(Render(FileSource("src/aws/index.md")))),
 	"cheats.html":                          Layout(FileSource("src/cheats.tpl")),
@@ -31,6 +30,7 @@ var sources = map[string][]Source{
 	"es.html":                              Layout(MarkdownSource(Render(FileSource("src/es/index.md")))),
 	"gnupg.html":                           Layout(MarkdownSource(FileSource("src/articles/gnupg/index.md"))),
 	"go-build-flags.html":                  markdown("src/go-build-flags/index.md"),
+	"go-errors.html":                       Layout(MarkdownSource(Render(FileSource("src/go-errors/index.md")))),
 	"goerrors.html":                        Layout(MarkdownSource(Render(FileSource(("src/go-errors/index.md"))))),
 	"hello.txt":                            FileSources("src/hello.txt"),
 	"id_rsa.pub":                           FileSources("src/id_rsa.pub"),
@@ -54,12 +54,12 @@ var sources = map[string][]Source{
 	"systemd_timer.html":                   Layout(MarkdownSource(Render(FileSource("src/systemd/timers.md")))),
 	"tmux.conf":                            FileSources("src/tmux.conf"),
 	"tobstarr.gpg":                         FileSources("src/tobstarr.gpg"),
+	"umlauts.html":                         FileSources("src/umlauts.html"),
 	"versions.html":                        Layout(TemplateSource(versionsTpl, allVersions())),
 	"vimrc":                                FileSources("src/vimrc"),
 	"vimrc.conf":                           FileSources("src/vimrc"),
 	"zsh.html":                             Layout(MarkdownSource(Render(FileSource("src/zsh/index.md")))),
 	"zshrc.sh":                             FileSources("src/zsh/zshrc.sh"),
-	"umlauts.html":                         FileSources("src/umlauts.html"),
 }
 
 func markdown(s string) []Source {
