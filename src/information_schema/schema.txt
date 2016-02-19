@@ -1,0 +1,53 @@
+-- tables
++-----------------+---------------------+------+-----+---------+-------+
+| Field           | Type                | Null | Key | Default | Extra |
++-----------------+---------------------+------+-----+---------+-------+
+| TABLE_CATALOG   | varchar(512)        | NO   |     |         |       |
+| TABLE_SCHEMA    | varchar(64)         | NO   |     |         |       |
+| TABLE_NAME      | varchar(64)         | NO   |     |         |       |
+| TABLE_TYPE      | varchar(64)         | NO   |     |         |       |
+| ENGINE          | varchar(64)         | YES  |     | NULL    |       |
+| VERSION         | bigint(21) unsigned | YES  |     | NULL    |       |
+| ROW_FORMAT      | varchar(10)         | YES  |     | NULL    |       |
+| TABLE_ROWS      | bigint(21) unsigned | YES  |     | NULL    |       |
+| AVG_ROW_LENGTH  | bigint(21) unsigned | YES  |     | NULL    |       |
+| DATA_LENGTH     | bigint(21) unsigned | YES  |     | NULL    |       |
+| MAX_DATA_LENGTH | bigint(21) unsigned | YES  |     | NULL    |       |
+| INDEX_LENGTH    | bigint(21) unsigned | YES  |     | NULL    |       |
+| DATA_FREE       | bigint(21) unsigned | YES  |     | NULL    |       |
+| AUTO_INCREMENT  | bigint(21) unsigned | YES  |     | NULL    |       |
+| CREATE_TIME     | datetime            | YES  |     | NULL    |       |
+| UPDATE_TIME     | datetime            | YES  |     | NULL    |       |
+| CHECK_TIME      | datetime            | YES  |     | NULL    |       |
+| TABLE_COLLATION | varchar(32)         | YES  |     | NULL    |       |
+| CHECKSUM        | bigint(21) unsigned | YES  |     | NULL    |       |
+| CREATE_OPTIONS  | varchar(255)        | YES  |     | NULL    |       |
+| TABLE_COMMENT   | varchar(2048)       | NO   |     |         |       |
++-----------------+---------------------+------+-----+---------+-------+
+
+-- columns
++--------------------------+---------------------+------+-----+---------+-------+
+| Field                    | Type                | Null | Key | Default | Extra |
++--------------------------+---------------------+------+-----+---------+-------+
+| TABLE_CATALOG            | varchar(512)        | NO   |     |         |       |
+| TABLE_SCHEMA             | varchar(64)         | NO   |     |         |       |
+| TABLE_NAME               | varchar(64)         | NO   |     |         |       |
+| COLUMN_NAME              | varchar(64)         | NO   |     |         |       |
+| ORDINAL_POSITION         | bigint(21) unsigned | NO   |     | 0       |       |
+| COLUMN_DEFAULT           | longtext            | YES  |     | NULL    |       |
+| IS_NULLABLE              | varchar(3)          | NO   |     |         |       |
+| DATA_TYPE                | varchar(64)         | NO   |     |         |       |
+| CHARACTER_MAXIMUM_LENGTH | bigint(21) unsigned | YES  |     | NULL    |       |
+| CHARACTER_OCTET_LENGTH   | bigint(21) unsigned | YES  |     | NULL    |       |
+| NUMERIC_PRECISION        | bigint(21) unsigned | YES  |     | NULL    |       |
+| NUMERIC_SCALE            | bigint(21) unsigned | YES  |     | NULL    |       |
+| DATETIME_PRECISION       | bigint(21) unsigned | YES  |     | NULL    |       |
+| CHARACTER_SET_NAME       | varchar(32)         | YES  |     | NULL    |       |
+| COLLATION_NAME           | varchar(32)         | YES  |     | NULL    |       |
+| COLUMN_TYPE              | longtext            | NO   |     | NULL    |       |
+| COLUMN_KEY               | varchar(3)          | NO   |     |         |       |
+| EXTRA                    | varchar(30)         | NO   |     |         |       |
+| PRIVILEGES               | varchar(80)         | NO   |     |         |       |
+| COLUMN_COMMENT           | varchar(1024)       | NO   |     |         |       |
++--------------------------+---------------------+------+-----+---------+-------+
+
