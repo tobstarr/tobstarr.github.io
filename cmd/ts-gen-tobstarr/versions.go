@@ -15,6 +15,7 @@ type version struct {
 var versionsMap = map[string]*version{
 	"Consul":          {Website: "https://www.consul.io/downloads.html"},
 	"CoreOS":          {Website: "https://coreos.com/releases/"},
+	"Docker Compose":  {Website: "https://github.com/docker/compose/releases"},
 	"Docker Registry": {Docker: "https://hub.docker.com/_/registry/"},
 	"Docker":          {Website: "https://github.com/docker/docker/blob/master/CHANGELOG.md"},
 	"ElasticSearch":   {Website: "https://www.elastic.co/downloads/elasticsearch", Docker: "https://registry.hub.docker.com/_/elasticsearch/"},
@@ -32,8 +33,9 @@ var versionsMap = map[string]*version{
 	"PostgreSQL":      {Website: "http://www.postgresql.org/ftp/source/", Docker: "https://registry.hub.docker.com/_/postgres/"},
 	"Redis":           {Website: "http://redis.io/download", Docker: "https://registry.hub.docker.com/_/redis/"},
 	"Ruby":            {Website: "https://www.ruby-lang.org/en/downloads/", Docker: "https://registry.hub.docker.com/_/ruby/"},
+	"SyslogNG":        {Website: "https://github.com/balabit/syslog-ng/releases"},
 	"rkt":             {Website: "https://github.com/coreos/rkt/releases"},
-	"SyslogNG":        {Website: "https://github.com/balabit/syslog-ng/releases"}}
+}
 
 var versionsTpl = `<h2>Versions</h2>
 
