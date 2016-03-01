@@ -8,7 +8,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'mileszs/ack.vim'
 Plugin 'SirVer/ultisnips'
-Plugin 'airblade/vim-gitgutter'
+" Plugin 'airblade/vim-gitgutter'
 Plugin 'benmills/vimux'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'elzr/vim-json'
