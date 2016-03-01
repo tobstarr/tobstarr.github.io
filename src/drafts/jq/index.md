@@ -14,3 +14,9 @@ tutorial at: https://stedolan.github.io/jq/tutorial/
 # List AWS instances
 
 	aws ec2 describe-instances | jq -c -r '.Reservations[] | .Instances[] | { name: .Tags[] | select(.Key == "Name").Value, id: .InstanceId, launched: .LaunchTime,  }' | sort
+
+
+# TSV Output
+
+	kubectl get events -o json | jq '.items[] | "\(.lastTimestamp)\t\(.reason)\t\(.message)"' -c -r
+
