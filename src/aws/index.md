@@ -93,3 +93,12 @@ canonical owner id: 099720109477
 
 	aws-rebelle rds describe-db-engine-versions | jq '.DBEngineVersions[] | .' -c -r | grep mysql | jq '.EngineVersion' -c -r | sort
 
+
+## S3 Reverse
+
+	"%08x" % ((Time.at(0) + 0xffffffff) - Time.now).to_i
+
+## List SSL Certificate of load balancers
+
+	aws elb describe-load-balancers | jq '.LoadBalancerDescriptions[] | {name: .LoadBalancerName, cert: .ListenerDescriptions[] | .Listener | select(.LoadBalancerPort = 443) | .SSLCertificateId} | select(.cert != null)' -c -r
+
