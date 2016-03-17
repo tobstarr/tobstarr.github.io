@@ -175,6 +175,7 @@ map ,s :setlocal spell!<CR>
 set nohlsearch
 
 command! File normal :echo expand('%:p')<CR>
+command! ReformatJson normal :%!jq . %<CR>
 command! -range AddJsonTags <line1>,<line2>normal ^vEyA `json:""crsA,omitempty"`^j
 command! -range AddXmlTags <line1>,<line2>normal ^vEyA `xml:""guawA,attr"`^j
 command! -range JsonToStruct <line1>,<line2>normal ^wvi"yI" string `json:f:s` //^crmj^
