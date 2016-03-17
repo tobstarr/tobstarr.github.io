@@ -88,6 +88,7 @@ autocmd FileType go nmap ,e <Plug>(go-rename)
 autocmd FileType go set tabstop=4 shiftwidth=4
 autocmd FileType go map <C-]> gd
 autocmd FileType go map ,rn :GoRename<CR>
+autocmd FileType go map ,d :GoDeclsDir<CR>
 autocmd FileType html set expandtab tabstop=4 shiftwidth=4 autoindent
 autocmd FileType ruby set expandtab
 autocmd FileType ruby set shiftwidth=2
