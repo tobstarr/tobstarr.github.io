@@ -23,3 +23,7 @@
 	$1: old commit
 	$2: new commit
 	$3: symbolic reference
+
+## list remote repository
+
+git -c core.askpass=true ls-remote -h git@travis.github.com:phrase/stats.git HEAD
