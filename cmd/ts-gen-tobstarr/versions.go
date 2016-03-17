@@ -24,6 +24,7 @@ var versionsMap = map[string]*version{
 	"JQuery":          {Website: "http://jquery.com/"},
 	"Java":            {Docker: "https://registry.hub.docker.com/_/java/"},
 	"Jenkins":         {Website: "https://jenkins-ci.org/changelog"},
+	"Kubernetes":      {Website: "https://github.com/kubernetes/kubernetes/releases"},
 	"Kibana":          {Website: "https://www.elastic.co/downloads/kibana", Docker: "https://registry.hub.docker.com/_/kibana/"},
 	"Mongo":           {Docker: "https://registry.hub.docker.com/_/mongo/"},
 	"MySQL":           {Website: "http://dev.mysql.com/downloads/mysql/", Docker: "https://registry.hub.docker.com/_/mysql/"},
