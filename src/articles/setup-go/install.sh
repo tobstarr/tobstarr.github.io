@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-VERSION=${VERSION-:1.5.1}
+VERSION=${VERSION-:1.6}
 ARCH=$(uname | awk '{print tolower($0)}')-amd64
 DST=/usr/local/go${VERSION}
 
