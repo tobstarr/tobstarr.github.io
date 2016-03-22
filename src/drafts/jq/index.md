@@ -20,3 +20,7 @@ tutorial at: https://stedolan.github.io/jq/tutorial/
 
 	kubectl get events -o json | jq '.items[] | "\(.lastTimestamp)\t\(.reason)\t\(.message)"' -c -r
 
+
+# Keys of a hash
+
+	echo '{"a":1,"b":2}' | jq 'keys[] | .' -c -r
