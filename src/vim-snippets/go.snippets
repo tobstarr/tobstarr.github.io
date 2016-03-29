@@ -1,3 +1,7 @@
+snippet yml "yaml tag"
+\`yaml:"${1}"\`${0}
+endsnippet
+
 snippet toml "toml tag"
 \`toml:"${1}"\`${0}
 endsnippet
@@ -167,7 +171,7 @@ endsnippet
 
 snippet ifer "if error" b
 if err != nil {
-	return err
+	return fmt.Errorf("${1}: %s", err)
 }
 ${0}
 endsnippet
