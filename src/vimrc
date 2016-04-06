@@ -73,6 +73,7 @@ let $BASH_ENV = "~/.bash_aliases"
 set shell=/bin/bash\ -l
 let g:ackprg = 'ag --nogroup --nocolor --column'
 let g:ctrlp_custom_ignore = '\v[\/]Godeps\/_workspace'
+let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 
 autocmd BufNewFile,BufRead *.ego set ft=html
 autocmd BufNewFile,BufRead *.go set ft=go
