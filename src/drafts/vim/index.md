@@ -11,3 +11,11 @@
 ## Display Full Path
 
 	1 + C-G
+
+## Display Manual Page
+
+	Shift+K
+
+## Execute commands in vim
+
+	nvim +q
