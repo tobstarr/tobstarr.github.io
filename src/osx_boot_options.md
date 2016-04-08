@@ -2,4 +2,9 @@
 
 https://support.apple.com/en-us/HT201255
 
-Press Alt button to boot from USB
+## Boot from USB
+	Alt
+
+## Recovery
+
+	CMD+R
