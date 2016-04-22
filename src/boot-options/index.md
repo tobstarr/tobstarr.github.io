@@ -1,5 +1,9 @@
 # Boot Options
 
+## OSX
+
+	Boot from USB: Alt
+
 ## ThinkPad
 
 F12
