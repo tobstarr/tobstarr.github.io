@@ -514,7 +514,7 @@ endsnippet
 
 snippet ex "Description"
 if v, x := ${1}, ${2:"-1"}; x != v {
-	t.Errorf("expected $1 to be %#v, was %#v", x, v)
+	t.Errorf(\`expected $1 to be %#v, was %#v\`, x, v)
 }
 endsnippet
 
