@@ -2,7 +2,8 @@
 " and mkdir -p ${HOME}/.vim.swp
 " mkdir -p $HOME/src/github.com/tobstarr/
 " git clone https://github.com/tobstarr/tobstarr.github.io $HOME/src/github.com/tobstarr/tobstarr.github.io
-" ln -nfs $HOME/src/github.com/tobstarr/tobstarr.github.io/dotfiles/vim-snippets UltiSnips
+" ln -nfs ~/src/github.com/tobstarr/tobstrarr.github.io/src/vim-snippets ~/.vim/UltiSnips
+" ln -nfs ~/src/github.com/tobstarr/tobstrarr.github.io/src/vim-snippets ~/.config/nvim/UltiSnips
 filetype plugin off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
