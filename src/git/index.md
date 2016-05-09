@@ -24,6 +24,10 @@
 	$2: new commit
 	$3: symbolic reference
 
+## example hook
+
+{{ require "git/update.sh" }}
+
 ## list remote repository
 
 git -c core.askpass=true ls-remote -h git@travis.github.com:phrase/stats.git HEAD
