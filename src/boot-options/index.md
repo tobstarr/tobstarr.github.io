@@ -2,7 +2,8 @@
 
 ## OSX
 
-	Boot from USB: Alt
+	Boot from USB:	Alt
+	Recovery:				CMD+R
 
 ## ThinkPad
 
