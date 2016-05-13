@@ -9,6 +9,14 @@ coreos:
   units:
     - name: etcd2.service
       command: start
+    - name: docker
+      command: start
+      drop-ins:
+        - name: 40-flannel.conf
+          content: |
+            [Unit]
+            Requires=flanneld.service
+            After=flanneld.service
     - name: fleet.service
       command: start
     - name: flanneld.service
