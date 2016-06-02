@@ -12,3 +12,7 @@
 
 	tput cols
 	tput lines
+
+## validate env variables
+
+	: ${RGNE:?"must be present"}
