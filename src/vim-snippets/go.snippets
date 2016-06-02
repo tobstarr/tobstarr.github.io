@@ -6,6 +6,31 @@ snippet toml "toml tag"
 \`toml:"${1}"\`${0}
 endsnippet
 
+snippet ewrap "Description" b
+func e(i interface{}, args ...interface{}) error {
+	if c, ok := i.(string); ok {
+		return errors.Wrap(fmt.Errorf(c, args...), 1)
+	} else if i == nil {
+		return nil
+	}
+	return errors.Wrap(i, 1)
+}
+
+func handle(err error) {
+	if err == nil {
+		return
+	}
+	if c, ok := err.(interface {
+		ErrorStack() string
+	}); ok {
+		fmt.Println(c.ErrorStack())
+	} else {
+		fmt.Println(err.Error())
+	}
+	os.Exit(1)
+}
+endsnippet
+
 snippet ptr "Pointer Helpers"
 func i2s(in *int) int {
 	if in == nil {

@@ -4,6 +4,36 @@ wip:
 	go get ./...
 endsnippet
 
+snippet go "Go default"
+.PHONY: vendor
+
+PACKAGES = $(shell go list ./... | grep -v "/vendor")
+
+default: build
+
+all: vendor build test vet
+
+gen:
+	go generate ${PACKAGES}
+
+build: gen
+	go install ${PACKAGES}
+
+test:
+	go test ${PACKAGES}
+
+vet:
+	go vet ${PACKAGES}
+
+vendor:
+	godep save ./...
+	@godep save ./...
+endsnippet
+
+snippet pkg "Packages" b
+PACKAGES = $(shell go list ./... | grep -v "/vendor/")
+endsnippet
+
 snippet assets "Description" b
 ASSETS := $(shell find assets -type f | grep -v "^assets/assets.go$$")
 
