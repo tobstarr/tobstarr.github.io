@@ -17,3 +17,7 @@ https://faq.i3wm.org/question/125/how-to-change-the-systems-volume.1.html
 ## Mouse and Touchpad Values
 
 	xset q
+
+## Installed packages
+
+	dnf list installed
