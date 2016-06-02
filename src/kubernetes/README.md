@@ -20,3 +20,8 @@
 
 	service=nginx
 	curl -s -H "Authorization: Bearer $(cat /etc/secrets/token)" -k https://${KUBERNETES_SERVICE_HOST}/api/v1/namespaces/default/endpoints/${service} | jq '.subsets[] | .addresses[] | .ip' -c -r | xargs | tr ' ' ','
+
+## Add Context
+
+	kubectl config set-cluster local --server http://127.0.0.1:808
+	kubectl config set-context local --cluster local
