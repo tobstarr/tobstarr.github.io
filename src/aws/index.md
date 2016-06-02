@@ -67,7 +67,8 @@ canonical owner id: 099720109477
 	aws iam list-policies | jq -c -r '.Policies[] | select(.AttachmentCount != 0)'
 
 ## List RDS instances with status
-	aws rds describe-db-instances | jq -c -r '.DBInstances[] | {id: .DBInstanceIdentifier, status: .DBInstanceStatus}'
+	aws-dynport rds describe-db-instances  | jq '.DBInstances[] | {id: .DBInstanceIdentifier, version: .EngineVersion, class: .DBInstanceClass, status: .DBInstanceStatus, address: .Endpoint.Address}' -c -r
+
 
 ## IAM list Users
 
