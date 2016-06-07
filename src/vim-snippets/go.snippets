@@ -6,6 +6,18 @@ snippet toml "toml tag"
 \`toml:"${1}"\`${0}
 endsnippet
 
+snippet has "Description" b
+tests := []struct{ Has, Want interface{} }{
+	{${1}},
+	${0}
+}
+for i, tc := range tests {
+	if tc.Has != tc.Want {
+		t.Errorf("%d: want=%#v has=%#v", i, tc.Want, tc.Has)
+	}
+}
+endsnippet
+
 snippet ewrap "Description" b
 func e(i interface{}, args ...interface{}) error {
 	if c, ok := i.(string); ok {
