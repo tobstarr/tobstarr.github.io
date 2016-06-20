@@ -13,7 +13,7 @@ tests := []struct{ Has, Want interface{} }{
 }
 for i, tc := range tests {
 	if tc.Has != tc.Want {
-		t.Errorf("%d: want=%#v has=%#v", i, tc.Want, tc.Has)
+		t.Errorf("%d: want=%#v has=%#v", i + 1, tc.Want, tc.Has)
 	}
 }
 endsnippet
