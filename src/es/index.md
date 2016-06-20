@@ -18,3 +18,7 @@ see http://stackoverflow.com/questions/9796470/random-order-pagination-elasticse
 			}
 		}
 	}'
+
+## ES 5 in linux
+
+	sudo sysctl -w vm.max_map_count=262144
