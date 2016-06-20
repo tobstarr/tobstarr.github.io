@@ -19,3 +19,7 @@
 ## Execute commands in vim
 
 	nvim +q
+
+## Re-Indent a file
+	
+	:normal gg=G
