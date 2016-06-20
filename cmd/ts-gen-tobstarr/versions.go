@@ -24,8 +24,8 @@ var versionsMap = map[string]*version{
 	"JQuery":          {Website: "http://jquery.com/"},
 	"Java":            {Docker: "https://registry.hub.docker.com/_/java/"},
 	"Jenkins":         {Website: "https://jenkins-ci.org/changelog"},
-	"Kubernetes":      {Website: "https://github.com/kubernetes/kubernetes/releases"},
 	"Kibana":          {Website: "https://www.elastic.co/downloads/kibana", Docker: "https://registry.hub.docker.com/_/kibana/"},
+	"Kubernetes":      {Website: "https://github.com/kubernetes/kubernetes/releases"},
 	"Mongo":           {Docker: "https://registry.hub.docker.com/_/mongo/"},
 	"MySQL":           {Website: "http://dev.mysql.com/downloads/mysql/", Docker: "https://registry.hub.docker.com/_/mysql/"},
 	"Nginx":           {Website: "http://nginx.org/en/download.html", Docker: "https://registry.hub.docker.com/_/nginx/"},
@@ -34,6 +34,7 @@ var versionsMap = map[string]*version{
 	"PostgreSQL":      {Website: "http://www.postgresql.org/ftp/source/", Docker: "https://registry.hub.docker.com/_/postgres/"},
 	"Redis":           {Website: "http://redis.io/download", Docker: "https://registry.hub.docker.com/_/redis/"},
 	"Ruby":            {Website: "https://www.ruby-lang.org/en/downloads/", Docker: "https://registry.hub.docker.com/_/ruby/"},
+	"Selenium":        {Website: "http://www.seleniumhq.org/download/"},
 	"SyslogNG":        {Website: "https://github.com/balabit/syslog-ng/releases"},
 	"rkt":             {Website: "https://github.com/coreos/rkt/releases"},
 }
