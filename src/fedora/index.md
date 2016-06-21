@@ -21,3 +21,7 @@ https://faq.i3wm.org/question/125/how-to-change-the-systems-volume.1.html
 ## Installed packages
 
 	dnf list installed
+
+## Wifi Driver
+
+	https://gist.githubusercontent.com/onpubcom/7f41dc9cbe90556b2113/raw/a69939c941319741744bea28dadf273f118d67a2/fedora23_broadcom_wl_install.sh
