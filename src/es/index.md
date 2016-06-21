@@ -26,3 +26,12 @@ see http://stackoverflow.com/questions/9796470/random-order-pagination-elasticse
 ## Sort via query string
 
 	sort=anio:desc
+
+## Update API
+
+	curl -XPOST 'http://localhost:9200/designs/shirt/1/_update' -d'
+	{
+		 "script" : "ctx._source.votes += 1"
+	}'
+
+	# add `?retry_on_conflict=5` to avoid version conflicts
