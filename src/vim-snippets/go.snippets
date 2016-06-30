@@ -18,6 +18,23 @@ for i, tc := range tests {
 }
 endsnippet
 
+snippet stringify "Stringify"
+func s(in interface{}) string {
+	v := reflect.ValueOf(in)
+	if v.Kind() == reflect.Ptr && v.IsNil() {
+		return ""
+	}
+	switch c := in.(type) {
+	case *string:
+		return *c
+	case *int:
+		return strconv.Itoa(*c)
+	default:
+		return fmt.Sprint(c)
+}
+}
+endsnippet
+
 snippet ewrap "Description" b
 func e(i interface{}, args ...interface{}) error {
 	if c, ok := i.(string); ok {
