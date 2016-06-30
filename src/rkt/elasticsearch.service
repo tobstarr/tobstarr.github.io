@@ -1,0 +1,14 @@
+[Unit]
+Description=ElasticSearch
+After=network.target
+Requires=network.target
+
+[Service]
+TimeoutStartSec=0
+ExecStartPre=/bin/mkdir -p /data/elasticsearch
+ExecStartPre=/opt/rkt/rkt fetch docker://elasticsearch:{{ .Version }} --insecure-options=all
+ExecStart=/opt/rkt/rkt run --inherit-env=true --net=host docker://elasticsearch:{{ .Version }} --volume vol
+ume-usr-share-elasticsearch-data,kind=host,source=/data/elasticsearch -- -Des.network.bind_host=0.0.0.0 -Des.http.cors.enabled=true
+
+[Install]
+WantedBy=multi-user.target
