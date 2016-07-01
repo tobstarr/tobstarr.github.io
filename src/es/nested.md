@@ -9,8 +9,9 @@
 								"translations" : {
 										"type" : "nested",
 										"properties": {
-												"locale_name" : {"type": "string" },
-												"content"  : {"type": "string" }
+												"locale_name" : {"type": "string"},
+												"content"  : {"type": "string"},
+												"verified": {"type": "bool"}
 										}
 								}
 						}
@@ -23,15 +24,15 @@
 	{
 		"query" : {
 			"nested": {
-			 "path": "translations",
-			 "query": {
-				"query_string": {
-				 "query": "translations.locale_name:'en' AND translations.verified:true"
+				"path": "translations",
+				"query": {
+					"query_string": {
+						"query": "translations.locale_name:'en' AND translations.verified:true"
+					}
+				},
+				"inner_hits": {
+					"fields": "locale_name"
 				}
-								},
-			 "inner_hits": {
-				"fields": "locale_name"
-			 }
 			}
 		}
 	}
