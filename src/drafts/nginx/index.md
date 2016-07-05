@@ -13,3 +13,8 @@ This can be e.g. used in the listener config of an AWS ElasticLoadBalancer. Just
 ## Log to syslog
 
 	access_log syslog:server=unix:/dev/log main;
+
+
+## htpasswd
+
+	echo "phraseapp:$(openssl passwd -crypt growth)" > htpasswd
