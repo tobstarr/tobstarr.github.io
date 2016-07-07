@@ -160,6 +160,7 @@ map ,. :w<CR>:Dispatch bash ./wip.sh<CR>
 map ,/ :VimuxRunLastCommand<CR>
 map ,c :set relativenumber!<CR>:set number!<CR>
 map ,ff :CtrlPClearCache<CR>
+map ,g :normal gg=G<CR>
 map ,l :File<CR>
 map ,n :call RenameFile()<cr>
 map ,p :set paste!<CR>
