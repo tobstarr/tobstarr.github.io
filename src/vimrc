@@ -33,6 +33,9 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-markdown'
 Plugin 'tpope/vim-rake'
 Plugin 'janko-m/vim-test'
+Plugin 'Quramy/tsuquyomi'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'Shougo/vimproc.vim'
 call vundle#end()
 filetype plugin indent on
 
