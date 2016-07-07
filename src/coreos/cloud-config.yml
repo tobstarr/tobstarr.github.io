@@ -1,28 +1,56 @@
 #cloud-config
-#
-# install via coreos-install -d /dev/sda -C stable -c cloud-config.yaml
+
+---
 ssh_authorized_keys:
-  - ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAzjpDwk2BwYtYfa8EQdmtZAMmpl23zEr8jaioG5CD+rwGSyoQPpszw+yC0Bo5TjDbesYlWDw1d/nVRIJf+i/HAPAs5Qq43iyd1gbSzYuDr3Tgi8T/zMcjwAlyAOszftNOyIbaCyhoYW02f/ih7cZVjDORWJq8EzTNXI7Cot6Q34P+xCYcM+sxmtWOxxRSMx5GfClbawXDz+p5rmvUxuvcTRCLYRM9ZA73tiJWXbbVaXX4EPxNA0L6GryrEr7qmTz6XGcZaiL+GlcIdfRoAO8YOSRF4rocw17b3D0Zkd/Av0f+55BOmbmUFzLD9aFMDWx+mDgsOIs2BHGicX5imOHzWw== tobias.schwab@dynport.de
+  - "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAzjpDwk2BwYtYfa8EQdmtZAMmpl23zEr8jaioG5CD+rwGSyoQPpszw+yC0Bo5TjDbesYlWDw1d/nVRIJf+i/HAPAs5Qq43iyd1gbSzYuDr3Tgi8T/zMcjwAlyAOszftNOyIbaCyhoYW02f/ih7cZVjDORWJq8EzTNXI7Cot6Q34P+xCYcM+sxmtWOxxRSMx5GfClbawXDz+p5rmvUxuvcTRCLYRM9ZA73tiJWXbbVaXX4EPxNA0L6GryrEr7qmTz6XGcZaiL+GlcIdfRoAO8YOSRF4rocw17b3D0Zkd/Av0f+55BOmbmUFzLD9aFMDWx+mDgsOIs2BHGicX5imOHzWw== tobias.schwab@dynport.de"
+write-files:
+  - path: /etc/conf.d/nfs
+    permissions: '0644'
+    content: |
+      OPTS_RPC_MOUNTD=""
+  - path: /opt/bin/wupiao
+    permissions: '0755'
+    content: |
+      #!/bin/bash
+      # [w]ait [u]ntil [p]ort [i]s [a]ctually [o]pen
+      [ -n "$1" ] && \
+        until curl -o /dev/null -sIf http://${1}; do \
+          sleep 1 && echo .;
+        done;
+      exit $?
+
+hostname: master
 coreos:
-  update:
-    reboot-strategy: off
+  etcd2:
+    name: master
+    listen-client-urls: http://0.0.0.0:2379,http://0.0.0.0:4001
+    advertise-client-urls: http://$private_ipv4:2379,http://$private_ipv4:4001
+    initial-cluster-token: k8s_etcd
+    listen-peer-urls: http://$private_ipv4:2380,http://$private_ipv4:7001
+    initial-advertise-peer-urls: http://$private_ipv4:2380
+    initial-cluster: master=http://$private_ipv4:2380
+    initial-cluster-state: new
+  fleet:
+    metadata: "role=master"
   units:
-    - name: etcd2.service
+    - name: elasticsearch.service
       command: start
-    - name: docker
+      content: |
+        [Unit]
+        Description=ElasticSearch
+        After=network.target
+        Requires=network.target
+
+        [Service]
+        TimeoutStartSec=0
+        ExecStartPre=/bin/mkdir -p /data/elasticsearch
+        ExecStartPre=/usr/bin/rkt fetch docker://elasticsearch:1.7.5 --insecure-options=all
+        ExecStart=/usr/bin/rkt run --inherit-env=true --net=host docker://elasticsearch:1.7.5 --volume volume-usr-share-elasticsearch-data,kind=host,source=/data/elasticsearch -- -Des.network.bind_host=0.0.0.0 -Des.http.cors.enabled=true
+
+        [Install]
+        WantedBy=multi-user.target
+    - name: docker.service
       command: start
-      drop-ins:
-        - name: 40-flannel.conf
-          content: |
-            [Unit]
-            Requires=flanneld.service
-            After=flanneld.service
-    - name: fleet.service
-      command: start
-    - name: flanneld.service
-      command: start
-      drop-ins:
-      - name: 50-network-config.conf
-        content: |
-          [Service]
-          ExecStartPre=/usr/bin/etcdctl set /coreos.com/network/config '{"Network":"10.1.0.0/16", "Backend": {"Type": "vxlan"}}'
+  update:
+    group: alpha
+    reboot-strategy: off
