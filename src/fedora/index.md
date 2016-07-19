@@ -25,3 +25,15 @@ https://faq.i3wm.org/question/125/how-to-change-the-systems-volume.1.html
 ## Wifi Driver
 
 	https://gist.githubusercontent.com/onpubcom/7f41dc9cbe90556b2113/raw/a69939c941319741744bea28dadf273f118d67a2/fedora23_broadcom_wl_install.sh
+
+## dist-upgrade
+
+	dnf upgrade
+	dnf install dnf-plugin-system-upgrade
+	dnf system-upgrade download --releasever=24
+	dnf system-upgrade reboot
+
+## rpmfusion
+	dnf install --nogpgcheck \
+  http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm  \
+  http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
