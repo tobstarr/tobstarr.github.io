@@ -24,3 +24,7 @@ tutorial at: https://stedolan.github.io/jq/tutorial/
 # Keys of a hash
 
 	echo '{"a":1,"b":2}' | jq 'keys[] | .' -c -r
+
+# jq for html
+
+	go get -v github.com/ericchiang/pup
