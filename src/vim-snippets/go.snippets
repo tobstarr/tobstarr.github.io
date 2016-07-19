@@ -6,6 +6,12 @@ snippet toml "toml tag"
 \`toml:"${1}"\`${0}
 endsnippet
 
+snippet prog "Progrss with Start" b
+pr := progress.Start(l, progress.WithTotal(len(${1})))
+defer pr.Close()
+${0}
+endsnippet
+
 snippet has "Description" b
 tests := []struct{ Has, Want interface{} }{
 	{${1}},
@@ -416,6 +422,10 @@ err := filepath.Walk(${1}, func(p string, info os.FileInfo, err error) error {
 	${2}
 	return nil
 })
+endsnippet
+
+snippet db "DB field"
+\`db:"${1:displayName}"\`
 endsnippet
 
 snippet sql "SQL field"
