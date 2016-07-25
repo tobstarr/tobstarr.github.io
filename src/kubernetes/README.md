@@ -25,3 +25,17 @@
 
 	kubectl config set-cluster local --server http://127.0.0.1:8080
 	kubectl config set-context local --cluster local
+
+## HTTP Health Check
+
+	readinessProbe:
+		failureThreshold: 3
+		httpGet:
+			path: /_ping
+			port: 8080
+			scheme: HTTP
+		initialDelaySeconds: 5
+		periodSeconds: 10
+		successThreshold: 1
+		timeoutSeconds: 1
+
