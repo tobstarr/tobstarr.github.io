@@ -299,6 +299,10 @@ func run(l *log.Logger) error {
 }
 endsnippet
 
+snippet nl "NullLogger"
+log.New(ioutil.Discard, "", 0)
+endsnippet
+
 snippet cli "Cli option" 
 \`cli:"${1:option}"\`
 endsnippet
