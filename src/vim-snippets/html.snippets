@@ -12,10 +12,6 @@ snippet % "Tag" b
 <% ${1} %>
 endsnippet
 
-snippet = "Tag with =" b
-<%= ${1} %>
-endsnippet
-
 snippet for "For loop" b
 <% for ${1} := range ${2} { %>
   ${3}
@@ -28,7 +24,15 @@ snippet if "if statement" b
 <% } %>
 endsnippet
 
-snippet = "Description" b
-<%= ${1} %>
+snippet = "tag with =" b
+<%= ${1} %>${0}
+endsnippet
+
+snippet table "Table" b
+<table class="table table-bordered">
+    <tr>
+        ${1}
+    </tr>
+</table>
 ${0}
 endsnippet
