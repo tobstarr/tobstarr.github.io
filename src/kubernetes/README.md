@@ -2,7 +2,7 @@
 
 ## URLs
 
-	https://storage.googleapis.com/kubernetes-release/release/v1.2.0-beta.0/bin/linux/amd64/kubectl
+	https://storage.googleapis.com/kubernetes-release/release/v1.3.3/bin/linux/amd64/kubectl
 
 ## Secure API Communication
 
