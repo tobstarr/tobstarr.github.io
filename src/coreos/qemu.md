@@ -1,7 +1,6 @@
 # qemu
 
 	dnf install qemu-system-x86 qemu-img
-
 	mkdir coreos; cd coreos
 	wget https://stable.release.core-os.net/amd64-usr/current/coreos_production_qemu.sh
 	wget https://stable.release.core-os.net/amd64-usr/current/coreos_production_qemu.sh.sig
