@@ -23,3 +23,7 @@
 ## Re-Indent a file
 	
 	:normal gg=G
+
+## Close all Buffers
+
+  :bufdo bd
