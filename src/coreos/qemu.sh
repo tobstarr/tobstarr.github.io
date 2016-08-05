@@ -1,7 +1,7 @@
 #!/bin/bash
 set -xe
 
-CHANNEL=${CHANNEL:-beta}
+CHANNEL=${CHANNEL:-stable}
 DIR=$HOME/coreos/$CHANNEL
 
 sudo dnf install qemu-system-x86 qemu-img
