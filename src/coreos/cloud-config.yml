@@ -19,7 +19,8 @@ write-files:
         done;
       exit $?
 
-hostname: master
+hostname: ts-nuc
+
 coreos:
   etcd2:
     name: master
@@ -33,24 +34,22 @@ coreos:
   fleet:
     metadata: "role=master"
   units:
-    - name: elasticsearch.service
-      command: start
-      content: |
-        [Unit]
-        Description=ElasticSearch
-        After=network.target
-        Requires=network.target
-
-        [Service]
-        TimeoutStartSec=0
-        ExecStartPre=/bin/mkdir -p /data/elasticsearch
-        ExecStartPre=/usr/bin/rkt fetch docker://elasticsearch:1.7.5 --insecure-options=all
-        ExecStart=/usr/bin/rkt run --inherit-env=true --net=host docker://elasticsearch:1.7.5 --volume volume-usr-share-elasticsearch-data,kind=host,source=/data/elasticsearch -- -Des.network.bind_host=0.0.0.0 -Des.http.cors.enabled=true
-
-        [Install]
-        WantedBy=multi-user.target
     - name: docker.service
       command: start
+      drop-ins:
+        - name: 40-flannel.conf
+          content: |
+            [Unit]
+            Requires=flanneld.service
+            After=flanneld.service
+    - name: flanneld.service
+      command: start
+      drop-ins:
+        - name: 50-network-config.conf
+          content: |
+            [Unit]
+            Requires=etcd2.service
+            [Service]
+            ExecStartPre=/usr/bin/etcdctl set /coreos.com/network/config '{"Network":"10.244.0.0/16", "Backend": {"Type": "vxlan"}}'
   update:
-    group: alpha
     reboot-strategy: off
