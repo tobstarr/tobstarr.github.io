@@ -125,7 +125,7 @@ func (r *run) Run() error {
 		return fmt.Errorf("%s: %q", err, buf.String())
 	}
 
-	c = exec.Command("git", "push")
+	c = exec.Command("git", "push", "origin", "master")
 	c.Dir = wd
 	c.Stdout = os.Stdout
 	c.Stderr = os.Stderr
