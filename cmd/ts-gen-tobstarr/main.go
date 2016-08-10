@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"encoding/json"
 	"fmt"
 	"html/template"
 	"io"
@@ -56,6 +57,7 @@ var sources = map[string][]Source{
 	"tobstarr.gpg":                         FileSources("src/tobstarr.gpg"),
 	"umlauts.html":                         FileSources("src/umlauts.html"),
 	"versions.html":                        Layout(TemplateSource(versionsTpl, allVersions())),
+	"versions.json":                        RenderJSON(allVersions()),
 	"vimrc":                                FileSources("src/vimrc"),
 	"vimrc.conf":                           FileSources("src/vimrc"),
 	"zsh.html":                             Layout(MarkdownSource(Render(FileSource("src/zsh/index.md")))),
@@ -156,6 +158,14 @@ func loadHTMLFiles() (list map[string]struct{}, err error) {
 		}
 		return nil
 	})
+}
+
+func RenderJSON(input interface{}) []Source {
+	return []Source{
+		func(w io.Writer) error {
+			return json.NewEncoder(w).Encode(input)
+		},
+	}
 }
 
 func Layout(s Source) []Source {

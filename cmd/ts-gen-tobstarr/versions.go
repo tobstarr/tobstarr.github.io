@@ -7,9 +7,9 @@ import (
 )
 
 type version struct {
-	Name    string
-	Website string
-	Docker  string
+	Name    string `json:"name,omitempty"`
+	Website string `json:"website,omitempty"`
+	Docker  string `json:"docker,omitempty"`
 }
 
 var versionsMap = map[string]*version{
