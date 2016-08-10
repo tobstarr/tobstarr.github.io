@@ -19,7 +19,7 @@ func TestSplit(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	withOnlyEscapedQuotes, err := shellwords.Parse("a \" test")
+	withOnlyEscapedQuotes, err := shellwords.Parse(`a \" test`)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -33,7 +33,9 @@ func TestSplit(t *testing.T) {
 		{withEscapedQuotes[0], "a"},
 		{withEscapedQuotes[1], `test " with quote`},
 		{withEscapedQuotes[2], "test"},
-		{len(withOnlyEscapedQuotes), -1},
+		{withOnlyEscapedQuotes[0], "a"},
+		{withOnlyEscapedQuotes[1], `"`},
+		{withOnlyEscapedQuotes[2], "test"},
 	}
 	for i, tc := range tests {
 		if tc.Has != tc.Want {
