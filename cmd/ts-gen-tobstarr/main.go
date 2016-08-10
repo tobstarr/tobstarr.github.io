@@ -127,7 +127,7 @@ func (r *run) Run() error {
 		return fmt.Errorf("%s: %q", err, buf.String())
 	}
 
-	err = runInDir(wd, "git", "push", "github", "master")
+	err = runInDir(wd, "git", "push", "origin", "master")
 	if err != nil {
 		return err
 	}
@@ -246,21 +246,13 @@ func createRelease(l Logger, skipGitClean bool) (dir string, err error) {
 		return "", err
 	}
 	l.Printf("writing to %s", wd)
-	cwd, err := os.Getwd()
-	if err != nil {
-		return "", err
-	}
-	c := exec.Command("git", "clone", "-b", "master", "--depth", "1", "file://"+cwd, wd)
+	c := exec.Command("git", "clone", "-b", "master", "--depth", "1", "git@github.com:tobstarr/tobstarr.github.io", wd)
 	c.Stdout = os.Stdout
 	c.Stderr = os.Stderr
 	if err := c.Run(); err != nil {
 		return "", err
 	}
 	err = runInDir(wd, "git", "reset", "origin/master")
-	if err != nil {
-		return "", err
-	}
-	err = runInDir(wd, "git", "remote", "add", "github", "git@github.com:tobstarr/tobstarr.github.io")
 	if err != nil {
 		return "", err
 	}
