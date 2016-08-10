@@ -125,11 +125,8 @@ func (r *run) Run() error {
 		return fmt.Errorf("%s: %q", err, buf.String())
 	}
 
-	c = exec.Command("git", "push", "origin", "master")
-	c.Dir = wd
-	c.Stdout = os.Stdout
-	c.Stderr = os.Stderr
-	if err := c.Run(); err != nil {
+	err = runInDir(wd, "git", "push", "github", "master")
+	if err != nil {
 		return err
 	}
 	l.Printf("released!")
@@ -249,11 +246,12 @@ func createRelease(l Logger, skipGitClean bool) (dir string, err error) {
 	if err := c.Run(); err != nil {
 		return "", err
 	}
-	c = exec.Command("git", "reset", "origin/master")
-	c.Dir = wd
-	c.Stdout = os.Stdout
-	c.Stderr = os.Stderr
-	if err := c.Run(); err != nil {
+	err = runInDir(wd, "git", "reset", "origin/master")
+	if err != nil {
+		return "", err
+	}
+	err = runInDir(wd, "git", "add", "github", "git@github.com:tobstarr/tobstarr.github.io")
+	if err != nil {
 		return "", err
 	}
 	err = filepath.Walk(wd, func(p string, info os.FileInfo, err error) error {
@@ -281,6 +279,17 @@ func createRelease(l Logger, skipGitClean bool) (dir string, err error) {
 	}
 	l.Printf("finished in %.06f", time.Since(start).Seconds())
 	return wd, nil
+}
+
+func runInDir(dir, cmd string, args ...string) error {
+	c := exec.Command(cmd, args...)
+	c.Dir = dir
+	c.Stdout = os.Stdout
+	c.Stderr = os.Stderr
+	if err := c.Run(); err != nil {
+		return err
+	}
+	return nil
 }
 
 func FileSource(path string) Source {
