@@ -40,7 +40,9 @@ Code</h2>
 <pre><code>package main
 
 import (
+    &#34;bytes&#34;
     &#34;fmt&#34;
+    &#34;image/png&#34;
     &#34;io&#34;
     &#34;io/ioutil&#34;
     &#34;log&#34;
@@ -49,7 +51,8 @@ import (
     &#34;os&#34;
     &#34;os/exec&#34;
 
-    &#34;code.google.com/p/rsc/qr&#34;
+    &#34;github.com/boombuler/barcode&#34;
+    &#34;github.com/boombuler/barcode/qr&#34;
 )
 
 func main() {
@@ -72,12 +75,21 @@ func qrHandler(c chan struct{}, in io.Reader) http.HandlerFunc {
             } else if len(b) == 0 {
                 return fmt.Errorf(&#34;no text provided&#34;)
             }
-            code, err := qr.Encode(string(b), qr.L)
+            code, err := qr.Encode(string(b), qr.H, qr.Auto)
             if err != nil {
                 return err
             } else {
+                code, err = barcode.Scale(code, 400, 400)
+                if err != nil {
+                    return fmt.Errorf(&#34;scaling barcode: %s&#34;, err)
+                }
                 w.Header().Set(&#34;Content-Type&#34;, &#34;image/png&#34;)
-                w.Write(code.PNG())
+                buf := &amp;bytes.Buffer{}
+                err = png.Encode(buf, code)
+                if err != nil {
+                    return fmt.Errorf(&#34;encoding png image: %s&#34;, err)
+                }
+                io.Copy(w, buf)
             }
             return nil
         }()

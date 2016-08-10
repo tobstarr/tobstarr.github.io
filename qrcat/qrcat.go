@@ -1,7 +1,9 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
+	"image/png"
 	"io"
 	"io/ioutil"
 	"log"
@@ -10,7 +12,8 @@ import (
 	"os"
 	"os/exec"
 
-	"code.google.com/p/rsc/qr"
+	"github.com/boombuler/barcode"
+	"github.com/boombuler/barcode/qr"
 )
 
 func main() {
@@ -33,12 +36,21 @@ func qrHandler(c chan struct{}, in io.Reader) http.HandlerFunc {
 			} else if len(b) == 0 {
 				return fmt.Errorf("no text provided")
 			}
-			code, err := qr.Encode(string(b), qr.L)
+			code, err := qr.Encode(string(b), qr.H, qr.Auto)
 			if err != nil {
 				return err
 			} else {
+				code, err = barcode.Scale(code, 400, 400)
+				if err != nil {
+					return fmt.Errorf("scaling barcode: %s", err)
+				}
 				w.Header().Set("Content-Type", "image/png")
-				w.Write(code.PNG())
+				buf := &bytes.Buffer{}
+				err = png.Encode(buf, code)
+				if err != nil {
+					return fmt.Errorf("encoding png image: %s", err)
+				}
+				io.Copy(w, buf)
 			}
 			return nil
 		}()

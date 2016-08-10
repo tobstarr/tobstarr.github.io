@@ -1,7 +1,7 @@
 #!/bin/sh
-set -xe
+set -e
 
-VERSION=${VERSION-:1.5.1}
+VERSION=${VERSION-:1.6}
 ARCH=$(uname | awk '{print tolower($0)}')-amd64
 DST=/usr/local/go${VERSION}
 
@@ -10,8 +10,6 @@ sudo_prefix=""
 if [[ $(id -u) != "0" ]]; then
 	sudo_prefix="sudo"
 fi
-
-echo "using VERSION=${VERSION}"
 
 if [[ ! -e $DST/bin/go ]]; then
 	if ! which curl; then

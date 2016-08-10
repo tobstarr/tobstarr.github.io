@@ -103,7 +103,7 @@ Attached Policies</h2>
 <h2><a name="list-rds-instances-with-status" class="anchor" href="#list-rds-instances-with-status" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
 List RDS instances with status</h2>
 
-<pre><code>aws rds describe-db-instances | jq -c -r &#39;.DBInstances[] | {id: .DBInstanceIdentifier, status: .DBInstanceStatus}&#39;
+<pre><code>aws-dynport rds describe-db-instances  | jq &#39;.DBInstances[] | {id: .DBInstanceIdentifier, version: .EngineVersion, class: .DBInstanceClass, status: .DBInstanceStatus, address: .Endpoint.Address}&#39; -c -r
 </code></pre>
 <h2><a name="iam-list-users" class="anchor" href="#iam-list-users" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
 IAM list Users</h2>
@@ -131,6 +131,21 @@ Update Hostname</h2>
 sed -s &#34;s/^127.0.0.1.*/127.0.0.1 localhost $(ec2metadata --instance-id)/g&#34; -i /etc/hosts
 ec2metadata --instance-id &gt; /etc/hostname
 hostname -F /etc/hostname
+</code></pre>
+<h2><a name="db-versions" class="anchor" href="#db-versions" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+DB Versions</h2>
+
+<pre><code>aws-rebelle rds describe-db-engine-versions | jq &#39;.DBEngineVersions[] | .&#39; -c -r | grep mysql | jq &#39;.EngineVersion&#39; -c -r | sort
+</code></pre>
+<h2><a name="s3-reverse" class="anchor" href="#s3-reverse" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+S3 Reverse</h2>
+
+<pre><code>&#34;%08x&#34; % ((Time.at(0) + 0xffffffff) - Time.now).to_i
+</code></pre>
+<h2><a name="list-ssl-certificate-of-load-balancers" class="anchor" href="#list-ssl-certificate-of-load-balancers" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+List SSL Certificate of load balancers</h2>
+
+<pre><code>aws elb describe-load-balancers | jq &#39;.LoadBalancerDescriptions[] | {name: .LoadBalancerName, cert: .ListenerDescriptions[] | .Listener | select(.LoadBalancerPort = 443) | .SSLCertificateId} | select(.cert != null)&#39; -c -r
 </code></pre>
 </div>
 </body>

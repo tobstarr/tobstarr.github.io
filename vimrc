@@ -2,35 +2,47 @@
 " and mkdir -p ${HOME}/.vim.swp
 " mkdir -p $HOME/src/github.com/tobstarr/
 " git clone https://github.com/tobstarr/tobstarr.github.io $HOME/src/github.com/tobstarr/tobstarr.github.io
-" ln -nfs $HOME/src/github.com/tobstarr/tobstarr.github.io/dotfiles/vim-snippets UltiSnips
+" ln -nfs ~/src/github.com/tobstarr/tobstrarr.github.io/src/vim-snippets ~/.vim/UltiSnips
+" ln -nfs ~/src/github.com/tobstarr/tobstrarr.github.io/src/vim-snippets ~/.config/nvim/UltiSnips
 filetype plugin off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-Plugin 'kien/ctrlp.vim'
-Plugin 'fatih/vim-go'
+Plugin 'mileszs/ack.vim'
 Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'scrooloose/syntastic'
-Plugin 'tpope/vim-abolish'
+" Plugin 'airblade/vim-gitgutter'
 Plugin 'benmills/vimux'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'elzr/vim-json'
+Plugin 'fatih/vim-go'
+Plugin 'honza/dockerfile.vim'
+Plugin 'honza/vim-snippets'
+Plugin 'jamessan/vim-gnupg'
+Plugin 'kien/ctrlp.vim'
+Plugin 'majutsushi/tagbar'
+Plugin 'morhetz/gruvbox'
+Plugin 'mtth/scratch.vim'
+Plugin 'scrooloose/nerdtree'
+" Plugin 'scrooloose/syntastic'
+Plugin 'slim-template/vim-slim'
+Plugin 'thinca/vim-localrc'
+Plugin 'toyamarinyon/vim-swift'
+Plugin 'tpope/vim-abolish'
+Plugin 'tpope/vim-dispatch'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-markdown'
-Plugin 'toyamarinyon/vim-swift'
-Plugin 'honza/dockerfile.vim'
-Plugin 'majutsushi/tagbar'
-Plugin 'scrooloose/nerdtree'
-Plugin 'slim-template/vim-slim'
 Plugin 'tpope/vim-rake'
-Plugin 'elzr/vim-json'
-Plugin 'jamessan/vim-gnupg'
-Bundle 'mileszs/ack.vim'
-Plugin 'bling/vim-airline'
-Plugin 'morhetz/gruvbox'
-Plugin 'thinca/vim-localrc'
-Plugin 'mtth/scratch.vim'
-Plugin 'airblade/vim-gitgutter'
+Plugin 'janko-m/vim-test'
+Plugin 'Quramy/tsuquyomi'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'Shougo/vimproc.vim'
 call vundle#end()
 filetype plugin indent on
+
+if has('nvim')
+  :tnoremap <Esc> <C-\><C-n>
+  let g:terminal_scrollback_buffer_size=100000
+endif
 
 " colorscheme gruvbox
 " set background=dark
@@ -60,11 +72,12 @@ set wildmenu
 set wildignore+=tmp/*,*.o,*.obj,.git
 set nocompatible
 set nofoldenable
-set dir=/tmp
+" set dir=/tmp
 let $BASH_ENV = "~/.bash_aliases"
 set shell=/bin/bash\ -l
 let g:ackprg = 'ag --nogroup --nocolor --column'
 let g:ctrlp_custom_ignore = '\v[\/]Godeps\/_workspace'
+let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 
 autocmd BufNewFile,BufRead *.ego set ft=html
 autocmd BufNewFile,BufRead *.go set ft=go
@@ -80,7 +93,12 @@ autocmd FileType go nmap ,e <Plug>(go-rename)
 autocmd FileType go set tabstop=4 shiftwidth=4
 autocmd FileType go map <C-]> gd
 autocmd FileType go map ,rn :GoRename<CR>
+autocmd FileType go map ,d :GoDeclsDir<CR>
+autocmd FileType go map ,b :w<CR>:GoBuild<CR>
+autocmd FileType go map gt :w<CR>:GoTest<CR>
+autocmd FileType go map ,. :w<CR>:GoBuild<CR>
 autocmd FileType html set expandtab tabstop=4 shiftwidth=4 autoindent
+autocmd FileType ruby map ,d :CtrlPTag<CR>
 autocmd FileType ruby set expandtab
 autocmd FileType ruby set shiftwidth=2
 autocmd FileType ruby set tabstop=2
@@ -90,7 +108,10 @@ autocmd FileType make set noexpandtab nolist shiftwidth=4 tabstop=4 softtabstop=
 " expand to current directory
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
 
-map tt :TagbarToggle<CR>
+map tf :TestFile<CR>
+map tl :TestLast<CR>
+map tn :TestNearest<CR>
+map tv :TestVisit<CR>
 
 filetype plugin on
 set ignorecase
@@ -135,10 +156,11 @@ function! RenameFile()
 endfunction
 
 map ,, :w<CR>:VimuxRunLastCommand<CR>
-map ,. :w<CR>:make -f Makefile.wip<CR>
+map ,. :w<CR>:Dispatch bash ./wip.sh<CR>
 map ,/ :VimuxRunLastCommand<CR>
 map ,c :set relativenumber!<CR>:set number!<CR>
 map ,ff :CtrlPClearCache<CR>
+map ,g :normal gg=G<CR>
 map ,l :File<CR>
 map ,n :call RenameFile()<cr>
 map ,p :set paste!<CR>
@@ -163,6 +185,7 @@ map ,s :setlocal spell!<CR>
 set nohlsearch
 
 command! File normal :echo expand('%:p')<CR>
+command! ReformatJson normal :%!jq . %<CR>
 command! -range AddJsonTags <line1>,<line2>normal ^vEyA `json:""crsA,omitempty"`^j
 command! -range AddXmlTags <line1>,<line2>normal ^vEyA `xml:""guawA,attr"`^j
 command! -range JsonToStruct <line1>,<line2>normal ^wvi"yI" string `json:f:s` //^crmj^
