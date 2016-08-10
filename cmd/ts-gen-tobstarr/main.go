@@ -250,7 +250,7 @@ func createRelease(l Logger, skipGitClean bool) (dir string, err error) {
 	if err != nil {
 		return "", err
 	}
-	err = runInDir(wd, "git", "add", "github", "git@github.com:tobstarr/tobstarr.github.io")
+	err = runInDir(wd, "git", "remote", "add", "github", "git@github.com:tobstarr/tobstarr.github.io")
 	if err != nil {
 		return "", err
 	}
