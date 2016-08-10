@@ -17,7 +17,7 @@ var versionsMap = map[string]*version{
 	"CoreOS":          {Website: "https://coreos.com/releases/"},
 	"Docker Compose":  {Website: "https://github.com/docker/compose/releases"},
 	"Docker Registry": {Docker: "https://hub.docker.com/_/registry/"},
-	"Docker":          {Website: "https://github.com/docker/docker/blob/master/CHANGELOG.md"},
+	"Docker":          {Website: "https://github.com/docker/docker/releases"},
 	"ElasticSearch":   {Website: "https://www.elastic.co/downloads/elasticsearch", Docker: "https://registry.hub.docker.com/_/elasticsearch/"},
 	"Geminabox":       {Website: "https://github.com/geminabox/geminabox/releases"},
 	"Golang":          {Website: "https://golang.org/dl/", Docker: "https://registry.hub.docker.com/_/golang/"},
