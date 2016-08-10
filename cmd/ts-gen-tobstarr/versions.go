@@ -26,6 +26,7 @@ var versionsMap = map[string]*version{
 	"Jenkins":         {Website: "https://jenkins-ci.org/changelog"},
 	"Kibana":          {Website: "https://www.elastic.co/downloads/kibana", Docker: "https://registry.hub.docker.com/_/kibana/"},
 	"Kubernetes":      {Website: "https://github.com/kubernetes/kubernetes/releases"},
+	"Minikube":        {Website: "https://github.com/kubernetes/minikube/releases"},
 	"Mongo":           {Docker: "https://registry.hub.docker.com/_/mongo/"},
 	"MySQL":           {Website: "http://dev.mysql.com/downloads/mysql/", Docker: "https://registry.hub.docker.com/_/mysql/"},
 	"Nginx":           {Website: "http://nginx.org/en/download.html", Docker: "https://registry.hub.docker.com/_/nginx/"},
