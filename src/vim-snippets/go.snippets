@@ -24,6 +24,18 @@ for i, tc := range tests {
 }
 endsnippet
 
+snippet hasf "Description" b
+tests := []struct{ Input, Want string }{
+	${0},
+}
+for i, tc := range tests {
+	has := ${1}(tc.Input)
+	if has != tc.Want {
+		t.Errorf("%d: want=%q has=%q", i+1, tc.Want, has)
+	}
+}
+endsnippet
+
 snippet stringify "Stringify"
 func s(in interface{}) string {
 	v := reflect.ValueOf(in)
