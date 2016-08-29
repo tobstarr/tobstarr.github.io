@@ -48,6 +48,7 @@ var sources = map[string][]Source{
 	"scratch/index.html":                   Layout(MarkdownSource(Render(FileSource("src/scratch/index.md")))),
 	"setup_geminabox.sh":                   FileSources("src/speed-up-bundler-with-geminabox/setup_geminabox.sh"),
 	"setup_go.sh":                          FileSources("src/articles/setup-go/install.sh"),
+	"install_kubelet.sh":                   FileSources("src/kubernetes/install_kubelet.sh"),
 	"setup_vim.sh":                         FileSources("src/articles/setup-vim/setup_vim.sh"),
 	"speed-up-bundler-with-geminabox.html": Layout(MarkdownSource(Render(FileSource("src/speed-up-bundler-with-geminabox/index.md")))),
 	"systemd.html":                         Layout(MarkdownSource(Render(FileSource("src/systemd/index.md")))),
