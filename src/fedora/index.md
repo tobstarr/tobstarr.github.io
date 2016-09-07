@@ -40,3 +40,8 @@ https://faq.i3wm.org/question/125/how-to-change-the-systems-volume.1.html
 	dnf install --nogpgcheck \
   http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm  \
   http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+
+## X11 config
+	# /etc/X11/xinit/xinitrc.d/90-screen.sh
+	export GDK_SCALE=2
+	xrandr --output eDP-1 --dpi 220
