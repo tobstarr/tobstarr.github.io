@@ -96,7 +96,7 @@ autocmd FileType go map ,rn :GoRename<CR>
 autocmd FileType go map ,d :GoDeclsDir<CR>
 autocmd FileType go map ,b :w<CR>:GoBuild<CR>
 autocmd FileType go map gt :w<CR>:GoTest<CR>
-autocmd FileType go map ,. :w<CR>:!touch wip.run<CR>
+autocmd FileType go map ,. :silent exec "!touch wip.run"<CR>
 autocmd FileType html set expandtab tabstop=4 shiftwidth=4 autoindent
 autocmd FileType ruby map ,d :CtrlPTag<CR>
 autocmd FileType ruby set expandtab

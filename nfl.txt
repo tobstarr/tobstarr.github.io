@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>tobstarr.com</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/css/default.css" type="text/css" media="screen" title="no title" charset="utf-8">
+</head>
+<body>
+  <div class="container">
+    <div class="header index_link">
+      <a href="/index.html">tobstarr.com</a>
+    </div>
+    <div class="header_links">
+      <a href="/dotfiles.html">Dotfiles</a>
+      |
+      <a href="/cheats.html">Cheats</a>
+    </div>
+    <hr />
+week 1
+2016-09-09 02:30:00 Carolina at Denver
+2016-09-11 19:00:00 Tampa Bay at Atlanta
+2016-09-11 19:00:00 Buffalo at Baltimore
+2016-09-11 19:00:00 Chicago at Houston
+2016-09-11 19:00:00 Green Bay at Jacksonville
+2016-09-11 19:00:00 San Diego at Kansas City
+2016-09-11 19:00:00 Oakland at New Orleans
+2016-09-11 19:00:00 Cincinnati at NY Jets
+2016-09-11 19:00:00 Cleveland at Philadelphia
+2016-09-11 19:00:00 Minnesota at Tennessee
+2016-09-11 22:05:00 Miami at Seattle
+2016-09-11 22:25:00 NY Giants at Dallas
+2016-09-11 22:25:00 Detroit at Indianapolis
+2016-09-12 02:30:00 New England at Arizona
+2016-09-13 01:10:00 Pittsburgh at Washington
+2016-09-13 04:20:00 L.A. Rams at San Francisco
+
+week 2
+2016-09-16 02:25:00 NY Jets at Buffalo
+2016-09-18 19:00:00 San Francisco at Carolina
+2016-09-18 19:00:00 Baltimore at Cleveland
+2016-09-18 19:00:00 Tennessee at Detroit
+2016-09-18 19:00:00 Kansas City at Houston
+2016-09-18 19:00:00 Miami at New England
+2016-09-18 19:00:00 New Orleans at NY Giants
+2016-09-18 19:00:00 Cincinnati at Pittsburgh
+2016-09-18 19:00:00 Dallas at Washington
+2016-09-18 22:05:00 Tampa Bay at Arizona
+2016-09-18 22:05:00 Seattle at L.A. Rams
+2016-09-18 22:25:00 Indianapolis at Denver
+2016-09-18 22:25:00 Atlanta at Oakland
+2016-09-18 22:25:00 Jacksonville at San Diego
+2016-09-19 02:30:00 Green Bay at Minnesota
+2016-09-20 02:30:00 Philadelphia at Chicago
+
+week 3
+2016-09-23 02:25:00 Houston at New England
+2016-09-25 19:00:00 Arizona at Buffalo
+2016-09-25 19:00:00 Minnesota at Carolina
+2016-09-25 19:00:00 Denver at Cincinnati
+2016-09-25 19:00:00 Detroit at Green Bay
+2016-09-25 19:00:00 Baltimore at Jacksonville
+2016-09-25 19:00:00 Cleveland at Miami
+2016-09-25 19:00:00 Washington at NY Giants
+2016-09-25 19:00:00 Oakland at Tennessee
+2016-09-25 22:05:00 San Francisco at Seattle
+2016-09-25 22:05:00 L.A. Rams at Tampa Bay
+2016-09-25 22:25:00 San Diego at Indianapolis
+2016-09-25 22:25:00 NY Jets at Kansas City
+2016-09-25 22:25:00 Pittsburgh at Philadelphia
+2016-09-26 02:30:00 Chicago at Dallas
+2016-09-27 02:30:00 Atlanta at New Orleans
+
+week 4
+2016-09-30 02:25:00 Miami at Cincinnati
+2016-10-02 15:30:00 Indianapolis at Jacksonville
+2016-10-02 19:00:00 Carolina at Atlanta
+2016-10-02 19:00:00 Oakland at Baltimore
+2016-10-02 19:00:00 Detroit at Chicago
+2016-10-02 19:00:00 Tennessee at Houston
+2016-10-02 19:00:00 Buffalo at New England
+2016-10-02 19:00:00 Seattle at NY Jets
+2016-10-02 19:00:00 Cleveland at Washington
+2016-10-02 22:05:00 Denver at Tampa Bay
+2016-10-02 22:25:00 L.A. Rams at Arizona
+2016-10-02 22:25:00 New Orleans at San Diego
+2016-10-02 22:25:00 Dallas at San Francisco
+2016-10-03 02:30:00 Kansas City at Pittsburgh
+2016-10-04 02:30:00 NY Giants at Minnesota
+
+week 5
+2016-10-07 02:25:00 Arizona at San Francisco
+2016-10-09 19:00:00 Washington at Baltimore
+2016-10-09 19:00:00 New England at Cleveland
+2016-10-09 19:00:00 Philadelphia at Detroit
+2016-10-09 19:00:00 Chicago at Indianapolis
+2016-10-09 19:00:00 Tennessee at Miami
+2016-10-09 19:00:00 Houston at Minnesota
+2016-10-09 19:00:00 NY Jets at Pittsburgh
+2016-10-09 22:05:00 Atlanta at Denver
+2016-10-09 22:25:00 Cincinnati at Dallas
+2016-10-09 22:25:00 San Diego at Oakland
+2016-10-09 22:25:00 Buffalo at L.A. Rams
+2016-10-10 02:30:00 NY Giants at Green Bay
+2016-10-11 02:30:00 Tampa Bay at Carolina
+
+week 6
+2016-10-14 02:25:00 Denver at San Diego
+2016-10-16 19:00:00 San Francisco at Buffalo
+2016-10-16 19:00:00 Jacksonville at Chicago
+2016-10-16 19:00:00 L.A. Rams at Detroit
+2016-10-16 19:00:00 Pittsburgh at Miami
+2016-10-16 19:00:00 Cincinnati at New England
+2016-10-16 19:00:00 Carolina at New Orleans
+2016-10-16 19:00:00 Baltimore at NY Giants
+2016-10-16 19:00:00 Cleveland at Tennessee
+2016-10-16 19:00:00 Philadelphia at Washington
+2016-10-16 22:05:00 Kansas City at Oakland
+2016-10-16 22:25:00 Dallas at Green Bay
+2016-10-16 22:25:00 Atlanta at Seattle
+2016-10-17 02:30:00 Indianapolis at Houston
+2016-10-18 02:30:00 NY Jets at Arizona
+
+week 7
+2016-10-21 02:25:00 Chicago at Green Bay
+2016-10-23 15:30:00 NY Giants at L.A. Rams
+2016-10-23 19:00:00 Cleveland at Cincinnati
+2016-10-23 19:00:00 Washington at Detroit
+2016-10-23 19:00:00 Oakland at Jacksonville
+2016-10-23 19:00:00 New Orleans at Kansas City
+2016-10-23 19:00:00 Buffalo at Miami
+2016-10-23 19:00:00 Baltimore at NY Jets
+2016-10-23 19:00:00 Minnesota at Philadelphia
+2016-10-23 19:00:00 Indianapolis at Tennessee
+2016-10-23 22:05:00 San Diego at Atlanta
+2016-10-23 22:05:00 Tampa Bay at San Francisco
+2016-10-23 22:25:00 New England at Pittsburgh
+2016-10-24 02:30:00 Seattle at Arizona
+2016-10-25 02:30:00 Houston at Denver
+
+week 8
+2016-10-28 02:25:00 Jacksonville at Tennessee
+2016-10-30 14:30:00 Washington at Cincinnati
+2016-10-30 18:00:00 Green Bay at Atlanta
+2016-10-30 18:00:00 New England at Buffalo
+2016-10-30 18:00:00 NY Jets at Cleveland
+2016-10-30 18:00:00 Detroit at Houston
+2016-10-30 18:00:00 Kansas City at Indianapolis
+2016-10-30 18:00:00 Seattle at New Orleans
+2016-10-30 18:00:00 Oakland at Tampa Bay
+2016-10-30 21:05:00 San Diego at Denver
+2016-10-30 21:25:00 Arizona at Carolina
+2016-10-31 01:30:00 Philadelphia at Dallas
+2016-11-01 01:30:00 Minnesota at Chicago
+
+week 9
+2016-11-04 01:25:00 Atlanta at Tampa Bay
+2016-11-06 19:00:00 Pittsburgh at Baltimore
+2016-11-06 19:00:00 Dallas at Cleveland
+2016-11-06 19:00:00 Jacksonville at Kansas City
+2016-11-06 19:00:00 NY Jets at Miami
+2016-11-06 19:00:00 Detroit at Minnesota
+2016-11-06 19:00:00 Philadelphia at NY Giants
+2016-11-06 22:05:00 New Orleans at San Francisco
+2016-11-06 22:05:00 Carolina at L.A. Rams
+2016-11-06 22:25:00 Indianapolis at Green Bay
+2016-11-06 22:25:00 Tennessee at San Diego
+2016-11-07 02:30:00 Denver at Oakland
+2016-11-08 02:30:00 Buffalo at Seattle
+
+week 10
+2016-11-11 02:25:00 Cleveland at Baltimore
+2016-11-13 19:00:00 Kansas City at Carolina
+2016-11-13 19:00:00 Houston at Jacksonville
+2016-11-13 19:00:00 Denver at New Orleans
+2016-11-13 19:00:00 L.A. Rams at NY Jets
+2016-11-13 19:00:00 Atlanta at Philadelphia
+2016-11-13 19:00:00 Chicago at Tampa Bay
+2016-11-13 19:00:00 Green Bay at Tennessee
+2016-11-13 19:00:00 Minnesota at Washington
+2016-11-13 22:05:00 Miami at San Diego
+2016-11-13 22:25:00 San Francisco at Arizona
+2016-11-13 22:25:00 Dallas at Pittsburgh
+2016-11-14 02:30:00 Seattle at New England
+2016-11-15 02:30:00 Cincinnati at NY Giants
+
+week 11
+2016-11-18 02:25:00 New Orleans at Carolina
+2016-11-20 19:00:00 Buffalo at Cincinnati
+2016-11-20 19:00:00 Pittsburgh at Cleveland
+2016-11-20 19:00:00 Baltimore at Dallas
+2016-11-20 19:00:00 Jacksonville at Detroit
+2016-11-20 19:00:00 Tennessee at Indianapolis
+2016-11-20 19:00:00 Tampa Bay at Kansas City
+2016-11-20 19:00:00 Arizona at Minnesota
+2016-11-20 19:00:00 Chicago at NY Giants
+2016-11-20 22:05:00 Miami at L.A. Rams
+2016-11-20 22:25:00 Philadelphia at Seattle
+2016-11-20 22:25:00 New England at San Francisco
+2016-11-21 02:30:00 Green Bay at Washington
+2016-11-22 02:30:00 Houston at Oakland
+
+week 12
+2016-11-24 18:30:00 Minnesota at Detroit
+2016-11-24 22:30:00 Washington at Dallas
+2016-11-25 02:30:00 Pittsburgh at Indianapolis
+2016-11-27 19:00:00 Arizona at Atlanta
+2016-11-27 19:00:00 Cincinnati at Baltimore
+2016-11-27 19:00:00 Jacksonville at Buffalo
+2016-11-27 19:00:00 Tennessee at Chicago
+2016-11-27 19:00:00 NY Giants at Cleveland
+2016-11-27 19:00:00 San Diego at Houston
+2016-11-27 19:00:00 San Francisco at Miami
+2016-11-27 19:00:00 L.A. Rams at New Orleans
+2016-11-27 22:05:00 Seattle at Tampa Bay
+2016-11-27 22:25:00 Kansas City at Denver
+2016-11-27 22:25:00 Carolina at Oakland
+2016-11-28 02:30:00 New England at NY Jets
+2016-11-29 02:30:00 Green Bay at Philadelphia
+
+week 13
+2016-12-02 02:25:00 Dallas at Minnesota
+2016-12-04 19:00:00 Kansas City at Atlanta
+2016-12-04 19:00:00 Miami at Baltimore
+2016-12-04 19:00:00 San Francisco at Chicago
+2016-12-04 19:00:00 Philadelphia at Cincinnati
+2016-12-04 19:00:00 Houston at Green Bay
+2016-12-04 19:00:00 Denver at Jacksonville
+2016-12-04 19:00:00 L.A. Rams at New England
+2016-12-04 19:00:00 Detroit at New Orleans
+2016-12-04 22:05:00 Buffalo at Oakland
+2016-12-04 22:25:00 Washington at Arizona
+2016-12-04 22:25:00 NY Giants at Pittsburgh
+2016-12-04 22:25:00 Tampa Bay at San Diego
+2016-12-05 02:30:00 Carolina at Seattle
+2016-12-06 02:30:00 Indianapolis at NY Jets
+
+week 14
+2016-12-09 02:25:00 Oakland at Kansas City
+2016-12-11 19:00:00 Pittsburgh at Buffalo
+2016-12-11 19:00:00 San Diego at Carolina
+2016-12-11 19:00:00 Cincinnati at Cleveland
+2016-12-11 19:00:00 Chicago at Detroit
+2016-12-11 19:00:00 Houston at Indianapolis
+2016-12-11 19:00:00 Minnesota at Jacksonville
+2016-12-11 19:00:00 Arizona at Miami
+2016-12-11 19:00:00 Washington at Philadelphia
+2016-12-11 19:00:00 New Orleans at Tampa Bay
+2016-12-11 19:00:00 Denver at Tennessee
+2016-12-11 22:05:00 NY Jets at San Francisco
+2016-12-11 22:25:00 Seattle at Green Bay
+2016-12-11 22:25:00 Atlanta at L.A. Rams
+2016-12-12 02:30:00 Dallas at NY Giants
+2016-12-13 02:30:00 Baltimore at New England
+
+week 15
+2016-12-16 02:25:00 L.A. Rams at Seattle
+2016-12-18 02:25:00 Miami at NY Jets
+2016-12-18 19:00:00 Philadelphia at Baltimore
+2016-12-18 19:00:00 Cleveland at Buffalo
+2016-12-18 19:00:00 Green Bay at Chicago
+2016-12-18 19:00:00 Tampa Bay at Dallas
+2016-12-18 19:00:00 Jacksonville at Houston
+2016-12-18 19:00:00 Tennessee at Kansas City
+2016-12-18 19:00:00 Indianapolis at Minnesota
+2016-12-18 19:00:00 Detroit at NY Giants
+2016-12-18 22:05:00 New Orleans at Arizona
+2016-12-18 22:05:00 San Francisco at Atlanta
+2016-12-18 22:25:00 New England at Denver
+2016-12-18 22:25:00 Oakland at San Diego
+2016-12-19 02:30:00 Pittsburgh at Cincinnati
+2016-12-20 02:30:00 Carolina at Washington
+
+week 16
+2016-12-23 02:25:00 NY Giants at Philadelphia
+2016-12-24 19:00:00 Miami at Buffalo
+2016-12-24 19:00:00 Atlanta at Carolina
+2016-12-24 19:00:00 Washington at Chicago
+2016-12-24 19:00:00 San Diego at Cleveland
+2016-12-24 19:00:00 Minnesota at Green Bay
+2016-12-24 19:00:00 Tennessee at Jacksonville
+2016-12-24 19:00:00 NY Jets at New England
+2016-12-24 19:00:00 Tampa Bay at New Orleans
+2016-12-24 22:05:00 Indianapolis at Oakland
+2016-12-24 22:25:00 Arizona at Seattle
+2016-12-24 22:25:00 San Francisco at L.A. Rams
+2016-12-25 02:25:00 Cincinnati at Houston
+2016-12-25 22:30:00 Baltimore at Pittsburgh
+2016-12-26 02:30:00 Denver at Kansas City
+2016-12-27 02:30:00 Detroit at Dallas
+
+week 17
+2017-01-01 19:00:00 New Orleans at Atlanta
+2017-01-01 19:00:00 Baltimore at Cincinnati
+2017-01-01 19:00:00 Green Bay at Detroit
+2017-01-01 19:00:00 Jacksonville at Indianapolis
+2017-01-01 19:00:00 New England at Miami
+2017-01-01 19:00:00 Chicago at Minnesota
+2017-01-01 19:00:00 Buffalo at NY Jets
+2017-01-01 19:00:00 Cleveland at Pittsburgh
+2017-01-01 19:00:00 Dallas at Philadelphia
+2017-01-01 19:00:00 Carolina at Tampa Bay
+2017-01-01 19:00:00 Houston at Tennessee
+2017-01-01 19:00:00 NY Giants at Washington
+2017-01-01 22:25:00 Oakland at Denver
+2017-01-01 22:25:00 Kansas City at San Diego
+2017-01-01 22:25:00 Seattle at San Francisco
+2017-01-01 22:25:00 Arizona at L.A. Rams
+</div>
+</body>
+</html>

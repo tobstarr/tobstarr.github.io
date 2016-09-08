@@ -64,8 +64,8 @@ After=network.target
 TimeoutStartSec=0
 ExecStartPre=-/bin/mkdir -p /opt/rkt/postgres /run/postgresql
 ExecStartPre=-/bin/chown 999 /run/postgresql
-ExecStartPre=/usr/local/bin/rkt fetch --insecure-skip-verify docker://postgres:9.4.5
-ExecStart=/usr/local/bin/rkt run --net=host docker://postgres:9.4.5 --insecure-skip-verify --volume volume-var-lib-postgresql-data,kind=host,source=/opt/rkt/postgres --volume socket,kind=host,source=/run/postgresql --mount=volume=socket,target=/run/postgresql
+ExecStartPre=/usr/local/bin/rkt fetch --insecure-options=image docker://postgres:9.5.4
+ExecStart=/usr/local/bin/rkt run --net=host docker://postgres:9.5.4 --volume volume-var-lib-postgresql-data,kind=host,source=/opt/rkt/postgres --volume socket,kind=host,source=/run/postgresql --mount=volume=socket,target=/run/postgresql
 
 [Install]
 WantedBy=multi-user.target
