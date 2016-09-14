@@ -31,3 +31,8 @@
 ## list remote repository
 
 git -c core.askpass=true ls-remote -h git@travis.github.com:phrase/stats.git HEAD
+
+## add to last commit
+
+	git add
+	git ci --amend --no-edit
