@@ -103,3 +103,8 @@ canonical owner id: 099720109477
 
 	aws elb describe-load-balancers | jq '.LoadBalancerDescriptions[] | {name: .LoadBalancerName, cert: .ListenerDescriptions[] | .Listener | select(.LoadBalancerPort = 443) | .SSLCertificateId} | select(.cert != null)' -c -r
 
+
+## Register instances with load balancer by instance name
+
+	aws elb register-instances-with-load-balancer --load-balancer-name phraseapp-k8s-v2 --instances "[$(aws ec2 describe-instances | jq '.Reservations[] | .Instances[] | { InstanceId: .InstanceId, name: .Tags[] | select(.Key == "Name") | .Value} | select(.name == "k8s-minion") | {InstanceId}' -c -r | paste -sd ,)]"
+
