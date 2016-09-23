@@ -96,13 +96,12 @@ autocmd FileType go map ,rn :GoRename<CR>
 autocmd FileType go map ,d :GoDeclsDir<CR>
 autocmd FileType go map ,b :w<CR>:GoBuild<CR>
 autocmd FileType go map gt :w<CR>:GoTest<CR>
-autocmd FileType go map ,. :silent exec "!touch wip.run"<CR>
+autocmd FileType ruby map ,. :silent exec "!touch wip.run"<CR>
 autocmd FileType html set expandtab tabstop=4 shiftwidth=4 autoindent
 autocmd FileType ruby map ,d :CtrlPTag<CR>
 autocmd FileType ruby set expandtab
 autocmd FileType ruby set shiftwidth=2
 autocmd FileType ruby set tabstop=2
-autocmd FileType ruby map ,. :w<CR>:!make -f Makefile.wip<CR>
 autocmd FileType make set noexpandtab nolist shiftwidth=4 tabstop=4 softtabstop=4 
 
 " expand to current directory
@@ -156,7 +155,8 @@ function! RenameFile()
 endfunction
 
 map ,, :w<CR>:VimuxRunLastCommand<CR>
-map ,. :w<CR>:Dispatch bash ./wip.sh<CR>
+map ,. :silent exec "!touch wip.run"<CR>
+" map ,. :w<CR>:Dispatch bash ./wip.sh<CR>
 map ,/ :VimuxRunLastCommand<CR>
 map ,c :set relativenumber!<CR>:set number!<CR>
 map ,ff :CtrlPClearCache<CR>
