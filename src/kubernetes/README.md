@@ -39,3 +39,15 @@
 		successThreshold: 1
 		timeoutSeconds: 1
 
+## tcp check
+
+	tcpSocket:
+  	port: 443
+
+
+## Limits
+
+  resources:
+		limits:
+			cpu: 88m
+			memory: 204Mi
