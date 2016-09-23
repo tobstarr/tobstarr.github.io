@@ -4,6 +4,10 @@
 
 	rate(container_cpu_user_seconds_total{kubernetes_container_name='rabbitmq'}[1m])
 
+## select deployment
+
+	container_memory_rss{kubernetes_pod_name=~"^phraseapp-worker.*",container_label_io_kubernetes_container_name!="POD",id=~"^/init.*"}
+
 
 ## container record
 	{
