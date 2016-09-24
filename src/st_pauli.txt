@@ -1,0 +1,29 @@
+# U17
+source: http://www.fcstpauli.com/nachwuchs/mannschaften/u17/spielplan
+
+So. 25.09. 11.00	FC St. Pauli - 1.FC Union Berlin
+Sa. 15.10. 14.00	FC St. Pauli - F.C. Hansa Rostock
+So. 30.10. 13.30	FC St. Pauli - Tennis Borussia Berlin
+Sa. 12.11. 11.00	FC St. Pauli - 1. FC Magdeburg
+Sa. 10.12. 11.00	FC St. Pauli - SG Dynamo Dresden
+Sa. 17.12. 13.00	FC St. Pauli - Holstein Kiel
+Sa. 25.02. 11.00	FC St. Pauli - VfL Wolfsburg
+So. 12.03. 11.00	FC St. Pauli - Hamburger SV
+So. 02.04. 11.00	FC St. Pauli - Eintracht Braunschweig
+So. 23.04. 11.00	FC St. Pauli - Hertha BSC
+So. 28.05. 11.00	FC St. Pauli - SV Werder Bremen
+
+# U19
+source: http://www.fcstpauli.com/nachwuchs/mannschaften/u19/spielplan
+
+Sa. 24.09. 13.00	FC St. Pauli - Holstein Kiel
+So. 02.10. 11.00	FC St. Pauli - FC Ingolstadt 04
+Sa. 22.10. 14.00	FC St. Pauli - Eintracht Braunschweig
+Sa. 05.11. 13.00	FC St. Pauli - VfL Wolfsburg
+So. 27.11. 12.30	FC St. Pauli - SV Werder Bremen
+Sa. 03.12. 11.00	FC St. Pauli - FC Carl Zeiss Jena
+So. 12.02. 11.00	FC St. Pauli - Hertha BSC
+Sa. 25.02. 11.00	FC St. Pauli - Hamburger SV
+So. 12.03. 11.00	FC St. Pauli - SG Dynamo Dresden
+So. 09.04. 11.00	FC St. Pauli - JFV Nordwest
+So. 30.04. 11.00	FC St. Pauli - FC Energie Cottbus
