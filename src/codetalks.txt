@@ -1,0 +1,7 @@
+# Donnerstag
+10:00 K1: Die Rückkehr der Vernunft?
+11:00 K6: The 36th Chamber of Shaolin – Improve Your Microservices Kung Fu in 36 Easy Steps
+12:00 K1: Flow vs TypeScript – Typen-Systeme für JavaScript
+14:00 K1: Localisation is easy. Or isn't it?
+15:00 K1: Webanwendungen mit React entwickeln
+16:00 K1: Angular2 – Real-Time-Anwendungen mit TypeScript entwickeln

@@ -61,6 +61,7 @@ var sources = map[string][]Source{
 	"versions.json":                        RenderJSON(allVersions()),
 	"vimrc":                                FileSources("src/vimrc"),
 	"vimrc.conf":                           FileSources("src/vimrc"),
+	"codetalks.txt":                        FileSources("src/codetalks.txt"),
 	"zsh.html":                             Layout(MarkdownSource(Render(FileSource("src/zsh/index.md")))),
 	"zshrc.sh":                             FileSources("src/zsh/zshrc.sh"),
 }
