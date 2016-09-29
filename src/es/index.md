@@ -35,3 +35,12 @@ see http://stackoverflow.com/questions/9796470/random-order-pagination-elasticse
 	}'
 
 	# add `?retry_on_conflict=5` to avoid version conflicts
+
+## Drain nodes in a cluster
+
+	curl -XPUT ${master}:9200/_cluster/settings -d '{
+		"transient" :{
+				"cluster.routing.allocation.exclude._ip" : "172.31.14.194,172.31.7.158,172.31.5.167,172.31.7.157"
+		 }
+	}';echo
+
