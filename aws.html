@@ -147,6 +147,11 @@ List SSL Certificate of load balancers</h2>
 
 <pre><code>aws elb describe-load-balancers | jq &#39;.LoadBalancerDescriptions[] | {name: .LoadBalancerName, cert: .ListenerDescriptions[] | .Listener | select(.LoadBalancerPort = 443) | .SSLCertificateId} | select(.cert != null)&#39; -c -r
 </code></pre>
+<h2><a name="register-instances-with-load-balancer-by-instance-name" class="anchor" href="#register-instances-with-load-balancer-by-instance-name" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+Register instances with load balancer by instance name</h2>
+
+<pre><code>aws elb register-instances-with-load-balancer --load-balancer-name phraseapp-k8s-v2 --instances &#34;[$(aws ec2 describe-instances | jq &#39;.Reservations[] | .Instances[] | { InstanceId: .InstanceId, name: .Tags[] | select(.Key == &#34;Name&#34;) | .Value} | select(.name == &#34;k8s-minion&#34;) | {InstanceId}&#39; -c -r | paste -sd ,)]&#34;
+</code></pre>
 </div>
 </body>
 </html>

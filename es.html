@@ -88,6 +88,15 @@ Update API</h2>
 
 # add `?retry_on_conflict=5` to avoid version conflicts
 </code></pre>
+<h2><a name="drain-nodes-in-a-cluster" class="anchor" href="#drain-nodes-in-a-cluster" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+Drain nodes in a cluster</h2>
+
+<pre><code>curl -XPUT ${master}:9200/_cluster/settings -d &#39;{
+    &#34;transient&#34; :{
+            &#34;cluster.routing.allocation.exclude._ip&#34; : &#34;172.31.14.194,172.31.7.158,172.31.5.167,172.31.7.157&#34;
+     }
+}&#39;;echo
+</code></pre>
 </div>
 </body>
 </html>
