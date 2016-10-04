@@ -28,3 +28,7 @@
 		kubernetes_pod_name="rabbitmq-3347683304-begc5",
 		name="k8s_rabbitmq.625eb666_rabbitmq-3347683304-begc5_default_6c021bda-5c06-11e6-a2e5-c03fd56491fd_f170ed83"
 	}
+
+## Kubernetes
+
+annotate exporters with `prometheus.io/scrape: "true"`
