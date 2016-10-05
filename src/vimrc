@@ -178,6 +178,7 @@ autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
 
 let g:godef_split=0
+let g:go_auto_sameids=1
 let g:go_fmt_command='goimports'
 let g:go_autodetect_gopath = 0
 
