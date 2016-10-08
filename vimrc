@@ -23,7 +23,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'morhetz/gruvbox'
 Plugin 'mtth/scratch.vim'
 Plugin 'scrooloose/nerdtree'
-" Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic'
 Plugin 'slim-template/vim-slim'
 Plugin 'thinca/vim-localrc'
 Plugin 'toyamarinyon/vim-swift'
@@ -36,6 +36,7 @@ Plugin 'janko-m/vim-test'
 Plugin 'Quramy/tsuquyomi'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'Shougo/vimproc.vim'
+Plugin 'uarun/vim-protobuf'
 call vundle#end()
 filetype plugin indent on
 
