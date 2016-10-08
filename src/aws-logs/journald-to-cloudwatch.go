@@ -14,11 +14,11 @@ import (
 	"github.com/aws/aws-sdk-go/service/cloudwatchlogs"
 	"github.com/aws/aws-sdk-go/service/ec2"
 	"github.com/dynport/dgtk/cli"
-	"github.com/dynport/wunderscale/awscfg"
 	"github.com/dynport/wunderscale/images"
 	"github.com/dynport/wunderscale/instances"
 	"github.com/dynport/wunderscale/ping"
 	"github.com/dynport/wunderscale/wait"
+	"github.com/phrase/awscfg"
 )
 
 func main() {
