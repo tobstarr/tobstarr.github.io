@@ -25,6 +25,7 @@ var versionsMap = map[string]*version{
 	"Java":                 {Docker: "https://registry.hub.docker.com/_/java/"},
 	"Jenkins":              {Website: "https://jenkins-ci.org/changelog"},
 	"Kibana":               {Website: "https://www.elastic.co/downloads/kibana", Docker: "https://registry.hub.docker.com/_/kibana/"},
+	"Kubernetes Dashboard": {Website: "https://github.com/kubernetes/dashboard/releases"},
 	"Kubernetes":           {Website: "https://github.com/kubernetes/kubernetes/releases"},
 	"Linux Kernel":         {Website: "https://www.kernel.org"},
 	"Minikube":             {Website: "https://github.com/kubernetes/minikube/releases"},
@@ -38,8 +39,7 @@ var versionsMap = map[string]*version{
 	"Ruby":                 {Website: "https://www.ruby-lang.org/en/downloads/", Docker: "https://registry.hub.docker.com/_/ruby/"},
 	"Selenium":             {Website: "http://www.seleniumhq.org/download/"},
 	"SyslogNG":             {Website: "https://github.com/balabit/syslog-ng/releases"},
-	"kubernetes-dashboard": {Website: "https://github.com/kubernetes/dashboard/releases"},
-	"rkt": {Website: "https://github.com/coreos/rkt/releases"},
+	"rkt":                  {Website: "https://github.com/coreos/rkt/releases"},
 }
 
 var versionsTpl = `<h2>Versions</h2>
