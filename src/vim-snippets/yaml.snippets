@@ -1,0 +1,19 @@
+snippet dpl "Description" b
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: ${1}
+spec:
+  replicas: ${2:1}
+  selector:
+    matchLabels:
+      run: $1
+  template:
+    metadata:
+      labels:
+        run: $1
+    spec:
+      containers:
+      - name: $1
+        image: ${3}
+endsnippet
