@@ -1,3 +1,22 @@
+snippet map "Implements Map interface"
+func (list ${1}s) Map() map[${2:int}]*$1 {
+	m := map[$2]*$1{}
+	for _, e := range list {
+		m[e.${3:ID}] = e
+	}
+	return m
+}
+endsnippet
+
+snippet ids "Implement IDs interface"
+func (list ${1}) IDs() (out []${2:int}) {
+	for _, r := range list {
+		out = append(out, r.${3:ID})
+	}
+	return out
+}
+endsnippet
+
 snippet yml "yaml tag"
 \`yaml:"${1}"\`${0}
 endsnippet
