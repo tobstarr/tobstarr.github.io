@@ -32,13 +32,13 @@ ${0}
 endsnippet
 
 snippet has "Description" b
-tests := []struct{ Has, Want interface{} }{
+tests := map[int]struct{ Has, Want interface{} }{
 	{${1}},
 	${0}
 }
 for i, tc := range tests {
 	if tc.Has != tc.Want {
-		t.Errorf("%d: want=%#v has=%#v", i + 1, tc.Want, tc.Has)
+		t.Errorf("%d: want=%#v has=%#v", i, tc.Want, tc.Has)
 	}
 }
 endsnippet
