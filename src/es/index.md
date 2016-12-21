@@ -43,4 +43,3 @@ see http://stackoverflow.com/questions/9796470/random-order-pagination-elasticse
 				"cluster.routing.allocation.exclude._ip" : "172.31.14.194,172.31.7.158,172.31.5.167,172.31.7.157"
 		 }
 	}';echo
-
