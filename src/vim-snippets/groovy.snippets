@@ -1,9 +1,0 @@
-snippet init "Description"
-node {
-  stage "Checkout"
-  checkout scm
-
-  stage "${1:Build}"
-  sh 'bash ./${2:docker_build}.sh'
-}
-endsnippet
