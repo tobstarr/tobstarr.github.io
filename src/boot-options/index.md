@@ -9,6 +9,10 @@
 
 F12
 
+## Dell
+
+F12 (press when dell logo appears)
+
 ## Nuc
 
 F10
